@@ -1,0 +1,6 @@
+username password age job phone number
+周式民 79633ab 28 教师 86137743321 end
+jack 453378cd 18 学生 17701856667 end
+cccdddk123 114514 10 学生 13387956447 end
+李强 4399ab 22 工程师 13356745321 end
+zc 4399出现 18 老师 158436896 end
