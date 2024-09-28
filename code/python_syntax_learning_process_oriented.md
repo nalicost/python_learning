@@ -466,7 +466,7 @@ for i in list01:
 #### 增删改查
 * 增：第一种：```a[key] = value```没有增加，有则修改；第二种：```a.setdefault(key, value)```，无则增，有则返回对应值
 * 改：第一种：```a[key] = value```没有增加，有则修改；第二种```a.update(b)```，将两个列表合并，如果有key值相同的取b的value
-* 查：第一种：```a.get(key)```有则返回值，无则返回None；第二种```a[key]```，有返回值，无报错，raise keyError
+* 查：第一种：```a.get(key)```有则返回值，无则返回None；第二种```a[key]```，有返回值，无报错，raise KeyError
 * 删：第一种：```a.pop(key)```取出key对应的值并删除；第二种：```del a[key]```直接删除；第三种：```a.popitem()```遵循LIFO（last in first out）删除一对键和值；第四种：```a.clear()```清空
 #### 字典常用语法
 内容较多，了解即可，大部分不常用，不做案例展示，基本用法都写在其中了
