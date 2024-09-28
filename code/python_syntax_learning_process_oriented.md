@@ -146,7 +146,7 @@ class MySuperClass:
     pass
 
 
-class MySubClass:
+class MySubClass(MySuperClasss):
   def fun01(self):
     print('hello world')
 ```
