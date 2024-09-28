@@ -198,7 +198,7 @@ class MySubClass(MySuperClasss):
 * 并：or
 * 补：not
 
-注：上方运算符返回bool值，判断顺序为and优先级最高，or其次，and最后
+注：上方运算符返回bool值，判断顺序为not优先级最高，or其次，and最后
 
 成员运算
 * 元素在容器对象中：in
