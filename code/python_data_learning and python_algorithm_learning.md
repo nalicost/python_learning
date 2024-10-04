@@ -292,7 +292,7 @@ class CQueue:
     层序：ABCDEFGH
   * 实例2
     先序： A 1 B 3 F G D+ C 2 D E 4 5
-    中序： F 3 D+ G B 4 C A D 2 4 E 5
+    中序： F 3 D+ G B 1 C A D 2 4 E 5
     ![图片](2024-06-14_214533.png)
 ###### 语法实现
 如下
