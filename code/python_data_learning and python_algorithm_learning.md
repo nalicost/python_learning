@@ -58,13 +58,13 @@ class Node01:
 ```python
 class NodeList01:
     def __init__(self):
-        self.head = Node02(None)
+        self.head = Node01(None)
         # 只存储起始节点，之后一切操作基于起始节点
 
     def list_init(self, list_):
         tail = self.head
         for item in list_:
-            tail.next_node = Node02(item)
+            tail.next_node = Node01(item)
             tail = tail.next_node
 
     def show(self):
@@ -74,7 +74,7 @@ class NodeList01:
             tail = tail.next_node
 
     def insert(self, index, value):
-        new_node = Node02(value)
+        new_node = Node01(value)
         tail = self.head
         for item in range(index):
             if tail.next_node:
