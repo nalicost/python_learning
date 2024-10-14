@@ -548,8 +548,8 @@
 ##### 排序
 ###### 格式
 * ```where 字段名1 ORDER BY 字段名2```
-  * 降序（default）：```where 字段名1 ORDER BY 字段名2 DESC```
-  * 升序：```where 字段名1 ORDER BY 字段名2 ASC```
+  * 降序：```where 字段名1 ORDER BY 字段名2 DESC```
+  * 升序（default）：```where 字段名1 ORDER BY 字段名2 ASC```
 ###### 实例
 * 代码示例：```select * from class_1 where sex = 'm' order by age;```
 * 结果示例
