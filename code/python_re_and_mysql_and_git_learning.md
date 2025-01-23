@@ -760,7 +760,7 @@
     注：commitid则为提交时的前七位编号
   * 退回到指定的tag版本的格式：```git reset --hard [tag]```
 * 查看所有操作记录
-  * 代码格式：```git relog```
+  * 代码格式：```git reflog```
 
   注：最上面为最新操作，显示所有操作节点（commitid）
 * 创建标签
