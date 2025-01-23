@@ -1,496 +1,581 @@
-# PYTHON 数据结构初步学习
-## 概念
-* 数据：计算机能处理的信息载体
-* 数据元素：构成数据的基本单位（record），范畴依据定义变化
-* 数据结构：研究数据元素之间的关系
-## 逻辑结构
-### 特点
-* 只是描述数据结构中数据元素的联系规律
-* 只是从具体问题抽象出来的数学模型，与机器无关
-### 分类
-* 线性结构
-  * 定义：即为n个数据元素的有序集合
-  * 特点
-   * 集合有且只有一个起始元素
-   * 集合有且只有一个终点元素
-   * 除终点元素外，其他数据元素都有唯一一个后继
-   * 除起始元素外，其他数据元素都有唯一一个前驱
-* 树形结构
-  * 一对多，树根没有前驱节点，每个叶子节点没有后继节点，每个节点的后继节点可以是一个或多个 
-* 图形结构（网状结构）
-  * 多对多的复杂关系，表示其中任意两个节点之间都有可能有关系 
-* 其他结构
-  * 除以上结构外，还有更多样的数据结构，如：集合。有时根据实际情况抽象的模型还有可能是多种模型的结合
-## 存储结构
-### 特点
-* 顺序存储：将数据中各元素依据逻辑顺序储存于内存中的整块位置
-* 链式存储：将数据元素中各元素分布至存储器中的不同位置，用在前一个节点记录下一个节点位置的方式，建立联系
-* 索引存储：在存储数据的同时，建立一个附加的索引表，即包含数据文件与索引表
-## 实际逻辑模型
-### 线性表
-#### 定义
-通过一一对应的方式，形成映射
-#### 顺序映像
-##### 定义
-即线性表$L= (a_1， a_2, ......, a_n)$中各元素依次存储于内存中一整片连续的存储空间中（如列表）
-##### 特点
-* 逻辑上相邻的元素，即$a_{n-1}, a_n, a_{n+1}$，其存储的位置也是相邻的
-* 存储密度高，方便对数据的遍历查找
-* 对数据的插入和删除的效率较差
-#### 链式映像
-##### 定义
-即线性表$L= (a_1， a_2, ......, a_n)$中各元素分布存储于内存的不连续空间中，每个元素称为节点，每个节点都有指向下一个节点的引用
-##### 特点
-* 逻辑上相邻的元素，即$a_{n-1}, a_n, a_{n+1}$，其存储的位置不一定相邻
-* 存储稀疏，对内存空间利用率高
-* 对数据的插入与删除效率较高
-* 结构复杂，不利于遍历
-##### 代码实现
-* 节点实现方式：
-```python
-class Node01:
-    def __init__(self, value, next_node=None):
-        self.value = value
-        self.next_node = next_node
-# 此为正向，也可逆向，此处略
-```   
-* 单链表实现方式：
-```python
-class NodeList01:
-    def __init__(self):
-        self.head = Node01(None)
-        # 只存储起始节点，之后一切操作基于起始节点
+<!DOCTYPE html><html><head>
+      <title>python_data_learning_and_python_algorithm_learning</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\zhang\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.15\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
-    def list_init(self, list_):
-        tail = self.head
-        for item in list_:
-            tail.next_node = Node01(item)
-            tail = tail.next_node
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="python-数据结构初步学习">PYTHON 数据结构初步学习 </h1>
+<h2 id="概念">概念 </h2>
+<ul>
+<li>数据：计算机能处理的信息载体</li>
+<li>数据元素：构成数据的基本单位（record），范畴依据定义变化</li>
+<li>数据结构：研究数据元素之间的关系</li>
+</ul>
+<h2 id="逻辑结构">逻辑结构 </h2>
+<h3 id="特点">特点 </h3>
+<ul>
+<li>只是描述数据结构中数据元素的联系规律</li>
+<li>只是从具体问题抽象出来的数学模型，与机器无关</li>
+</ul>
+<h3 id="分类">分类 </h3>
+<ul>
+<li>线性结构
+<ul>
+<li>定义：即为n个数据元素的有序集合</li>
+<li>特点</li>
+<li>集合有且只有一个起始元素</li>
+<li>集合有且只有一个终点元素</li>
+<li>除终点元素外，其他数据元素都有唯一一个后继</li>
+<li>除起始元素外，其他数据元素都有唯一一个前驱</li>
+</ul>
+</li>
+<li>树形结构
+<ul>
+<li>一对多，树根没有前驱节点，每个叶子节点没有后继节点，每个节点的后继节点可以是一个或多个</li>
+</ul>
+</li>
+<li>图形结构（网状结构）
+<ul>
+<li>多对多的复杂关系，表示其中任意两个节点之间都有可能有关系</li>
+</ul>
+</li>
+<li>其他结构
+<ul>
+<li>除以上结构外，还有更多样的数据结构，如：集合。有时根据实际情况抽象的模型还有可能是多种模型的结合</li>
+</ul>
+</li>
+</ul>
+<h2 id="存储结构">存储结构 </h2>
+<h3 id="特点-1">特点 </h3>
+<ul>
+<li>顺序存储：将数据中各元素依据逻辑顺序储存于内存中的整块位置</li>
+<li>链式存储：将数据元素中各元素分布至存储器中的不同位置，用在前一个节点记录下一个节点位置的方式，建立联系</li>
+<li>索引存储：在存储数据的同时，建立一个附加的索引表，即包含数据文件与索引表</li>
+</ul>
+<h2 id="实际逻辑模型">实际逻辑模型 </h2>
+<h3 id="线性表">线性表 </h3>
+<h4 id="定义">定义 </h4>
+<p>通过一一对应的方式，形成映射</p>
+<h4 id="顺序映像">顺序映像 </h4>
+<h5 id="定义-1">定义 </h5>
+<p>即线性表<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><mtext>，</mtext><msub><mi>a</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L= (a_1， a_2, ......, a_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">，</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">......</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>中各元素依次存储于内存中一整片连续的存储空间中（如列表）</p>
+<h5 id="特点-2">特点 </h5>
+<ul>
+<li>逻辑上相邻的元素，即<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><mo separator="true">,</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">a_{n-1}, a_n, a_{n+1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span>，其存储的位置也是相邻的</li>
+<li>存储密度高，方便对数据的遍历查找</li>
+<li>对数据的插入和删除的效率较差</li>
+</ul>
+<h4 id="链式映像">链式映像 </h4>
+<h5 id="定义-2">定义 </h5>
+<p>即线性表<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><mtext>，</mtext><msub><mi>a</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L= (a_1， a_2, ......, a_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">，</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">......</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>中各元素分布存储于内存的不连续空间中，每个元素称为节点，每个节点都有指向下一个节点的引用</p>
+<h5 id="特点-3">特点 </h5>
+<ul>
+<li>逻辑上相邻的元素，即<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><mo separator="true">,</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">a_{n-1}, a_n, a_{n+1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span>，其存储的位置不一定相邻</li>
+<li>存储稀疏，对内存空间利用率高</li>
+<li>对数据的插入与删除效率较高</li>
+<li>结构复杂，不利于遍历</li>
+</ul>
+<h5 id="代码实现">代码实现 </h5>
+<ul>
+<li>节点实现方式：</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Node01</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">,</span> next_node<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>value <span class="token operator">=</span> value
+        self<span class="token punctuation">.</span>next_node <span class="token operator">=</span> next_node
+<span class="token comment"># 此为正向，也可逆向，此处略</span>
+</code></pre><ul>
+<li>单链表实现方式：</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">NodeList01</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>head <span class="token operator">=</span> Node01<span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+        <span class="token comment"># 只存储起始节点，之后一切操作基于起始节点</span>
 
-    def show(self):
-        tail = self.head.next_node
-        while tail is not None:
-            print(tail.value)
-            tail = tail.next_node
+    <span class="token keyword keyword-def">def</span> <span class="token function">list_init</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> list_<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        tail <span class="token operator">=</span> self<span class="token punctuation">.</span>head
+        <span class="token keyword keyword-for">for</span> item <span class="token keyword keyword-in">in</span> list_<span class="token punctuation">:</span>
+            tail<span class="token punctuation">.</span>next_node <span class="token operator">=</span> Node01<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+            tail <span class="token operator">=</span> tail<span class="token punctuation">.</span>next_node
 
-    def insert(self, index, value):
-        new_node = Node01(value)
-        tail = self.head
-        for item in range(index):
-            if tail.next_node:
-                tail = tail.next_node
-            else:
-                break
-        new_node.next_node = tail.next_node
-        tail.next_node = new_node
+    <span class="token keyword keyword-def">def</span> <span class="token function">show</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        tail <span class="token operator">=</span> self<span class="token punctuation">.</span>head<span class="token punctuation">.</span>next_node
+        <span class="token keyword keyword-while">while</span> tail <span class="token keyword keyword-is">is</span> <span class="token keyword keyword-not">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>tail<span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+            tail <span class="token operator">=</span> tail<span class="token punctuation">.</span>next_node
 
-    def delete(self, value):
-        tail = self.head.next_node
-        while tail.next_node and (f'{tail.next_node.value}' != f'{value}'):
-            tail = tail.next_node
-        if not tail.next_node:
-            raise ValueError
-        else:
-            tail.next_node = tail.next_node.next_node
+    <span class="token keyword keyword-def">def</span> <span class="token function">insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        new_node <span class="token operator">=</span> Node01<span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+        tail <span class="token operator">=</span> self<span class="token punctuation">.</span>head
+        <span class="token keyword keyword-for">for</span> item <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-if">if</span> tail<span class="token punctuation">.</span>next_node<span class="token punctuation">:</span>
+                tail <span class="token operator">=</span> tail<span class="token punctuation">.</span>next_node
+            <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+                <span class="token keyword keyword-break">break</span>
+        new_node<span class="token punctuation">.</span>next_node <span class="token operator">=</span> tail<span class="token punctuation">.</span>next_node
+        tail<span class="token punctuation">.</span>next_node <span class="token operator">=</span> new_node
 
-    def get_index(self, index):
-        tail = self.head.next_node
-        for item in range(index):
-            if tail.next_node:
-                tail = tail.next_node
-            else:
-                raise IndexError
-        if index >= 0:
-            return tail.value
-        raise IndexError
-```
-#### 链式映像与顺序映像
-* 前者插入删除靠前元素快，利用效率高
-* 后者遍历快，删除插入靠后元素快
-### 栈模型
-#### 定义
-栈是只能在一端（栈顶）进行插入，删除等操作的线性表（堆栈），另一端固定的称为栈底，当栈中元素为空时，称为空栈
-#### 特点
-* 栈只能在栈顶一段进行操作
-* 有Last In First Out的特性
-#### 图示
-![图片](2024-06-14_165104.png)
-#### 语法
-##### 功能
-包含入栈（压栈），出栈（弹栈），判断栈的空满等操作
-##### 实现
-* 顺序栈
-```python
-class SStack:
-    def __init__(self):
-        self.stack_ = []
+    <span class="token keyword keyword-def">def</span> <span class="token function">delete</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        tail <span class="token operator">=</span> self<span class="token punctuation">.</span>head<span class="token punctuation">.</span>next_node
+        <span class="token keyword keyword-while">while</span> tail<span class="token punctuation">.</span>next_node <span class="token keyword keyword-and">and</span> <span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'</span><span class="token interpolation"><span class="token punctuation">{</span>tail<span class="token punctuation">.</span>next_node<span class="token punctuation">.</span>value<span class="token punctuation">}</span></span><span class="token string">'</span></span> <span class="token operator">!=</span> <span class="token string-interpolation"><span class="token string">f'</span><span class="token interpolation"><span class="token punctuation">{</span>value<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            tail <span class="token operator">=</span> tail<span class="token punctuation">.</span>next_node
+        <span class="token keyword keyword-if">if</span> <span class="token keyword keyword-not">not</span> tail<span class="token punctuation">.</span>next_node<span class="token punctuation">:</span>
+            <span class="token keyword keyword-raise">raise</span> ValueError
+        <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+            tail<span class="token punctuation">.</span>next_node <span class="token operator">=</span> tail<span class="token punctuation">.</span>next_node<span class="token punctuation">.</span>next_node
 
-    def is_empty(self):
-        return len(self.stack_) == 0
+    <span class="token keyword keyword-def">def</span> <span class="token function">get_index</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        tail <span class="token operator">=</span> self<span class="token punctuation">.</span>head<span class="token punctuation">.</span>next_node
+        <span class="token keyword keyword-for">for</span> item <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-if">if</span> tail<span class="token punctuation">.</span>next_node<span class="token punctuation">:</span>
+                tail <span class="token operator">=</span> tail<span class="token punctuation">.</span>next_node
+            <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+                <span class="token keyword keyword-raise">raise</span> IndexError
+        <span class="token keyword keyword-if">if</span> index <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-return">return</span> tail<span class="token punctuation">.</span>value
+        <span class="token keyword keyword-raise">raise</span> IndexError
+</code></pre><h4 id="链式映像与顺序映像">链式映像与顺序映像 </h4>
+<ul>
+<li>前者插入删除靠前元素快，利用效率高</li>
+<li>后者遍历快，删除插入靠后元素快</li>
+</ul>
+<h3 id="栈模型">栈模型 </h3>
+<h4 id="定义-3">定义 </h4>
+<p>栈是只能在一端（栈顶）进行插入，删除等操作的线性表（堆栈），另一端固定的称为栈底，当栈中元素为空时，称为空栈</p>
+<h4 id="特点-4">特点 </h4>
+<ul>
+<li>栈只能在栈顶一段进行操作</li>
+<li>有Last In First Out的特性</li>
+</ul>
+<h4 id="图示">图示 </h4>
+<p><img src="2024-06-14_165104.png" alt="图片"></p>
+<h4 id="语法">语法 </h4>
+<h5 id="功能">功能 </h5>
+<p>包含入栈（压栈），出栈（弹栈），判断栈的空满等操作</p>
+<h5 id="实现">实现 </h5>
+<ul>
+<li>顺序栈</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">SStack</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>stack_ <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
 
-    def push(self, item):
-        self.stack_.append(item)
+    <span class="token keyword keyword-def">def</span> <span class="token function">is_empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>stack_<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
 
-    def pop(self):
-        if self.is_empty():
-            raise IndexError
-        return self.stack_.pop()
+    <span class="token keyword keyword-def">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> item<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>stack_<span class="token punctuation">.</span>append<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
 
-    def top(self):
-        if self.is_empty():
-            raise IndexError
-        return self.stack_[-1]
-```
-* 链式栈
-```python
-class Node01:
-    def __init__(self, value, next_node=None):
-        self.value = value
-        self.next_node = next_node
+    <span class="token keyword keyword-def">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>is_empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-raise">raise</span> IndexError
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>stack_<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-
-class ChainStack:
-    def __init__(self):
-        self.top = None
-
-    def is_empty(self):
-        return self.top
-
-    def push(self, item):
-        self.top = Node01(item, self.top)
-
-    def pop(self):
-        if not self.is_empty():
-            raise IndexError
-        temp = self.top
-        self.top = self.top.next_node
-        return temp
-
-    def top_show(self):
-        if self.is_empty():
-            raise IndexError
-        return self.top
-```
-### 队列模型
-#### 定义
-限制在两端进行插入、删除等操作的线性表，允许插入的称为队尾，允许删除的称为队首（队头）
-#### 特点
-* 只能在队列与队尾进行特定操作
-* 有First In First Out特性
-#### 图示
-![图片](2024-06-14_172104.png)
-#### 语法
-##### 功能
-包含入队，出队，判断队列空满等操作
-##### 实现
-* 顺序队列
-```python
-class SQueue:
-    def __init__(self, length=10):
-        self.items = []
-        self.length = length
-
-    def enqueue(self, item):
-        if self.is_full():
-            raise IndexError
-        self.items.append(item)
-
-    def dequeue(self):
-        if self.is_empty():
-            raise IndexError
-        return self.items.pop(0)
-
-    def is_empty(self):
-        return len(self.items) == 0
-
-    def is_full(self):
-        return len(self.items) >= self.length
-```
-* 链式队列
-```python
-class Node01:
-    def __init__(self, value, next_node=None):
-        self.value = value
-        self.next_node = next_node
+    <span class="token keyword keyword-def">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>is_empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-raise">raise</span> IndexError
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>stack_<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+</code></pre><ul>
+<li>链式栈</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Node01</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">,</span> next_node<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>value <span class="token operator">=</span> value
+        self<span class="token punctuation">.</span>next_node <span class="token operator">=</span> next_node
 
 
-# 有首位两个指针，首指针指向的是出列的，尾指针指向的是入列的，二者重合代表队列为空（其实留了一个元素）
-class CQueue:
-    def __init__(self, len_max=10):
-        self.head = self.tail = Node01(None)
-        # 先指向一个空的节点，方便后续移动
-        self.len_max = len_max + 1
+<span class="token keyword keyword-class">class</span> <span class="token class-name">ChainStack</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>top <span class="token operator">=</span> <span class="token boolean">None</span>
 
-    def is_empty(self):
-        return self.head == self.tail
+    <span class="token keyword keyword-def">def</span> <span class="token function">is_empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>top
 
-    def is_full(self):
-        return self.tell_len() >= self.len_max
+    <span class="token keyword keyword-def">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> item<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>top <span class="token operator">=</span> Node01<span class="token punctuation">(</span>item<span class="token punctuation">,</span> self<span class="token punctuation">.</span>top<span class="token punctuation">)</span>
 
-    def tell_len(self):
-        len_ = 0
-        temp = self.head
-        while True:
-            try:
-                temp = temp.next_node
-            except AttributeError:
-                return len_
-            len_ += 1
+    <span class="token keyword keyword-def">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> <span class="token keyword keyword-not">not</span> self<span class="token punctuation">.</span>is_empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-raise">raise</span> IndexError
+        temp <span class="token operator">=</span> self<span class="token punctuation">.</span>top
+        self<span class="token punctuation">.</span>top <span class="token operator">=</span> self<span class="token punctuation">.</span>top<span class="token punctuation">.</span>next_node
+        <span class="token keyword keyword-return">return</span> temp
 
-    def enqueue(self, value):
-        if self.is_full():
-            raise IndexError
-        self.tail.next_node = Node01(value)
-        self.tail = self.tail.next_node
+    <span class="token keyword keyword-def">def</span> <span class="token function">top_show</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>is_empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-raise">raise</span> IndexError
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>top
+</code></pre><h3 id="队列模型">队列模型 </h3>
+<h4 id="定义-4">定义 </h4>
+<p>限制在两端进行插入、删除等操作的线性表，允许插入的称为队尾，允许删除的称为队首（队头）</p>
+<h4 id="特点-5">特点 </h4>
+<ul>
+<li>只能在队列与队尾进行特定操作</li>
+<li>有First In First Out特性</li>
+</ul>
+<h4 id="图示-1">图示 </h4>
+<p><img src="2024-06-14_172104.png" alt="图片"></p>
+<h4 id="语法-1">语法 </h4>
+<h5 id="功能-1">功能 </h5>
+<p>包含入队，出队，判断队列空满等操作</p>
+<h5 id="实现-1">实现 </h5>
+<ul>
+<li>顺序队列</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">SQueue</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> length<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>items <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>length <span class="token operator">=</span> length
 
-    def dequeue(self):
-        if self.is_empty():
-            raise IndexError
-        self.head = self.head.next_node
-        return self.head.value
-```
-### 树形结构模型
-#### 定义
-树是有n个节点的有限集合T，有且只有一个根节点，其余节点可以分为m个互不相交的有限集合，其中每一个集合都是一个数，并称为其根的子树
-#### 特点
-* 有唯一的根
-* 一个节点的子树的个数为该节点的度数
-* 一棵树的度数是指该树节点中的最大度数
-* 度数为0的节点称为树叶或终端节点
-* 度数不为0的节点称为分支节点
-* 分支节点中非根节点的称为内部节点
-* 一个节点的子树称为子节点，反之为父节点
-* 同一节点的各个节点称为兄弟节点
-* 根节点无父节点，叶子节点无子节点
-* 由一个起始节点到终止节点（不能向上返），称为一个路径
-* 路径中，前面节点是后面节点的祖先，反之为子孙
-* 节点具有层数，根节点层数为1
-* 多棵不相交的树称为森林
-#### 图示
-![图片](2024-06-14_203548.png)
-#### 特例（二叉树）
-##### 定义
-每个节点最多有左右两个孩子的树
-##### 特点
-* i层上最多有$2^{i - 1}$个节点
-* 深度为k的节点最多有$2^k - 1$个
-* 任意一棵二叉树，叶子树比度数为2的节点多一个
-* 满二叉树：有k层，且节点数为$2^k - 1$的二叉树
-* 完全二叉树：即二叉树除最后一层，每层都排满的二叉树
-###### 遍历
-* 分类
-  * 先序（根左右）
-  * 中序（左根右）
-  * 后续（左右根）
-  * 层序
-* 实例
-  * 实例1
-    ![图片](2024-06-14_213805.png)
-    先序：ABDEGCFH
-    中序：DBGEACFH
-    后续：DGEBHFCA
-    层序：ABCDEFGH
-  * 实例2
-    先序： A 1 B 3 F G D+ C 2 D E 4 5
-    中序： F 3 D+ G B 1 C A D 2 4 E 5
-    ![图片](2024-06-14_214533.png)
-###### 语法实现
-如下
-```python
-class BinaryTreeNode:
-        def __init__(self, val, left_node=None, right_node=None):
-            self.value = val
-            self.left_node = left_node
-            self.right_node = right_node
+    <span class="token keyword keyword-def">def</span> <span class="token function">enqueue</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> item<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>is_full<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-raise">raise</span> IndexError
+        self<span class="token punctuation">.</span>items<span class="token punctuation">.</span>append<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">dequeue</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>is_empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-raise">raise</span> IndexError
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>items<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">is_empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>items<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">is_full</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>items<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> self<span class="token punctuation">.</span>length
+</code></pre><ul>
+<li>链式队列</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Node01</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">,</span> next_node<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>value <span class="token operator">=</span> value
+        self<span class="token punctuation">.</span>next_node <span class="token operator">=</span> next_node
 
 
-class BinaryTree:
-    def __init__(self, value=None):
-        self.root_ = BinaryTreeNode(value)
-        self.layer_list = [self.root_]
-        # 用来记录还有空余的节点
-        self.dir = -1
-        # 用来记录第一个空余节点的左右孩子的赋值情况
+<span class="token comment"># 有首位两个指针，首指针指向的是出列的，尾指针指向的是入列的，二者重合代表队列为空（其实留了一个元素）</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">CQueue</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> len_max<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>head <span class="token operator">=</span> self<span class="token punctuation">.</span>tail <span class="token operator">=</span> Node01<span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+        <span class="token comment"># 先指向一个空的节点，方便后续移动</span>
+        self<span class="token punctuation">.</span>len_max <span class="token operator">=</span> len_max <span class="token operator">+</span> <span class="token number">1</span>
 
-    def add_node(self, *args):
-        for item01 in range(len(args)):
-            if self.dir == -1:
-                temp = self.layer_list[0].left_node = BinaryTreeNode(args[item01])
-                # 左孩子赋值
-            else:
-                temp = self.layer_list[0].right_node = BinaryTreeNode(args[item01])
-                # 右孩子赋值
-                del self.layer_list[0]
-                # 清空赋值满的节点
-            self.dir = -self.dir
-            # 表示节点的空满情况
-            self.layer_list.append(temp)
-            # 增加新节点
+    <span class="token keyword keyword-def">def</span> <span class="token function">is_empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>head <span class="token operator">==</span> self<span class="token punctuation">.</span>tail
 
-    @staticmethod
-    def preorder(root_):
-        if root_ is None:
-            return
-        print(root_.value, end=' ')
-        # 打印根节点
-        BinaryTree.preorder(root_.left_node)
-        # 走左支
-        BinaryTree.preorder(root_.right_node)
-        # 走右支
+    <span class="token keyword keyword-def">def</span> <span class="token function">is_full</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>tell_len<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> self<span class="token punctuation">.</span>len_max
 
-    @staticmethod
-    def postorder(root_):
-        if root_ is None:
-            return
-        BinaryTree.postorder(root_.left_node)
-        # 走左支
-        BinaryTree.postorder(root_.right_node)
-        # 走右支
-        print(root_.value, end=' ')
-        # 打印根节点
+    <span class="token keyword keyword-def">def</span> <span class="token function">tell_len</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        len_ <span class="token operator">=</span> <span class="token number">0</span>
+        temp <span class="token operator">=</span> self<span class="token punctuation">.</span>head
+        <span class="token keyword keyword-while">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-try">try</span><span class="token punctuation">:</span>
+                temp <span class="token operator">=</span> temp<span class="token punctuation">.</span>next_node
+            <span class="token keyword keyword-except">except</span> AttributeError<span class="token punctuation">:</span>
+                <span class="token keyword keyword-return">return</span> len_
+            len_ <span class="token operator">+=</span> <span class="token number">1</span>
 
-    @staticmethod
-    def in_order(root_):
-        if root_ is None:
-            return
-        BinaryTree.in_order(root_.left_node)
-        # 走左支
-        print(root_.value, end=' ')
-        # 打印根节点
-        BinaryTree.in_order(root_.right_node)
-        # 走右支
+    <span class="token keyword keyword-def">def</span> <span class="token function">enqueue</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>is_full<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-raise">raise</span> IndexError
+        self<span class="token punctuation">.</span>tail<span class="token punctuation">.</span>next_node <span class="token operator">=</span> Node01<span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>tail <span class="token operator">=</span> self<span class="token punctuation">.</span>tail<span class="token punctuation">.</span>next_node
 
-    @staticmethod
-    def level_order(*args, re_list):
-        for item02 in args:
-            print(item02.value, end=' ')
-            # 打印该层节点值
-            if item02.left_node:
-                re_list.append(item02.left_node)
-                # 增加该节点下一层的左孩子
-            if item02.right_node:
-                re_list.append(item02.right_node)
-                # 增加该节点下一层的右孩子
-        if not args:
-            # 元组为空，结束
-            return
-        BinaryTree.level_order(*re_list, re_list=[])
-```
-# 算法初步学习
-## 定义
-有穷规则的有序集合，通过算法有限步运行，产生一个或多个输出
-## 特征
-* 有穷性
-* 确定性
-* 可行性
-* 输入输出
-## 评价标准
-* 正确性
-* 可读性
-* 健壮性
-* 时间效率高
-* 存储量低
-## 实例（排序算法）
-### 传统排序
-* 复杂度：都为$O(n^2)$
-* 三种算法
-  * 冒泡排序：前面一个比后面一个大就互换
-  ```python
-  def bubble_sort(arr):
-    for i in range(len(arr) - 1):
-        for j in range(0, len(arr) - i - 1):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
-
-  ``` 
-  * 选择排序：第一个未排序的作为最小值，后面比其小就替换
-  ```python
-  def selection_sort(arr):
-    for i in range(len(arr) - 1):
-        min_index = i
-        for j in range(i + 1, len(arr)):
-            if arr[j] < arr[min_index]:
-                arr[min_index], arr[j] = arr[j], arr[min_index]
-  ```
-  * 插入排序：从左至右，选择第一个未排序的，左移，直到左侧的值比该值小时，插入其右侧
-  ```python
-  def insertion_sort(arr):
-    for i in range(1, len(arr)):
-        for j in range(i, 0, -1):
-            if arr[j] < arr[j - 1]:
-                arr[j], arr[j - 1] = arr[j - 1], arr[j]
-            else:
-                break
-  ```
-### 当前最快算法
-* 复杂度为$O(n\ln{n})$  
-* 快速排序:选定基准，从右至左，将最小值交换左侧空位，从左至右，将最大值交换右侧空位，直到全部排完，将基准插入空位（类似逆向的二分查找）
-  ```python
-  def sub_sort(head, tail, arr):
-    x = arr[head]
-    # 确定基准值
-    while head < tail:
-        # 循环结束条件：由于确定基准后从两侧根据大小移放，故当收尾相接时，全部排序完成
-        while arr[tail] > x:
-            # 从后向前，大的留住，小的放置左侧空位
-            tail -= 1
-        arr[head] = arr[tail]
-        # 交换空位，空位变为右侧
-        while arr[head] <= x and head < tail:
-            # 从前往后，小的留住，大的放右侧空位
-            head += 1
-        arr[tail] = arr[head]
-        # 交换空位，空位变为左侧
-    arr[head] = x
-    # 插入基准值
-    return head
-    # 返回分割点
+    <span class="token keyword keyword-def">def</span> <span class="token function">dequeue</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>is_empty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-raise">raise</span> IndexError
+        self<span class="token punctuation">.</span>head <span class="token operator">=</span> self<span class="token punctuation">.</span>head<span class="token punctuation">.</span>next_node
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>head<span class="token punctuation">.</span>value
+</code></pre><h3 id="树形结构模型">树形结构模型 </h3>
+<h4 id="定义-5">定义 </h4>
+<p>树是有n个节点的有限集合T，有且只有一个根节点，其余节点可以分为m个互不相交的有限集合，其中每一个集合都是一个数，并称为其根的子树</p>
+<h4 id="特点-6">特点 </h4>
+<ul>
+<li>有唯一的根</li>
+<li>一个节点的子树的个数为该节点的度数</li>
+<li>一棵树的度数是指该树节点中的最大度数</li>
+<li>度数为0的节点称为树叶或终端节点</li>
+<li>度数不为0的节点称为分支节点</li>
+<li>分支节点中非根节点的称为内部节点</li>
+<li>一个节点的子树称为子节点，反之为父节点</li>
+<li>同一节点的各个节点称为兄弟节点</li>
+<li>根节点无父节点，叶子节点无子节点</li>
+<li>由一个起始节点到终止节点（不能向上返），称为一个路径</li>
+<li>路径中，前面节点是后面节点的祖先，反之为子孙</li>
+<li>节点具有层数，根节点层数为1</li>
+<li>多棵不相交的树称为森林</li>
+</ul>
+<h4 id="图示-2">图示 </h4>
+<p><img src="2024-06-14_203548.png" alt="图片"></p>
+<h4 id="特例二叉树">特例（二叉树） </h4>
+<h5 id="定义-6">定义 </h5>
+<p>每个节点最多有左右两个孩子的树</p>
+<h5 id="特点-7">特点 </h5>
+<ul>
+<li>i层上最多有<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2^{i - 1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8247em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8247em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span>个节点</li>
+<li>深度为k的节点最多有<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^k - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9324em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>个</li>
+<li>任意一棵二叉树，叶子树比度数为2的节点多一个</li>
+<li>满二叉树：有k层，且节点数为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^k - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9324em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>的二叉树</li>
+<li>完全二叉树：即二叉树除最后一层，每层都排满的二叉树</li>
+</ul>
+<h6 id="遍历">遍历 </h6>
+<ul>
+<li>分类
+<ul>
+<li>先序（根左右）</li>
+<li>中序（左根右）</li>
+<li>后续（左右根）</li>
+<li>层序</li>
+</ul>
+</li>
+<li>实例
+<ul>
+<li>实例1<br>
+<img src="2024-06-14_213805.png" alt="图片"><br>
+先序：ABDEGCFH<br>
+中序：DBGEACFH<br>
+后续：DGEBHFCA<br>
+层序：ABCDEFGH</li>
+<li>实例2<br>
+先序： A 1 B 3 F G D+ C 2 D E 4 5<br>
+中序： F 3 D+ G B 1 C A D 2 4 E 5<br>
+<img src="2024-06-14_214533.png" alt="图片"></li>
+</ul>
+</li>
+</ul>
+<h6 id="语法实现">语法实现 </h6>
+<p>如下</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">BinaryTreeNode</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token punctuation">,</span> left_node<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> right_node<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>value <span class="token operator">=</span> val
+            self<span class="token punctuation">.</span>left_node <span class="token operator">=</span> left_node
+            self<span class="token punctuation">.</span>right_node <span class="token operator">=</span> right_node
 
 
-  def quick_sort(head, tail, arr):
-    if head < tail:
-        # 结束条件：每次递归会传入新的头和尾，当头尾相接结束递归
-        key = sub_sort(head, tail, arr)
-        # 返回新的分割点
-        quick_sort(head, key - 1, arr)
-        # 传回分割点左侧数组
-        quick_sort(key + 1, tail, arr)
-        # 传回分割点右侧数组
-  ```
-## 实例（二分查找算法）
-* 时间复杂度为$\log_2n$
-* 对有序列表，每次取中间比较，大则取小的一侧，小则取大的一侧
-  ```python
-  # 递归
+<span class="token keyword keyword-class">class</span> <span class="token class-name">BinaryTree</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>root_ <span class="token operator">=</span> BinaryTreeNode<span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>layer_list <span class="token operator">=</span> <span class="token punctuation">[</span>self<span class="token punctuation">.</span>root_<span class="token punctuation">]</span>
+        <span class="token comment"># 用来记录还有空余的节点</span>
+        self<span class="token punctuation">.</span><span class="token builtin">dir</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+        <span class="token comment"># 用来记录第一个空余节点的左右孩子的赋值情况</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">add_node</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-for">for</span> item01 <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span><span class="token builtin">dir</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>
+                temp <span class="token operator">=</span> self<span class="token punctuation">.</span>layer_list<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>left_node <span class="token operator">=</span> BinaryTreeNode<span class="token punctuation">(</span>args<span class="token punctuation">[</span>item01<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token comment"># 左孩子赋值</span>
+            <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+                temp <span class="token operator">=</span> self<span class="token punctuation">.</span>layer_list<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>right_node <span class="token operator">=</span> BinaryTreeNode<span class="token punctuation">(</span>args<span class="token punctuation">[</span>item01<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token comment"># 右孩子赋值</span>
+                <span class="token keyword keyword-del">del</span> self<span class="token punctuation">.</span>layer_list<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+                <span class="token comment"># 清空赋值满的节点</span>
+            self<span class="token punctuation">.</span><span class="token builtin">dir</span> <span class="token operator">=</span> <span class="token operator">-</span>self<span class="token punctuation">.</span><span class="token builtin">dir</span>
+            <span class="token comment"># 表示节点的空满情况</span>
+            self<span class="token punctuation">.</span>layer_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>temp<span class="token punctuation">)</span>
+            <span class="token comment"># 增加新节点</span>
+
+    <span class="token decorator annotation punctuation">@staticmethod</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">preorder</span><span class="token punctuation">(</span>root_<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> root_ <span class="token keyword keyword-is">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-return">return</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>root_<span class="token punctuation">.</span>value<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span>
+        <span class="token comment"># 打印根节点</span>
+        BinaryTree<span class="token punctuation">.</span>preorder<span class="token punctuation">(</span>root_<span class="token punctuation">.</span>left_node<span class="token punctuation">)</span>
+        <span class="token comment"># 走左支</span>
+        BinaryTree<span class="token punctuation">.</span>preorder<span class="token punctuation">(</span>root_<span class="token punctuation">.</span>right_node<span class="token punctuation">)</span>
+        <span class="token comment"># 走右支</span>
+
+    <span class="token decorator annotation punctuation">@staticmethod</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">postorder</span><span class="token punctuation">(</span>root_<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> root_ <span class="token keyword keyword-is">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-return">return</span>
+        BinaryTree<span class="token punctuation">.</span>postorder<span class="token punctuation">(</span>root_<span class="token punctuation">.</span>left_node<span class="token punctuation">)</span>
+        <span class="token comment"># 走左支</span>
+        BinaryTree<span class="token punctuation">.</span>postorder<span class="token punctuation">(</span>root_<span class="token punctuation">.</span>right_node<span class="token punctuation">)</span>
+        <span class="token comment"># 走右支</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>root_<span class="token punctuation">.</span>value<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span>
+        <span class="token comment"># 打印根节点</span>
+
+    <span class="token decorator annotation punctuation">@staticmethod</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">in_order</span><span class="token punctuation">(</span>root_<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> root_ <span class="token keyword keyword-is">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-return">return</span>
+        BinaryTree<span class="token punctuation">.</span>in_order<span class="token punctuation">(</span>root_<span class="token punctuation">.</span>left_node<span class="token punctuation">)</span>
+        <span class="token comment"># 走左支</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>root_<span class="token punctuation">.</span>value<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span>
+        <span class="token comment"># 打印根节点</span>
+        BinaryTree<span class="token punctuation">.</span>in_order<span class="token punctuation">(</span>root_<span class="token punctuation">.</span>right_node<span class="token punctuation">)</span>
+        <span class="token comment"># 走右支</span>
+
+    <span class="token decorator annotation punctuation">@staticmethod</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">level_order</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> re_list<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-for">for</span> item02 <span class="token keyword keyword-in">in</span> args<span class="token punctuation">:</span>
+            <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>item02<span class="token punctuation">.</span>value<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span>
+            <span class="token comment"># 打印该层节点值</span>
+            <span class="token keyword keyword-if">if</span> item02<span class="token punctuation">.</span>left_node<span class="token punctuation">:</span>
+                re_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>item02<span class="token punctuation">.</span>left_node<span class="token punctuation">)</span>
+                <span class="token comment"># 增加该节点下一层的左孩子</span>
+            <span class="token keyword keyword-if">if</span> item02<span class="token punctuation">.</span>right_node<span class="token punctuation">:</span>
+                re_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>item02<span class="token punctuation">.</span>right_node<span class="token punctuation">)</span>
+                <span class="token comment"># 增加该节点下一层的右孩子</span>
+        <span class="token keyword keyword-if">if</span> <span class="token keyword keyword-not">not</span> args<span class="token punctuation">:</span>
+            <span class="token comment"># 元组为空，结束</span>
+            <span class="token keyword keyword-return">return</span>
+        BinaryTree<span class="token punctuation">.</span>level_order<span class="token punctuation">(</span><span class="token operator">*</span>re_list<span class="token punctuation">,</span> re_list<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre><h1 id="算法初步学习">算法初步学习 </h1>
+<h2 id="定义-7">定义 </h2>
+<p>有穷规则的有序集合，通过算法有限步运行，产生一个或多个输出</p>
+<h2 id="特征">特征 </h2>
+<ul>
+<li>有穷性</li>
+<li>确定性</li>
+<li>可行性</li>
+<li>输入输出</li>
+</ul>
+<h2 id="评价标准">评价标准 </h2>
+<ul>
+<li>正确性</li>
+<li>可读性</li>
+<li>健壮性</li>
+<li>时间效率高</li>
+<li>存储量低</li>
+</ul>
+<h2 id="实例排序算法">实例（排序算法） </h2>
+<h3 id="传统排序">传统排序 </h3>
+<ul>
+<li>复杂度：都为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li>三种算法
+<ul>
+<li>冒泡排序：前面一个比后面一个大就互换</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">bubble_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">-</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+          <span class="token keyword keyword-if">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+              arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+
+</code></pre><ul>
+<li>选择排序：第一个未排序的作为最小值，后面比其小就替换</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">selection_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      min_index <span class="token operator">=</span> i
+      <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+          <span class="token keyword keyword-if">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>min_index<span class="token punctuation">]</span><span class="token punctuation">:</span>
+              arr<span class="token punctuation">[</span>min_index<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>min_index<span class="token punctuation">]</span>
+</code></pre><ul>
+<li>插入排序：从左至右，选择第一个未排序的，左移，直到左侧的值比该值小时，插入其右侧</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">insertion_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+          <span class="token keyword keyword-if">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+              arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+          <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+              <span class="token keyword keyword-break">break</span>
+</code></pre></li>
+</ul>
+<h3 id="当前最快算法">当前最快算法 </h3>
+<ul>
+<li>复杂度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>ln</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n\ln{n})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">n</span></span><span class="mclose">)</span></span></span></span></li>
+<li>快速排序:选定基准，从右至左，将最小值交换左侧空位，从左至右，将最大值交换右侧空位，直到全部排完，将基准插入空位（类似逆向的二分查找）<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">sub_sort</span><span class="token punctuation">(</span>head<span class="token punctuation">,</span> tail<span class="token punctuation">,</span> arr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  x <span class="token operator">=</span> arr<span class="token punctuation">[</span>head<span class="token punctuation">]</span>
+  <span class="token comment"># 确定基准值</span>
+  <span class="token keyword keyword-while">while</span> head <span class="token operator">&lt;</span> tail<span class="token punctuation">:</span>
+      <span class="token comment"># 循环结束条件：由于确定基准后从两侧根据大小移放，故当收尾相接时，全部排序完成</span>
+      <span class="token keyword keyword-while">while</span> arr<span class="token punctuation">[</span>tail<span class="token punctuation">]</span> <span class="token operator">&gt;</span> x<span class="token punctuation">:</span>
+          <span class="token comment"># 从后向前，大的留住，小的放置左侧空位</span>
+          tail <span class="token operator">-=</span> <span class="token number">1</span>
+      arr<span class="token punctuation">[</span>head<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>tail<span class="token punctuation">]</span>
+      <span class="token comment"># 交换空位，空位变为右侧</span>
+      <span class="token keyword keyword-while">while</span> arr<span class="token punctuation">[</span>head<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> x <span class="token keyword keyword-and">and</span> head <span class="token operator">&lt;</span> tail<span class="token punctuation">:</span>
+          <span class="token comment"># 从前往后，小的留住，大的放右侧空位</span>
+          head <span class="token operator">+=</span> <span class="token number">1</span>
+      arr<span class="token punctuation">[</span>tail<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>head<span class="token punctuation">]</span>
+      <span class="token comment"># 交换空位，空位变为左侧</span>
+  arr<span class="token punctuation">[</span>head<span class="token punctuation">]</span> <span class="token operator">=</span> x
+  <span class="token comment"># 插入基准值</span>
+  <span class="token keyword keyword-return">return</span> head
+  <span class="token comment"># 返回分割点</span>
 
 
-  def search(head, tail, list_target, key):
-	mid = (head + tail) // 2
-	if head > tail:
-		return False
-	elif list_target[mid] < key:
-		return search(mid + 1, tail, list_target, key)
-	elif list_target[mid] > key:
-		return search(head, mid - 1, list_target, key)
-	else:
-		return mid
+<span class="token keyword keyword-def">def</span> <span class="token function">quick_sort</span><span class="token punctuation">(</span>head<span class="token punctuation">,</span> tail<span class="token punctuation">,</span> arr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword keyword-if">if</span> head <span class="token operator">&lt;</span> tail<span class="token punctuation">:</span>
+      <span class="token comment"># 结束条件：每次递归会传入新的头和尾，当头尾相接结束递归</span>
+      key <span class="token operator">=</span> sub_sort<span class="token punctuation">(</span>head<span class="token punctuation">,</span> tail<span class="token punctuation">,</span> arr<span class="token punctuation">)</span>
+      <span class="token comment"># 返回新的分割点</span>
+      quick_sort<span class="token punctuation">(</span>head<span class="token punctuation">,</span> key <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> arr<span class="token punctuation">)</span>
+      <span class="token comment"># 传回分割点左侧数组</span>
+      quick_sort<span class="token punctuation">(</span>key <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> tail<span class="token punctuation">,</span> arr<span class="token punctuation">)</span>
+      <span class="token comment"># 传回分割点右侧数组</span>
+</code></pre></li>
+</ul>
+<h2 id="实例二分查找算法">实例（二分查找算法） </h2>
+<ul>
+<li>时间复杂度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log_2n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span></span></span></span></li>
+<li>对有序列表，每次取中间比较，大则取小的一侧，小则取大的一侧<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># 递归</span>
 
 
-  # 非递归
+<span class="token keyword keyword-def">def</span> <span class="token function">search</span><span class="token punctuation">(</span>head<span class="token punctuation">,</span> tail<span class="token punctuation">,</span> list_target<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  mid <span class="token operator">=</span> <span class="token punctuation">(</span>head <span class="token operator">+</span> tail<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+  <span class="token keyword keyword-if">if</span> head <span class="token operator">&gt;</span> tail<span class="token punctuation">:</span>
+  	<span class="token keyword keyword-return">return</span> <span class="token boolean">False</span>
+  <span class="token keyword keyword-elif">elif</span> list_target<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> key<span class="token punctuation">:</span>
+  	<span class="token keyword keyword-return">return</span> search<span class="token punctuation">(</span>mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> tail<span class="token punctuation">,</span> list_target<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+  <span class="token keyword keyword-elif">elif</span> list_target<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&gt;</span> key<span class="token punctuation">:</span>
+  	<span class="token keyword keyword-return">return</span> search<span class="token punctuation">(</span>head<span class="token punctuation">,</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> list_target<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+  <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+  	<span class="token keyword keyword-return">return</span> mid
 
 
-  def search(list_, key):
-    low, high = 0, len(list_) - 1
-    while low <= high:
-        mid = (low + high) // 2
-        if list_[mid] < key:
-            low = mid + 1
-        elif list_[mid] > key:
-            high = mid - 1
-        else:
-            return mid
-    return False
+<span class="token comment"># 非递归</span>
 
-  ```
-# 结语
-python数据结构与算法的初步学习自此结束，剩余进阶内容见后续笔记，下一部分为python系统编程
+
+<span class="token keyword keyword-def">def</span> <span class="token function">search</span><span class="token punctuation">(</span>list_<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  low<span class="token punctuation">,</span> high <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>list_<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+  <span class="token keyword keyword-while">while</span> low <span class="token operator">&lt;=</span> high<span class="token punctuation">:</span>
+      mid <span class="token operator">=</span> <span class="token punctuation">(</span>low <span class="token operator">+</span> high<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+      <span class="token keyword keyword-if">if</span> list_<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> key<span class="token punctuation">:</span>
+          low <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
+      <span class="token keyword keyword-elif">elif</span> list_<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&gt;</span> key<span class="token punctuation">:</span>
+          high <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
+      <span class="token keyword keyword-else">else</span><span class="token punctuation">:</span>
+          <span class="token keyword keyword-return">return</span> mid
+  <span class="token keyword keyword-return">return</span> <span class="token boolean">False</span>
+
+</code></pre></li>
+</ul>
+<h1 id="结语">结语 </h1>
+<p>python数据结构与算法的初步学习自此结束，剩余进阶内容见后续笔记，下一部分为python系统编程</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

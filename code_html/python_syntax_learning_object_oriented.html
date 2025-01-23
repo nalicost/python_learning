@@ -1,374 +1,507 @@
-# python正式的面向对象的初步学习
-## 类与对象
-### 定义
-* 对象：即每一件具体事物
-* 类：即一类事物（对象）的总称，是对于对象共性的抽象概念
-### 类
-#### 描述方式
-* 数据成员：用来描述该类中对象所共有的固有属性，但是是抽象的概念
-* 行为成员（方法成员）：用来描述该类中对象所共有的功能，即函数
+<!DOCTYPE html><html><head>
+      <title>python_syntax_learning_object_oriented</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\zhang\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.15\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
-注：类与类的根本区分是行为的不同而不是数据的不同
-#### 基本语法
-语法如下：
-```python
-class 类名：
-    类中语句
-```
-#### 成员
-##### 实例成员
-###### 定义
-即类中的对象，其中包含着拥有具体值的数据成员，同时也可直接访问存储于方法区类中的实例方法
-###### 类中的定义语法
-```python
-    class 类名（）：
-        def __init__(self, 参数， .....)：
-            构造函数方法体
-        # 实例成员
-        
-        def fun(self, 参数， ......):
-            方法体
-        # 实例方法
-```
-###### 实例变量
-* 定义：类中的对象每一个赋予具体值的数据成员称为实例变量
-* 调用：```object01.属性```，即可直接获取该实例成员对应实例变量（即属性）的值
-* 特点：是该对象所特有的，各个对象之间的实例变量互不影响
-###### 实例方法
-* 定义：类中的用来操作实例成员的方法
-* 调用：```object01.fun(参数)```，即可直接访问类中操作实例变量的方法
-* 特点：对象自身会自动作为self被传入函数，无需在调用函数时传入其中；类无法调用实例方法，由于其不具有实例成员，无法执行函数
-##### 类成员
-###### 类中的定义语法
-```python
-    class 类名：
-        类变量名 = None
-        # 类成员
-        
-        @classmethod
-        def fun(cls, 参数， ......):
-            方法体
-        # 类方法
-```
-###### 类变量
-* 定义：处于函数外部，类内部的变量
-* 调用：```类名.类变量名```，即可调用该类中类变量的值
-* 特点：是该类中对象所共有的，只有一份
-###### 类方法
-* 定义：类中的用来操作类成员的方法
-* 调用：```类名.fun(参数)```，即可直接访问类中操作实例变量的方法
-* 特点：对象自身会自动作为cls被传入函数，无需在调用函数时传入其中；实例成员可以调用类方法（不建议），由于类变量所有实例成员共有
-##### 静态方法成员
-* 定义：即不操作类变量也不操作实例变量的方法，也可称之为函数
-* 作用：将面向过程的变为面向对象的
-* 语法
-  ```python
-  class 类名：
-    @staticmethod
-    def fun(参数， ......)
-        方法体
-  ```
-## 面向对象与面向过程
-### 区别
-* 前者面向整体，类似于烧饭请大厨
-* 后者面向局部，类似于自己烧饭
-### 面向对象语法部分
-#### 不称为面向类的原因
-* 由语法上来看，确实是先有类后又对象的
-* 但是由设计思想上来说，是先有对象后经过抽象才有类的
-* 而面向对象其实指的是设计思想
-#### 面向对象三大特征
-##### 封装
-###### 定义
-* 表层思想
-  * 数据角度讲：将多个数据复合为一个整体
-  * 行为角度讲：向类外提供必要的功能，隐去实现细节（即使用类的人只需根据定义类的人的规则提供需要的内容，得到结果完成事情即可，并不需考虑如何实现）
-* 深层思想
-  * 设计时
-    * 分而治之：将功能不同的部分分类（放至其他类）
-    * 变则疏之：以变化点为分类的依据
-  * 审查时
-    * 高内聚：内部高度集成，互相关联，完成一件事
-    * 低耦合：类与类之间关联度低，依赖性小
-  * 原因：增加代码的可扩展性，由于功能过于集成会使修改变得艰难（一处动，处处动）类似雕版印刷，故减少类之间的耦合度，可以达到类似活版印刷的效果，减少代码扩展的难度，达到开闭原则
-###### 私有化变量与私有化方法
-* 语法：类中的成员前加```__```，使内部可以直接调用，但外部无法直接调用，隐藏起来，其实使使用障眼法，即名字实为```_类名__方法/变量名```，故可在类外部强行调用，但不要在类外部强行访问
-  如下：
-  ```python
-  class 类名:
-    __类变量 = None
-    # 私有的类变量
-    def __init__(self, 参数， .......)：
-        self.__参数 = 参数
-        # 私有的实例变量 
-    def __fun(self, 参数, ......):
-        方法体
-    # 私有的实例方法
-
-    @classmethod
-    def __fun(cls, 参数, ......):
-        方法体
-    # 私有的类方法
-  ```
-* 私有变量的封装
-  * 原理：通过方法，将私有变量的定义与其判断方法有机结合，使所有对象数据的录入遵循定义人的规则，即保护私有变量的方法
-  * 实现方法
-    1. 先将实例变量私有化，然后通过方法定义该实例变量的修改与获取即读与写（其他语言），缺点在于构造函数处写的是函数，实例变量数不清晰
-    2. 通过类变量（与未私有的实例变量名相同），使用property属性的方法（描述器协议）拦截对类变量的相关操作，进入事先定义好的读写函数（可只读或只写），优势在于实例变量数更加清晰
-    3. 通过@property与@函数名.setter，省去创造类变量的过程（本质是装饰器，即不改变原函数的功能，添加新的功能{拦截对方法的操作}），原理与第二种相同，优势在于写法更简单，缺点在于无法只写
-  * 2、3版本如下：
-    ```python
-    class 类名1：
-        #第二个
-        def __init__(self, parameter01):
-            self.parameter01 = parameter01
-        
-        def read_parameter01(self):
-            return self.__parameter01
-
-        def write_parameter01(self, value):
-            self.__parameter01 = value
-
-        parameter01 = property(read_parameter01, write_parameter01)
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
     
-
-    class 类名2：
-        #第三个
-        def __init__(self, parameter01):
-            self.parameter01 = parameter01
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="python正式的面向对象的初步学习">python正式的面向对象的初步学习 </h1>
+<h2 id="类与对象">类与对象 </h2>
+<h3 id="定义">定义 </h3>
+<ul>
+<li>对象：即每一件具体事物</li>
+<li>类：即一类事物（对象）的总称，是对于对象共性的抽象概念</li>
+</ul>
+<h3 id="类">类 </h3>
+<h4 id="描述方式">描述方式 </h4>
+<ul>
+<li>数据成员：用来描述该类中对象所共有的固有属性，但是是抽象的概念</li>
+<li>行为成员（方法成员）：用来描述该类中对象所共有的功能，即函数</li>
+</ul>
+<p>注：类与类的根本区分是行为的不同而不是数据的不同</p>
+<h4 id="基本语法">基本语法 </h4>
+<p>语法如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 类名：
+    类中语句
+</code></pre><h4 id="成员">成员 </h4>
+<h5 id="实例成员">实例成员 </h5>
+<h6 id="定义-1">定义 </h6>
+<p>即类中的对象，其中包含着拥有具体值的数据成员，同时也可直接访问存储于方法区类中的实例方法</p>
+<h6 id="类中的定义语法">类中的定义语法 </h6>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>    <span class="token keyword keyword-class">class</span> 类名（）：
+        <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> 参数， <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>：
+            构造函数方法体
+        <span class="token comment"># 实例成员</span>
         
-        @property
-        def parameter01(self):
-            return self.__parameter01
+        <span class="token keyword keyword-def">def</span> <span class="token function">fun</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> 参数， <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            方法体
+        <span class="token comment"># 实例方法</span>
+</code></pre><h6 id="实例变量">实例变量 </h6>
+<ul>
+<li>定义：类中的对象每一个赋予具体值的数据成员称为实例变量</li>
+<li>调用：<code>object01.属性</code>，即可直接获取该实例成员对应实例变量（即属性）的值</li>
+<li>特点：是该对象所特有的，各个对象之间的实例变量互不影响</li>
+</ul>
+<h6 id="实例方法">实例方法 </h6>
+<ul>
+<li>定义：类中的用来操作实例成员的方法</li>
+<li>调用：<code>object01.fun(参数)</code>，即可直接访问类中操作实例变量的方法</li>
+<li>特点：对象自身会自动作为self被传入函数，无需在调用函数时传入其中；类无法调用实例方法，由于其不具有实例成员，无法执行函数</li>
+</ul>
+<h5 id="类成员">类成员 </h5>
+<h6 id="类中的定义语法-1">类中的定义语法 </h6>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>    <span class="token keyword keyword-class">class</span> 类名：
+        类变量名 <span class="token operator">=</span> <span class="token boolean">None</span>
+        <span class="token comment"># 类成员</span>
+        
+        <span class="token decorator annotation punctuation">@classmethod</span>
+        <span class="token keyword keyword-def">def</span> <span class="token function">fun</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> 参数， <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            方法体
+        <span class="token comment"># 类方法</span>
+</code></pre><h6 id="类变量">类变量 </h6>
+<ul>
+<li>定义：处于函数外部，类内部的变量</li>
+<li>调用：<code>类名.类变量名</code>，即可调用该类中类变量的值</li>
+<li>特点：是该类中对象所共有的，只有一份</li>
+</ul>
+<h6 id="类方法">类方法 </h6>
+<ul>
+<li>定义：类中的用来操作类成员的方法</li>
+<li>调用：<code>类名.fun(参数)</code>，即可直接访问类中操作实例变量的方法</li>
+<li>特点：对象自身会自动作为cls被传入函数，无需在调用函数时传入其中；实例成员可以调用类方法（不建议），由于类变量所有实例成员共有</li>
+</ul>
+<h5 id="静态方法成员">静态方法成员 </h5>
+<ul>
+<li>定义：即不操作类变量也不操作实例变量的方法，也可称之为函数</li>
+<li>作用：将面向过程的变为面向对象的</li>
+<li>语法<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 类名：
+  <span class="token decorator annotation punctuation">@staticmethod</span>
+  <span class="token keyword keyword-def">def</span> <span class="token function">fun</span><span class="token punctuation">(</span>参数， <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+      方法体
+</code></pre></li>
+</ul>
+<h2 id="面向对象与面向过程">面向对象与面向过程 </h2>
+<h3 id="区别">区别 </h3>
+<ul>
+<li>前者面向整体，类似于烧饭请大厨</li>
+<li>后者面向局部，类似于自己烧饭</li>
+</ul>
+<h3 id="面向对象语法部分">面向对象语法部分 </h3>
+<h4 id="不称为面向类的原因">不称为面向类的原因 </h4>
+<ul>
+<li>由语法上来看，确实是先有类后又对象的</li>
+<li>但是由设计思想上来说，是先有对象后经过抽象才有类的</li>
+<li>而面向对象其实指的是设计思想</li>
+</ul>
+<h4 id="面向对象三大特征">面向对象三大特征 </h4>
+<h5 id="封装">封装 </h5>
+<h6 id="定义-2">定义 </h6>
+<ul>
+<li>表层思想
+<ul>
+<li>数据角度讲：将多个数据复合为一个整体</li>
+<li>行为角度讲：向类外提供必要的功能，隐去实现细节（即使用类的人只需根据定义类的人的规则提供需要的内容，得到结果完成事情即可，并不需考虑如何实现）</li>
+</ul>
+</li>
+<li>深层思想
+<ul>
+<li>设计时
+<ul>
+<li>分而治之：将功能不同的部分分类（放至其他类）</li>
+<li>变则疏之：以变化点为分类的依据</li>
+</ul>
+</li>
+<li>审查时
+<ul>
+<li>高内聚：内部高度集成，互相关联，完成一件事</li>
+<li>低耦合：类与类之间关联度低，依赖性小</li>
+</ul>
+</li>
+<li>原因：增加代码的可扩展性，由于功能过于集成会使修改变得艰难（一处动，处处动）类似雕版印刷，故减少类之间的耦合度，可以达到类似活版印刷的效果，减少代码扩展的难度，达到开闭原则</li>
+</ul>
+</li>
+</ul>
+<h6 id="私有化变量与私有化方法">私有化变量与私有化方法 </h6>
+<ul>
+<li>语法：类中的成员前加<code>__</code>，使内部可以直接调用，但外部无法直接调用，隐藏起来，其实使使用障眼法，即名字实为<code>_类名__方法/变量名</code>，故可在类外部强行调用，但不要在类外部强行访问<br>
+如下：<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 类名<span class="token punctuation">:</span>
+  __类变量 <span class="token operator">=</span> <span class="token boolean">None</span>
+  <span class="token comment"># 私有的类变量</span>
+  <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> 参数， <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>：
+      self<span class="token punctuation">.</span>__参数 <span class="token operator">=</span> 参数
+      <span class="token comment"># 私有的实例变量 </span>
+  <span class="token keyword keyword-def">def</span> <span class="token function">__fun</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> 参数<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      方法体
+  <span class="token comment"># 私有的实例方法</span>
 
-        @parameter01.setter
-        def parameter01(self, value):
-            self.__parameter01 = value
-    ```
-##### 继承
-* 概念：父类的方法，实例变量会继承给子类
-* 原则
-  * 是一种，即概念相似
-  * 共用方法或实例变量（此处指的不只是代码上的复用更多的是概念的统一）
-* 特点
-  * 父类的方法子类都可使用
-  * 当子类不存在构造函数的情况下，生成子类对象时，会调用父类的构造函数
-  * 当子类存在构造函数的情况下，生成子类对象时，不会调用父类的构造函数（建议使用```super().__init___(参数)```）  来继承父类实例变量
+  <span class="token decorator annotation punctuation">@classmethod</span>
+  <span class="token keyword keyword-def">def</span> <span class="token function">__fun</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> 参数<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      方法体
+  <span class="token comment"># 私有的类方法</span>
+</code></pre></li>
+<li>私有变量的封装
+<ul>
+<li>原理：通过方法，将私有变量的定义与其判断方法有机结合，使所有对象数据的录入遵循定义人的规则，即保护私有变量的方法</li>
+<li>实现方法
+<ol>
+<li>先将实例变量私有化，然后通过方法定义该实例变量的修改与获取即读与写（其他语言），缺点在于构造函数处写的是函数，实例变量数不清晰</li>
+<li>通过类变量（与未私有的实例变量名相同），使用property属性的方法（描述器协议）拦截对类变量的相关操作，进入事先定义好的读写函数（可只读或只写），优势在于实例变量数更加清晰</li>
+<li>通过@property与@函数名.setter，省去创造类变量的过程（本质是装饰器，即不改变原函数的功能，添加新的功能{拦截对方法的操作}），原理与第二种相同，优势在于写法更简单，缺点在于无法只写</li>
+</ol>
+</li>
+<li>2、3版本如下：<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 类名<span class="token number">1</span>：
+    <span class="token comment">#第二个</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> parameter01<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>parameter01 <span class="token operator">=</span> parameter01
+    
+    <span class="token keyword keyword-def">def</span> <span class="token function">read_parameter01</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>__parameter01
 
-注： 当生成子类对象时，如果继承了父类实例变量，是同时生成了两个单独的对象，即父类与子类，然后捆绑起来
-* 作用
-  * 可以统一子类概念（抽象子类的相似方法，同时规定子类必须要同名方法重写父类方法），方便客户端代码调用，并隔离子类变化，使用依赖倒置来达到开闭原则
-  * 在特殊情况下也可起到代码的复用（不推荐，一般都是组合复用）
-* 语法
-  范式如下（此处只以实例方法举例，其他方法同理）：
-  ```python
-  class 父类名:
-    def __init__(self, parameter01, ......):
-      父类构造函数方法体
-    # 非必有
+    <span class="token keyword keyword-def">def</span> <span class="token function">write_parameter01</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>__parameter01 <span class="token operator">=</span> value
 
-    def fun01(self):
-      pass
-    # 非必有
+    parameter01 <span class="token operator">=</span> <span class="token builtin">property</span><span class="token punctuation">(</span>read_parameter01<span class="token punctuation">,</span> write_parameter01<span class="token punctuation">)</span>
+
+
+<span class="token keyword keyword-class">class</span> 类名<span class="token number">2</span>：
+    <span class="token comment">#第三个</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> parameter01<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>parameter01 <span class="token operator">=</span> parameter01
+    
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">parameter01</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>__parameter01
+
+    <span class="token decorator annotation punctuation">@parameter01<span class="token punctuation">.</span>setter</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">parameter01</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>__parameter01 <span class="token operator">=</span> value
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h5 id="继承">继承 </h5>
+<ul>
+<li>概念：父类的方法，实例变量会继承给子类</li>
+<li>原则
+<ul>
+<li>是一种，即概念相似</li>
+<li>共用方法或实例变量（此处指的不只是代码上的复用更多的是概念的统一）</li>
+</ul>
+</li>
+<li>特点
+<ul>
+<li>父类的方法子类都可使用</li>
+<li>当子类不存在构造函数的情况下，生成子类对象时，会调用父类的构造函数</li>
+<li>当子类存在构造函数的情况下，生成子类对象时，不会调用父类的构造函数（建议使用<code>super().__init___(参数)</code>）  来继承父类实例变量</li>
+</ul>
+</li>
+</ul>
+<p>注： 当生成子类对象时，如果继承了父类实例变量，是同时生成了两个单独的对象，即父类与子类，然后捆绑起来</p>
+<ul>
+<li>作用
+<ul>
+<li>可以统一子类概念（抽象子类的相似方法，同时规定子类必须要同名方法重写父类方法），方便客户端代码调用，并隔离子类变化，使用依赖倒置来达到开闭原则</li>
+<li>在特殊情况下也可起到代码的复用（不推荐，一般都是组合复用）</li>
+</ul>
+</li>
+<li>语法<br>
+范式如下（此处只以实例方法举例，其他方法同理）：<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 父类名<span class="token punctuation">:</span>
+  <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> parameter01<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    父类构造函数方法体
+  <span class="token comment"># 非必有</span>
+
+  <span class="token keyword keyword-def">def</span> <span class="token function">fun01</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-pass">pass</span>
+  <span class="token comment"># 非必有</span>
+
+
+<span class="token keyword keyword-class">class</span> 子类名<span class="token punctuation">(</span>父类名<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> parameter02<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token builtin">super</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> parameter01<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 父类无，子类无</span>
+    子类构造函数方法体
+  <span class="token comment"># 非必有</span>
+
+  <span class="token keyword keyword-def">def</span> <span class="token function">fun01</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    子类方法体
+  <span class="token comment"># 父类有，子类有，父类无，子类无</span>
+</code></pre></li>
+<li>父类调用顺序：依据MRO(Method Resolution Order)顺序，自上而下，自左而右，可以调用mro函数查看顺序，最顶层为object类，由于python中万物皆对象。</li>
+</ul>
+<h6 id="单继承">单继承 </h6>
+<ul>
+<li>概念：每个子类最多只有一个父类</li>
+<li>特点
+<ul>
+<li>优势：结构关系更清晰，同时减少耦合度，增强代码可扩展性</li>
+<li>劣势：没有太明显的劣势</li>
+</ul>
+</li>
+<li>语法<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 父类名<span class="token punctuation">:</span>
+  <span class="token keyword keyword-pass">pass</span>
+
+
+<span class="token keyword keyword-class">class</span> 子类名<span class="token punctuation">(</span>父类名<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword keyword-pass">pass</span>
+</code></pre></li>
+</ul>
+<h6 id="多继承不建议使用">多继承（不建议使用） </h6>
+<ul>
+<li>概念：每个子类最多只有一个父类</li>
+<li>特征
+<ul>
+<li>优势：子类可以使用更多方法，对应多个抽象层</li>
+<li>劣势：耦合度相对单继承更高，代码可扩展性相对单继承更低</li>
+</ul>
+</li>
+<li>语法<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 父类名<span class="token number">1</span><span class="token punctuation">:</span>
+  <span class="token keyword keyword-pass">pass</span>
+
+
+<span class="token keyword keyword-class">class</span> 父类名<span class="token number">2</span><span class="token punctuation">:</span>
+  <span class="token keyword keyword-pass">pass</span>  
+
+
+<span class="token keyword keyword-class">class</span> 子类名<span class="token punctuation">(</span>父类名<span class="token number">1</span><span class="token punctuation">,</span> 父类名<span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword keyword-pass">pass</span>
+</code></pre></li>
+</ul>
+<h5 id="多态">多态 </h5>
+<ul>
+<li>概念：即调用的是父类方法，实现的是子类各自的方法</li>
+<li>原理：子类由于有同名方法，故其对父类方法进行重写，不重写则调用父类方法</li>
+<li>特点：调用的方法是相同的，实现的方式却不同</li>
+<li>作用：在父类继承的共性中，体现子类的个性，即使通过抽象的概念代表具体的体现，使方法更加灵活</li>
+<li>注意事项：子类重写父类方法时要尽量扩展重写而不是覆盖重写（里氏替换）</li>
+<li>语法：<br>
+范式如下：<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 父类名<span class="token punctuation">:</span>
+  <span class="token keyword keyword-def">def</span> <span class="token function">fun01</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    父类方法体
+
+
+<span class="token keyword keyword-class">class</span> 子类名<span class="token punctuation">(</span>父类名<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword keyword-def">def</span> <span class="token function">fun01</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fun01<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># 如果父类方法是raise NotImplenmentedError则不写，此是规定子类必须重写父类的，不实现功能</span>
+    子类方法体
+</code></pre></li>
+</ul>
+<p>注：python中其实无需父类，子类方法同名即可。有父类是因为其使结构更清晰，同时规定子类规范（工作生产中，是多人完成子类的）。另一方面，其他语言是要求传入变量时写明变量类型的，此时所有子类都属于父类，故其统一概念的意义体现更大，python只是相对隐去了这一过程，python中可通过在客户端代码上加上if判断，保证传入变量的数据类型</p>
+<ul>
+<li>
+<p>内置函数重写</p>
+<ul>
+<li>概念：以双下划线开头，双下划线结尾的是python内置函数，可以重写实现自己的功能（就是多态）</li>
+<li>实例
+<ul>
+<li>
+<p><code>__str__</code>自定义返回对象的输出格式（print会调用），必须是字符串<br>
+语法如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 类名<span class="token punctuation">:</span>
+  <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> parameter<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    self<span class="token punctuation">.</span>prameter <span class="token operator">=</span> parameter
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+  <span class="token keyword keyword-def">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-return">return</span> <span class="token string-interpolation"><span class="token string">f'</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>parameter<span class="token punctuation">}</span></span><span class="token string">......'</span></span>
+</code></pre></li>
+<li>
+<p><code>__repr__</code>以python代码形式返回对象的输出格式，结合eval方法可以深copy对象<br>
+语法如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 类名<span class="token punctuation">:</span>
+  <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> parameter<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    self<span class="token punctuation">.</span>prameter <span class="token operator">=</span> parameter
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+  <span class="token keyword keyword-def">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-return">return</span> <span class="token string-interpolation"><span class="token string">f'类名(</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>parameter<span class="token punctuation">}</span></span><span class="token string">, ......)'</span></span>
+</code></pre></li>
+<li>
+<p>运算符重载（以加法为例）</p>
+<ul>
+<li><code>__add__</code>，自定义对象的加法（正向）</li>
+<li><code>__radd__</code>，自定义对象的加法（逆向）</li>
+<li><code>__iadd__</code>，自定义加法加强运算符</li>
+</ul>
+<p>注：和python内置运算符与加强运算符的规定保持一致，运算符是生成新对象，而加强运算符是在原对象上处理</p>
+</li>
+<li>
+<p>运算符重载的类型</p>
+<ul>
+<li>运算符</li>
+<li>加强运算符</li>
+<li>逻辑运算符</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>注：运算符重载除了使代码更加简洁外，没什么用，可以自己定义函数实现功能</p>
+</li>
+</ul>
+<h3 id="类与类关系">类与类关系 </h3>
+<ul>
+<li>依赖关系：类作为参数传入，但不是成员</li>
+<li>关联（聚合或组合）：部分与整体，即A类中有B成员（如列表，组合复用）</li>
+<li>泛化：父子类的关系，概念复用</li>
+</ul>
+<p>注：类与类的耦合度依次加深，故类与类的设计中优先依赖再关联最后再考虑泛化</p>
+<h3 id="面向对象程序设计">面向对象程序设计 </h3>
+<h4 id="流程">流程 </h4>
+<ol>
+<li>提出需求  ---&gt;  需求分析说明书<br>
+项目经理</li>
+<li>需求分析说明书  --&gt;  概要设计</li>
+<li>概要设计  --&gt;  详细设计</li>
+<li>详细设计  --&gt;  开发计划<br>
+架构师</li>
+<li>编码<br>
+程序员</li>
+<li>软件测试<br>
+测试工程师</li>
+<li>系统运维<br>
+运维工程师</li>
+<li>用户测试<br>
+客户</li>
+<li>项目维护<br>
+程序员</li>
+</ol>
+<h4 id="各流程详解">各流程详解 </h4>
+<h5 id="需求分析确定用户真实需求">需求分析：确定用户真实需求 </h5>
+<ul>
+<li>确定用户真实需求，项目的基本功能</li>
+<li>确定项目的整体难度和可行性（现实）分析</li>
+<li>需求分析文档，用户确认</li>
+</ul>
+<h5 id="概要设计对项目进行初步分析和整体设计">概要设计：对项目进行初步分析和整体设计 </h5>
+<ul>
+<li>确定功能模块</li>
+<li>进行可行性（技术）分析，搭建整体框架图</li>
+<li>确定技术思路和使用框架</li>
+<li>形成概要文档指导开发流程</li>
+</ul>
+<h5 id="项目计划确定项目开发的时间轴和流程">项目计划：确定项目开发的时间轴和流程 </h5>
+<ul>
+<li>确定开发工作的先后顺序</li>
+<li>确定时间轴，事件里程碑</li>
+<li>人员分工</li>
+<li>形成甘特图和思维导图等辅助内容</li>
+</ul>
+<h5 id="详细设计项目的具体实现">详细设计：项目的具体实现 </h5>
+<ul>
+<li>形成详细设计文档，包含思路，逻辑流程，功能说明，技术点说明，数据结构说明，代码说明</li>
+</ul>
+<h5 id="编码测试按照预定计划实现代码编写">编码测试：按照预定计划实现代码编写 </h5>
+<ul>
+<li>代码编写</li>
+<li>写测试程序</li>
+<li>技术攻关</li>
+</ul>
+<h5 id="项目测试对项目按照功能进行测试">项目测试：对项目按照功能进行测试 </h5>
+<ul>
+<li>跨平台测试，使用测试</li>
+<li>根据测试报告进行代码修改</li>
+<li>完成测试报告</li>
+</ul>
+<h5 id="项目发布">项目发布 </h5>
+<ul>
+<li>项目交付用户进行发布</li>
+<li>编写项目说明文档</li>
+</ul>
+<h5 id="后期维护">后期维护 </h5>
+<ul>
+<li>维护项目正常运转</li>
+<li>进行项目的迭代升级</li>
+</ul>
+<h5 id="项目注意事项">项目注意事项 </h5>
+<ul>
+<li>按时完成项目工作和项目时间不足之间的冲突</li>
+<li>项目实施人员之间的冲突</li>
+<li>项目工具的合理使用（如：LaTex编写文档，Mindmanager或visio来完成项目流程图，project进行项目管理，git来进行代码管理）</li>
+</ul>
+<h4 id="架构思想初步">架构思想（初步） </h4>
+<h5 id="gvc架构基础架构">GVC架构（基础架构） </h5>
+<h6 id="内容">内容 </h6>
+<ol>
+<li>数据模型（Model）</li>
+<li>界面视图（View）</li>
+<li>业务逻辑（Controller）</li>
+</ol>
+<p>注：之间相互调用而功能相互分离，以达低耦合</p>
+<h6 id="实例">实例 </h6>
+<p>学生管理系统</p>
+<ol>
+<li>数据模型（StudentManagerSystemModel）
+<ul>
+<li>学生姓名</li>
+<li>学生年龄</li>
+<li>......</li>
+</ul>
+</li>
+<li>界面视图（StudentManagerSystemView）
+<ul>
+<li>输入学生信息（）</li>
+<li>.......</li>
+</ul>
+</li>
+<li>逻辑控制（StudentManagerSystemController）
+<ul>
+<li>添加学生（）</li>
+<li>......</li>
+</ul>
+</li>
+</ol>
+<h4 id="六大设计原则">六大设计原则 </h4>
+<ul>
+<li>开闭原则（Open Closed Principle）：对扩展开放，对修改关闭</li>
+<li>类的单一职责（Single Responsiblity Principle）：一个类有且只有一个变化点</li>
+<li>依赖倒置（依赖抽象）：客户端代码尽量调用抽象的组件（调父不调子），同时抽象不依赖于具体（父不依赖于子）
+<ul>
+<li>第一句话较好理解，继承多态中常常体现</li>
+<li>第二句话的实例便是依赖注入，当客户端需要调取数量不一的子类时，由于需要在父类先创建子类再封装，会出现父依赖于子的情况出现，这会倒置随着客户端代码的需求不一样时，面临对父类的修改，违反开闭原则，故通过配置文件解决问题</li>
+</ul>
+</li>
+<li>组合复用原则（复用的最佳实践--Composite Reuse Principle）：能组合复用（跨类调用方法）便不继承复用</li>
+<li>里氏替换：父类出现的地方可被子类替换（重写），在替换后保证原有功能（扩展重写），子类要拥有父类方法</li>
+<li>迪米特法则：不与陌生人对话（类与类交互传递数据越少越好即低耦合）</li>
+</ul>
+<p>注：设计原则是六条但不代表要都遵守，而是根据需求尽可能遵守。可以违反但要有理由，比如依赖倒置中父不依赖于子的原则中当父类方法明确要子类作为参数传入，且可确定传入数量不变化，新增子类也需传入，那么可以违背。</p>
+<h4 id="参考内容">参考内容 </h4>
+<ul>
+<li>面向对象答辩ppt（自己做的）</li>
+<li>《HeadFirst》</li>
+<li>《重构》</li>
+</ul>
+<h1 id="结语">结语 </h1>
+<p>python面向对象的初步学习自此结束，剩余进阶内容见后续笔记，下一部分为python核心初步学习</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
   
-
-  class 子类名(父类名):
-    def __init__(self, parameter02, ......):
-      super.().__init__(self, parameter01, ......):
-      # 父类无，子类无
-      子类构造函数方法体
-    # 非必有
-
-    def fun01(self):
-      子类方法体
-    # 父类有，子类有，父类无，子类无
-  ```
-* 父类调用顺序：依据MRO(Method Resolution Order)顺序，自上而下，自左而右，可以调用mro函数查看顺序，最顶层为object类，由于python中万物皆对象。 
-###### 单继承
-* 概念：每个子类最多只有一个父类
-* 特点
-  * 优势：结构关系更清晰，同时减少耦合度，增强代码可扩展性
-  * 劣势：没有太明显的劣势
-* 语法
-  ```python
-  class 父类名:
-    pass
-
-
-  class 子类名(父类名):
-    pass
-  ```
-###### 多继承（不建议使用）
-* 概念：每个子类最多只有一个父类
-* 特征
-  * 优势：子类可以使用更多方法，对应多个抽象层
-  * 劣势：耦合度相对单继承更高，代码可扩展性相对单继承更低
-* 语法
-  ```python
-  class 父类名1:
-    pass
-
-
-  class 父类名2:
-    pass  
-
-
-  class 子类名(父类名1, 父类名2):
-    pass
-  ```
- 
-##### 多态
-* 概念：即调用的是父类方法，实现的是子类各自的方法
-* 原理：子类由于有同名方法，故其对父类方法进行重写，不重写则调用父类方法
-* 特点：调用的方法是相同的，实现的方式却不同
-* 作用：在父类继承的共性中，体现子类的个性，即使通过抽象的概念代表具体的体现，使方法更加灵活
-* 注意事项：子类重写父类方法时要尽量扩展重写而不是覆盖重写（里氏替换）
-* 语法：
-  范式如下：
-  ```python
-  class 父类名:
-    def fun01(self):
-      父类方法体
-  
-
-  class 子类名(父类名):
-    def fun01(self):
-      super().fun01()
-      # 如果父类方法是raise NotImplenmentedError则不写，此是规定子类必须重写父类的，不实现功能
-      子类方法体
-  ``` 
-注：python中其实无需父类，子类方法同名即可。有父类是因为其使结构更清晰，同时规定子类规范（工作生产中，是多人完成子类的）。另一方面，其他语言是要求传入变量时写明变量类型的，此时所有子类都属于父类，故其统一概念的意义体现更大，python只是相对隐去了这一过程，python中可通过在客户端代码上加上if判断，保证传入变量的数据类型
-* 内置函数重写
-  * 概念：以双下划线开头，双下划线结尾的是python内置函数，可以重写实现自己的功能（就是多态）
-  * 实例
-    * ```__str__```自定义返回对象的输出格式（print会调用），必须是字符串
-      语法如下：
-      ```python
-      class 类名:
-        def __init__(self, parameter, ......):
-          self.prameter = parameter
-          ......
-
-        def __str__(self):
-          return f'{self.parameter}......'
-      ```
-    * ```__repr__```以python代码形式返回对象的输出格式，结合eval方法可以深copy对象
-      语法如下：
-      ```python
-      class 类名:
-        def __init__(self, parameter, ......):
-          self.prameter = parameter
-          ......
-
-        def __str__(self):
-          return f'类名({self.parameter}, ......)'
-      ```
-    * 运算符重载（以加法为例）
-      * ```__add__```，自定义对象的加法（正向）
-      * ```__radd__```，自定义对象的加法（逆向）
-      * ```__iadd__```，自定义加法加强运算符
-
-      注：和python内置运算符与加强运算符的规定保持一致，运算符是生成新对象，而加强运算符是在原对象上处理
-    * 运算符重载的类型
-      * 运算符
-      * 加强运算符
-      * 逻辑运算符
-  
-  注：运算符重载除了使代码更加简洁外，没什么用，可以自己定义函数实现功能
-### 类与类关系
-* 依赖关系：类作为参数传入，但不是成员
-* 关联（聚合或组合）：部分与整体，即A类中有B成员（如列表，组合复用）
-* 泛化：父子类的关系，概念复用
-
-注：类与类的耦合度依次加深，故类与类的设计中优先依赖再关联最后再考虑泛化
-### 面向对象程序设计
-#### 流程
-1. 提出需求  --->  需求分析说明书  
-   项目经理
-2. 需求分析说明书  -->  概要设计 
-3. 概要设计  -->  详细设计  
-4. 详细设计  -->  开发计划
-   架构师
-5. 编码
-   程序员
-6. 软件测试
-  测试工程师
-7. 系统运维
-  运维工程师
-1. 用户测试
-  客户
-1.  项目维护
-  程序员
-#### 各流程详解
-##### 需求分析：确定用户真实需求
-* 确定用户真实需求，项目的基本功能
-* 确定项目的整体难度和可行性（现实）分析
-* 需求分析文档，用户确认
-##### 概要设计：对项目进行初步分析和整体设计
-* 确定功能模块
-* 进行可行性（技术）分析，搭建整体框架图
-* 确定技术思路和使用框架
-* 形成概要文档指导开发流程
-##### 项目计划：确定项目开发的时间轴和流程
-* 确定开发工作的先后顺序
-* 确定时间轴，事件里程碑
-* 人员分工
-* 形成甘特图和思维导图等辅助内容
-##### 详细设计：项目的具体实现
-* 形成详细设计文档，包含思路，逻辑流程，功能说明，技术点说明，数据结构说明，代码说明
-##### 编码测试：按照预定计划实现代码编写
-* 代码编写
-* 写测试程序
-* 技术攻关
-##### 项目测试：对项目按照功能进行测试
-* 跨平台测试，使用测试
-* 根据测试报告进行代码修改
-* 完成测试报告
-##### 项目发布
-* 项目交付用户进行发布
-* 编写项目说明文档
-##### 后期维护
-* 维护项目正常运转
-* 进行项目的迭代升级
-##### 项目注意事项
-* 按时完成项目工作和项目时间不足之间的冲突
-* 项目实施人员之间的冲突
-* 项目工具的合理使用（如：LaTex编写文档，Mindmanager或visio来完成项目流程图，project进行项目管理，git来进行代码管理）
-#### 架构思想（初步）
-##### GVC架构（基础架构）
-###### 内容
-1. 数据模型（Model）
-2. 界面视图（View）
-3. 业务逻辑（Controller）
-
-注：之间相互调用而功能相互分离，以达低耦合
-###### 实例
-学生管理系统
-
-1. 数据模型（StudentManagerSystemModel）
-   * 学生姓名
-   * 学生年龄
-   * ......
-2. 界面视图（StudentManagerSystemView）
-   * 输入学生信息（）
-   * ....... 
-3. 逻辑控制（StudentManagerSystemController）
-   * 添加学生（）
-   * ......
-#### 六大设计原则
-* 开闭原则（Open Closed Principle）：对扩展开放，对修改关闭
-* 类的单一职责（Single Responsiblity Principle）：一个类有且只有一个变化点
-* 依赖倒置（依赖抽象）：客户端代码尽量调用抽象的组件（调父不调子），同时抽象不依赖于具体（父不依赖于子）
-  * 第一句话较好理解，继承多态中常常体现
-  * 第二句话的实例便是依赖注入，当客户端需要调取数量不一的子类时，由于需要在父类先创建子类再封装，会出现父依赖于子的情况出现，这会倒置随着客户端代码的需求不一样时，面临对父类的修改，违反开闭原则，故通过配置文件解决问题
-* 组合复用原则（复用的最佳实践--Composite Reuse Principle）：能组合复用（跨类调用方法）便不继承复用
-* 里氏替换：父类出现的地方可被子类替换（重写），在替换后保证原有功能（扩展重写），子类要拥有父类方法
-* 迪米特法则：不与陌生人对话（类与类交互传递数据越少越好即低耦合）
-
-注：设计原则是六条但不代表要都遵守，而是根据需求尽可能遵守。可以违反但要有理由，比如依赖倒置中父不依赖于子的原则中当父类方法明确要子类作为参数传入，且可确定传入数量不变化，新增子类也需传入，那么可以违背。  
-#### 参考内容
-* 面向对象答辩ppt（自己做的）
-* 《HeadFirst》
-* 《重构》
-# 结语
-python面向对象的初步学习自此结束，剩余进阶内容见后续笔记，下一部分为python核心初步学习
+    </body></html>

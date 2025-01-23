@@ -1,274 +1,336 @@
-# 正式的python核心的初步学习
-## 模块
-### 概念
-包含一系列数据，函数，类的文件，通常以.py结尾（跨文件调用）
-### 分类
-* 内置模块（builtins）
-* 标准库模块
-* 第三方模块（自己安装）
-* 用户自己编写的模块
-### 导入语法
-* ```import 文件名 as 别名```，通过变量名关联文件地址，调用模块内的成员要用文件名或别名来点出来
-* ```from 文件名 import 模块内成员```，直接将模块内需要的内容导入作用域，可直接使用，但注意同名（其他模块和导入模块的文件中同名内容）冲突
-* ```from 文件名 import *```，直接将模块内所有的内容导入作用域，可直接使用，但注意同名（其他模块和导入模块的文件同名内容）冲突
+<!DOCTYPE html><html><head>
+      <title>python_snytax_learning_core</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\zhang\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.15\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
-注：文件名前加上绝对路径可导入不同文件夹下的模块，但注意该文件的完整路径要包含该绝对路径，否则无法导入；文件的绝对路径间用```.```连接
-### 模块变量（只有模块中有）
-* ```__all__```，定义模块可导出成员，仅对```from 文件名 import *```生效
-* ```__doc__```，导出文档字符串
-* ```__file__```，模块对应的文件路径
-* ```__name__```，非主模块时返回模块自身名字，是主模块时返回```__main__```
-  * 其的一种运用：```if __name__ == '__main__'```
-    * 在非主模块中，这句语句后面跟测试代码，使其不作为主模块运行时，代码不会执行，只有当其是主模块时才会运行
-    * 在主模块中，这句语句跟程序入口，使程序只能从主入口运行。
-### 内置模块time
-* 获取时间戳：```time.time()```
-* 时间戳-->时间元组：```tiem.localtime(时间戳)```，内容包含依次为年，月，日，时，分，秒，一周中的第几天，一年的第几天，夏令时
-  注：一周中的第几天按中国换算要加一
-* 时间元组-->时间戳：```time.mktime(时间元组)```
-* 时间元组-->str：```time.strftime(格式, 时间元组)```，格式中%Y（完整年份），%y（年份后两位），%m（月份），%d（天），%H（时），&M（分），%S（秒）
-* str-->时间元组：```time.strptime(str, 格式)```
-## 包
-### 概念
-拥有__init__.py文件的文件夹
-### python程序结构
-1. 文件夹（项目根目录，即第一个运行文件所在位置）
-2. 包
-3. 模块
-4. 类
-5. 函数
-6. 语句
-### 导入
-与导入模块一致，不多做赘述
-
-注：pycharm中设置根目录时会自动将其路径加入该项目所有文件中，但在pycharm外运行会报错，可以通过```import sys```来使用```sys.path.append(路径)```来人工给文件加路径
-### __init__.py作用
-在__init__.py中使用```__all__```可以指定导包时能被导出的模块，仅对```from 包名.模块名 import *```生效
-## 异常
-### 定义
-运行时检查到错误
-### 现象
-当异常发生时，程序不会再向下运行，而会返回调用者
-### 类型（常用）
-* 名称异常（NameError）：
-* 类型异常（TypeError）
-* 索引异常（IndexError）
-* 属性异常（AttributeError）
-* 键异常（KeyError）
-* 未实现异常（NotImplementedError）
-* 异常基类（Exception）
-### 处理语句
-* 作用：使程序不再报错，可以正常运行（即拦截异常的上翻，使程序强制向下执行）
-* 语法如下：
-    ```python
-    try:
-        可能异常语句
-    except 异常1:
-        处理语句1
-    ...
-    except: # 实际是except Exception
-        不是以上的处理语句 
-    else： # 有except才可有else
-        未发生异常执行的语句
-    finally： # 写finally时一般不写except，即不处理异常
-        无论是否发生异常都会执行的语句
-    ```
-### raise语句
-* 作用：抛出一个错误，使程序进入异常
-* 目的：当调用层数较深时，快速返回表层，传递错误信息（raise无处理异常语句，就上翻而return需要一层层向外传递）
-* 语法：```raise 异常类型```
-### 自定义异常
-* 作用：可以定义符合个性化条件的异常
-* 语法
-  ```python
-  XXError(Exception):
-    异常语句
-  ```
-  注：当在自定义异常写构造函数时，要先调用父类的，并将错误信息传入其中
-## 迭代
-### 定义
-每一次对过程的重复称为一次迭代，而且每一次迭代的结果会成为下一次迭代的值（初始）
-### 可迭代对象
-* 定义: 具有__iter__方法（可以返回迭代器对象）的对象
-* 语法:
-    ```python
-    class 类名:
-        def __iter__(self):
-            return 迭代器类名(self)
-    ```
-  注：迭代器对象需自己写
-### 迭代器对象
-* 定义：拥有```__next__()```方法（调用后可以依据算法返回下一个值的对象）的对象
-* 语法
-  ```python
-  class 迭代器类名：
-    def __init__(self, 聚合对象)：
-        self.__聚合对象 = 聚合对象
-
-    def __next__(self):
-        if 没有元素：
-            raise StopInteration
-        return 聚合对象元素
-  ```
-### 迭代器框架
-#### 使用
-如下：
-```python
-class 类名:
-    def __iter__(self):
-        return 迭代器类名(self)
-
-
-  class 迭代器类名：
-    def __init__(self, 聚合对象)：
-        self.__聚合对象 = 聚合对象
-
-    def __next__(self):
-        if 没有元素：
-            raise StopInteration
-        return 聚合对象元素
-
-for item in 类名:
-    print(item)
-```
-#### 内容
-1. 抽象层（可迭代对象--父类）---> 实现层（自定义可迭代对象-->子类）
-2. 抽象层（迭代器--父类） ---> 实现层（自定义迭代器-->子类）
-3. 客户端代码（for协议） ---> 抽象层（依赖倒置）---> 具体迭代器与可迭代对象
-#### for协议
-##### 原理
-一种协议，包含三个过程：
-1. 获取迭代器
-2. 调用迭代器的next，获取聚合对象的元素（循环）
-3. 遇到异常，处理并完成迭代
-##### 意义
-通过可迭代对象与迭代器的继承与多态提供一种可以访问聚合类对象而不暴露其内部存储结构的方法
-##### 实际语句
-如下：
-```python
-iterator = 可迭代对象.__iter__()
-while True:
-    try:
-        item = iterator.__next__()
-        print(item)
-    except StopInteration
-        break
-```
-### 生成器
-#### 定义
-可迭代对象+迭代器
-#### 作用
-能够动态提供聚合类对象中聚合的元素（调用一次，计算一次，返回一次）
-#### 特点
-```__iter__()```方法返回的是其自身
-#### 生成器的大致源码
-如下：
-```python
-class MyGenerator:
-        def __init__(self):
-            pass
-
-        def __iter__(self):
-            return self
-
-        def __next__(self):
-            pass
-```
-#### 生成器的生成语法（生成器函数）
-* 定义：包含yield的函数
-* 原理：当函数中出现yield，调用时自动创建生成器类而不执行函数内所写的逻辑，其中将上一次循环yield以下，与本次循环yield以上代码放入```__next__()```方法中，并以本次循环yield后的内容作为返回值
-* 作用：通过延迟操作（惰性操作），一个一个给出结果，减少内存压力
-* 语法
-    ```python
-    def fun():
-        方法体
-        yield 返回值
-        方法体
-    ```
-* 注意事项：由于生成器函数退出时会自动抛出StopInterationError异常，故当在生成器函数中写return不会返回return中的值，同时如果在其中再自己抛出StopInterationError异常，会导致重复抛出两个StopInterationError会致使程序抛出RunTimeError
-#### 迭代器与生成器之间的关系
-生成器主要就是迭代器，区别在于其还是可迭代对象，便于直接使用for来进行迭代
-#### 生成器表达式
-如下：
-```(yield 返回值 for 循环语句 if 条件)```
-
-注：只是一种简便写法，和写生成器函数本质没有区别
-## 函数式编程
-### 概念
-以函数为单位进行开发
-### 思想
-与面向对象开发其实是一致的，除了不使用类，而是使用函数
-### 高阶函数的运用
-* 核心理念
-  * 通过形参作为（父类），统一函数（子类）的概念   -->   继承   
-  * 高阶函数自身作为客户端代码，调用形参（父类）的逻辑（子类）   -->   多态
-  * 来实现函数功能的普适性
-* 实现做法
-  1. 提取公共部分（成为高阶函数，即客户端代码）
-  2. 封装变化部分（成为子类）---> 如果函数只有一个语句可以直接使用lambda函数
-  3. 以变量作为参数传入公共部分 （参数即为父类，相当于组合复用）
-* 建议：可以将相似公共部分都提取到一个模块中，方便以后调用
-### 闭包
-#### 基础概念
-* 三要素
-  * 必须有一个内嵌函数
-  * 内嵌函数必须引用外部函数中变量
-  * 外部函数返回值必须是内嵌函数
-* 作用：使外部函数执行完不会立即释放栈帧，等待内嵌函数运行，使逻辑连续，执行完，不脱离当前逻辑
-* 原理：由于返回内嵌函数，而内嵌函数使用外部函数变量，若外部栈帧销毁，内嵌函数无法执行保留，闭包将两个函数的执行环境整合
-* 类比：类变量，类方法或实例变量，实例方法
-* 语法
-  ```python
-  def fun01():
-    变量 = None
-    def fun02()
-        nonlocal 变量
-        变量 = 1
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
     
-    return fun02
-  ```
-#### 运用（装饰器）
-##### 作用
-即在不更改原函数功能情况下为其添加新功能（开闭原则）
-##### 原理
-由于闭包可以返回方法体，同时可以捆绑内外函数的运行环境。故将旧函数方法体传入其中，将新旧函数的运行环境捆绑在一起，并通过闭包返回新方法体重写旧函数方法体，达成函数功能扩展的目标
-##### 语法
-* 初始语法如下：
-    ```python
-    def fun_new(fun_old):
-        def wrapper(*args, **kwargs):
-            # 保证参数不同的的旧函数也可传入
-            新方法体
-            fun_old(*args, **kwargs)
-            # 拆解传入的元组和字典，化为位置与命名关键字形参
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="正式的python核心的初步学习">正式的python核心的初步学习 </h1>
+<h2 id="模块">模块 </h2>
+<h3 id="概念">概念 </h3>
+<p>包含一系列数据，函数，类的文件，通常以.py结尾（跨文件调用）</p>
+<h3 id="分类">分类 </h3>
+<ul>
+<li>内置模块（builtins）</li>
+<li>标准库模块</li>
+<li>第三方模块（自己安装）</li>
+<li>用户自己编写的模块</li>
+</ul>
+<h3 id="导入语法">导入语法 </h3>
+<ul>
+<li><code>import 文件名 as 别名</code>，通过变量名关联文件地址，调用模块内的成员要用文件名或别名来点出来</li>
+<li><code>from 文件名 import 模块内成员</code>，直接将模块内需要的内容导入作用域，可直接使用，但注意同名（其他模块和导入模块的文件中同名内容）冲突</li>
+<li><code>from 文件名 import *</code>，直接将模块内所有的内容导入作用域，可直接使用，但注意同名（其他模块和导入模块的文件同名内容）冲突</li>
+</ul>
+<p>注：文件名前加上绝对路径可导入不同文件夹下的模块，但注意该文件的完整路径要包含该绝对路径，否则无法导入；文件的绝对路径间用<code>.</code>连接</p>
+<h3 id="模块变量只有模块中有">模块变量（只有模块中有） </h3>
+<ul>
+<li><code>__all__</code>，定义模块可导出成员，仅对<code>from 文件名 import *</code>生效</li>
+<li><code>__doc__</code>，导出文档字符串</li>
+<li><code>__file__</code>，模块对应的文件路径</li>
+<li><code>__name__</code>，非主模块时返回模块自身名字，是主模块时返回<code>__main__</code>
+<ul>
+<li>其的一种运用：<code>if __name__ == '__main__'</code>
+<ul>
+<li>在非主模块中，这句语句后面跟测试代码，使其不作为主模块运行时，代码不会执行，只有当其是主模块时才会运行</li>
+<li>在主模块中，这句语句跟程序入口，使程序只能从主入口运行。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="内置模块time">内置模块time </h3>
+<ul>
+<li>获取时间戳：<code>time.time()</code></li>
+<li>时间戳--&gt;时间元组：<code>tiem.localtime(时间戳)</code>，内容包含依次为年，月，日，时，分，秒，一周中的第几天，一年的第几天，夏令时<br>
+注：一周中的第几天按中国换算要加一</li>
+<li>时间元组--&gt;时间戳：<code>time.mktime(时间元组)</code></li>
+<li>时间元组--&gt;str：<code>time.strftime(格式, 时间元组)</code>，格式中%Y（完整年份），%y（年份后两位），%m（月份），%d（天），%H（时），&amp;M（分），%S（秒）</li>
+<li>str--&gt;时间元组：<code>time.strptime(str, 格式)</code></li>
+</ul>
+<h2 id="包">包 </h2>
+<h3 id="概念-1">概念 </h3>
+<p>拥有__init__.py文件的文件夹</p>
+<h3 id="python程序结构">python程序结构 </h3>
+<ol>
+<li>文件夹（项目根目录，即第一个运行文件所在位置）</li>
+<li>包</li>
+<li>模块</li>
+<li>类</li>
+<li>函数</li>
+<li>语句</li>
+</ol>
+<h3 id="导入">导入 </h3>
+<p>与导入模块一致，不多做赘述</p>
+<p>注：pycharm中设置根目录时会自动将其路径加入该项目所有文件中，但在pycharm外运行会报错，可以通过<code>import sys</code>来使用<code>sys.path.append(路径)</code>来人工给文件加路径</p>
+<h3 id="__init__py作用"><strong>init</strong>.py作用 </h3>
+<p>在__init__.py中使用<code>__all__</code>可以指定导包时能被导出的模块，仅对<code>from 包名.模块名 import *</code>生效</p>
+<h2 id="异常">异常 </h2>
+<h3 id="定义">定义 </h3>
+<p>运行时检查到错误</p>
+<h3 id="现象">现象 </h3>
+<p>当异常发生时，程序不会再向下运行，而会返回调用者</p>
+<h3 id="类型常用">类型（常用） </h3>
+<ul>
+<li>名称异常（NameError）：</li>
+<li>类型异常（TypeError）</li>
+<li>索引异常（IndexError）</li>
+<li>属性异常（AttributeError）</li>
+<li>键异常（KeyError）</li>
+<li>未实现异常（NotImplementedError）</li>
+<li>异常基类（Exception）</li>
+</ul>
+<h3 id="处理语句">处理语句 </h3>
+<ul>
+<li>作用：使程序不再报错，可以正常运行（即拦截异常的上翻，使程序强制向下执行）</li>
+<li>语法如下：<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-try">try</span><span class="token punctuation">:</span>
+    可能异常语句
+<span class="token keyword keyword-except">except</span> 异常<span class="token number">1</span><span class="token punctuation">:</span>
+    处理语句<span class="token number">1</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword keyword-except">except</span><span class="token punctuation">:</span> <span class="token comment"># 实际是except Exception</span>
+    不是以上的处理语句 
+<span class="token keyword keyword-else">else</span>： <span class="token comment"># 有except才可有else</span>
+    未发生异常执行的语句
+<span class="token keyword keyword-finally">finally</span>： <span class="token comment"># 写finally时一般不写except，即不处理异常</span>
+    无论是否发生异常都会执行的语句
+</code></pre></li>
+</ul>
+<h3 id="raise语句">raise语句 </h3>
+<ul>
+<li>作用：抛出一个错误，使程序进入异常</li>
+<li>目的：当调用层数较深时，快速返回表层，传递错误信息（raise无处理异常语句，就上翻而return需要一层层向外传递）</li>
+<li>语法：<code>raise 异常类型</code></li>
+</ul>
+<h3 id="自定义异常">自定义异常 </h3>
+<ul>
+<li>作用：可以定义符合个性化条件的异常</li>
+<li>语法<pre data-role="codeBlock" data-info="python" class="language-python python"><code>XXError<span class="token punctuation">(</span>Exception<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  异常语句
+</code></pre>注：当在自定义异常写构造函数时，要先调用父类的，并将错误信息传入其中</li>
+</ul>
+<h2 id="迭代">迭代 </h2>
+<h3 id="定义-1">定义 </h3>
+<p>每一次对过程的重复称为一次迭代，而且每一次迭代的结果会成为下一次迭代的值（初始）</p>
+<h3 id="可迭代对象">可迭代对象 </h3>
+<ul>
+<li>定义: 具有__iter__方法（可以返回迭代器对象）的对象</li>
+<li>语法:<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 类名<span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> 迭代器类名<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+</code></pre>注：迭代器对象需自己写</li>
+</ul>
+<h3 id="迭代器对象">迭代器对象 </h3>
+<ul>
+<li>定义：拥有<code>__next__()</code>方法（调用后可以依据算法返回下一个值的对象）的对象</li>
+<li>语法<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 迭代器类名：
+  <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> 聚合对象<span class="token punctuation">)</span>：
+      self<span class="token punctuation">.</span>__聚合对象 <span class="token operator">=</span> 聚合对象
 
-        return wrapper
+  <span class="token keyword keyword-def">def</span> <span class="token function">__next__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword keyword-if">if</span> 没有元素：
+          <span class="token keyword keyword-raise">raise</span> StopInteration
+      <span class="token keyword keyword-return">return</span> 聚合对象元素
+</code></pre></li>
+</ul>
+<h3 id="迭代器框架">迭代器框架 </h3>
+<h4 id="使用">使用 </h4>
+<p>如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> 类名<span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> 迭代器类名<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
 
 
-    def fun_old(parameter, ......):
-        旧方法体
+  <span class="token keyword keyword-class">class</span> 迭代器类名：
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> 聚合对象<span class="token punctuation">)</span>：
+        self<span class="token punctuation">.</span>__聚合对象 <span class="token operator">=</span> 聚合对象
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">__next__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> 没有元素：
+            <span class="token keyword keyword-raise">raise</span> StopInteration
+        <span class="token keyword keyword-return">return</span> 聚合对象元素
+
+<span class="token keyword keyword-for">for</span> item <span class="token keyword keyword-in">in</span> 类名<span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+</code></pre><h4 id="内容">内容 </h4>
+<ol>
+<li>抽象层（可迭代对象--父类）---&gt; 实现层（自定义可迭代对象--&gt;子类）</li>
+<li>抽象层（迭代器--父类） ---&gt; 实现层（自定义迭代器--&gt;子类）</li>
+<li>客户端代码（for协议） ---&gt; 抽象层（依赖倒置）---&gt; 具体迭代器与可迭代对象</li>
+</ol>
+<h4 id="for协议">for协议 </h4>
+<h5 id="原理">原理 </h5>
+<p>一种协议，包含三个过程：</p>
+<ol>
+<li>获取迭代器</li>
+<li>调用迭代器的next，获取聚合对象的元素（循环）</li>
+<li>遇到异常，处理并完成迭代</li>
+</ol>
+<h5 id="意义">意义 </h5>
+<p>通过可迭代对象与迭代器的继承与多态提供一种可以访问聚合类对象而不暴露其内部存储结构的方法</p>
+<h5 id="实际语句">实际语句 </h5>
+<p>如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>iterator <span class="token operator">=</span> 可迭代对象<span class="token punctuation">.</span>__iter__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-while">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-try">try</span><span class="token punctuation">:</span>
+        item <span class="token operator">=</span> iterator<span class="token punctuation">.</span>__next__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+    <span class="token keyword keyword-except">except</span> StopInteration
+        <span class="token keyword keyword-break">break</span>
+</code></pre><h3 id="生成器">生成器 </h3>
+<h4 id="定义-2">定义 </h4>
+<p>可迭代对象+迭代器</p>
+<h4 id="作用">作用 </h4>
+<p>能够动态提供聚合类对象中聚合的元素（调用一次，计算一次，返回一次）</p>
+<h4 id="特点">特点 </h4>
+<p><code>__iter__()</code>方法返回的是其自身</p>
+<h4 id="生成器的大致源码">生成器的大致源码 </h4>
+<p>如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">MyGenerator</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-pass">pass</span>
+
+        <span class="token keyword keyword-def">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-return">return</span> self
+
+        <span class="token keyword keyword-def">def</span> <span class="token function">__next__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-pass">pass</span>
+</code></pre><h4 id="生成器的生成语法生成器函数">生成器的生成语法（生成器函数） </h4>
+<ul>
+<li>定义：包含yield的函数</li>
+<li>原理：当函数中出现yield，调用时自动创建生成器类而不执行函数内所写的逻辑，其中将上一次循环yield以下，与本次循环yield以上代码放入<code>__next__()</code>方法中，并以本次循环yield后的内容作为返回值</li>
+<li>作用：通过延迟操作（惰性操作），一个一个给出结果，减少内存压力</li>
+<li>语法<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    方法体
+    <span class="token keyword keyword-yield">yield</span> 返回值
+    方法体
+</code></pre></li>
+<li>注意事项：由于生成器函数退出时会自动抛出StopInterationError异常，故当在生成器函数中写return不会返回return中的值，同时如果在其中再自己抛出StopInterationError异常，会导致重复抛出两个StopInterationError会致使程序抛出RunTimeError</li>
+</ul>
+<h4 id="迭代器与生成器之间的关系">迭代器与生成器之间的关系 </h4>
+<p>生成器主要就是迭代器，区别在于其还是可迭代对象，便于直接使用for来进行迭代</p>
+<h4 id="生成器表达式">生成器表达式 </h4>
+<p>如下：<br>
+<code>(yield 返回值 for 循环语句 if 条件)</code></p>
+<p>注：只是一种简便写法，和写生成器函数本质没有区别</p>
+<h2 id="函数式编程">函数式编程 </h2>
+<h3 id="概念-2">概念 </h3>
+<p>以函数为单位进行开发</p>
+<h3 id="思想">思想 </h3>
+<p>与面向对象开发其实是一致的，除了不使用类，而是使用函数</p>
+<h3 id="高阶函数的运用">高阶函数的运用 </h3>
+<ul>
+<li>核心理念
+<ul>
+<li>通过形参作为（父类），统一函数（子类）的概念   --&gt;   继承</li>
+<li>高阶函数自身作为客户端代码，调用形参（父类）的逻辑（子类）   --&gt;   多态</li>
+<li>来实现函数功能的普适性</li>
+</ul>
+</li>
+<li>实现做法
+<ol>
+<li>提取公共部分（成为高阶函数，即客户端代码）</li>
+<li>封装变化部分（成为子类）---&gt; 如果函数只有一个语句可以直接使用lambda函数</li>
+<li>以变量作为参数传入公共部分 （参数即为父类，相当于组合复用）</li>
+</ol>
+</li>
+<li>建议：可以将相似公共部分都提取到一个模块中，方便以后调用</li>
+</ul>
+<h3 id="闭包">闭包 </h3>
+<h4 id="基础概念">基础概念 </h4>
+<ul>
+<li>三要素
+<ul>
+<li>必须有一个内嵌函数</li>
+<li>内嵌函数必须引用外部函数中变量</li>
+<li>外部函数返回值必须是内嵌函数</li>
+</ul>
+</li>
+<li>作用：使外部函数执行完不会立即释放栈帧，等待内嵌函数运行，使逻辑连续，执行完，不脱离当前逻辑</li>
+<li>原理：由于返回内嵌函数，而内嵌函数使用外部函数变量，若外部栈帧销毁，内嵌函数无法执行保留，闭包将两个函数的执行环境整合</li>
+<li>类比：类变量，类方法或实例变量，实例方法</li>
+<li>语法<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">fun01</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  变量 <span class="token operator">=</span> <span class="token boolean">None</span>
+  <span class="token keyword keyword-def">def</span> <span class="token function">fun02</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token keyword keyword-nonlocal">nonlocal</span> 变量
+      变量 <span class="token operator">=</span> <span class="token number">1</span>
+  
+  <span class="token keyword keyword-return">return</span> fun02
+</code></pre></li>
+</ul>
+<h4 id="运用装饰器">运用（装饰器） </h4>
+<h5 id="作用-1">作用 </h5>
+<p>即在不更改原函数功能情况下为其添加新功能（开闭原则）</p>
+<h5 id="原理-1">原理 </h5>
+<p>由于闭包可以返回方法体，同时可以捆绑内外函数的运行环境。故将旧函数方法体传入其中，将新旧函数的运行环境捆绑在一起，并通过闭包返回新方法体重写旧函数方法体，达成函数功能扩展的目标</p>
+<h5 id="语法">语法 </h5>
+<ul>
+<li>初始语法如下：<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">fun_new</span><span class="token punctuation">(</span>fun_old<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 保证参数不同的的旧函数也可传入</span>
+        新方法体
+        fun_old<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+        <span class="token comment"># 拆解传入的元组和字典，化为位置与命名关键字形参</span>
+
+    <span class="token keyword keyword-return">return</span> wrapper
 
 
-    fun_old = fun_new(fun_old)
-    ```
-* 特点：在```fun_old = fun_new(fun_old)```语句前执行的内容依旧是原先的函数（未执行该语句，故旧函数还未重写）
----
-* 简化语法如下：
-    ```python
-    def fun_new(fun_old):
-        def wrapper(*args, **kwargs):
-            # 保证参数不同的的旧函数也可传入
-            新方法体
-            fun_old(*args, **kwargs)
-            # 拆解传入的元组和字典，化为位置与命名关键字形参
-
-        return wrapper
+<span class="token keyword keyword-def">def</span> <span class="token function">fun_old</span><span class="token punctuation">(</span>parameter<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    旧方法体
 
 
-    @fun_new
-    def fun_old(parameter, ......):
-        旧方法体
-    ```
-* 特点：装拆方便，只需更换或删除@的内容，即可完成取消或更换装饰器；其次只要是函数后的内容执行的语句都是重写之后的
-# 结语
-python核心的初步学习自此结束，剩余进阶内容见后续笔记，下一部分为python数据结构
+fun_old <span class="token operator">=</span> fun_new<span class="token punctuation">(</span>fun_old<span class="token punctuation">)</span>
+</code></pre></li>
+<li>特点：在<code>fun_old = fun_new(fun_old)</code>语句前执行的内容依旧是原先的函数（未执行该语句，故旧函数还未重写）</li>
+</ul>
+<hr>
+<ul>
+<li>简化语法如下：<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">fun_new</span><span class="token punctuation">(</span>fun_old<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 保证参数不同的的旧函数也可传入</span>
+        新方法体
+        fun_old<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+        <span class="token comment"># 拆解传入的元组和字典，化为位置与命名关键字形参</span>
+
+    <span class="token keyword keyword-return">return</span> wrapper
+
+
+<span class="token decorator annotation punctuation">@fun_new</span>
+<span class="token keyword keyword-def">def</span> <span class="token function">fun_old</span><span class="token punctuation">(</span>parameter<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    旧方法体
+</code></pre></li>
+<li>特点：装拆方便，只需更换或删除@的内容，即可完成取消或更换装饰器；其次只要是函数后的内容执行的语句都是重写之后的</li>
+</ul>
+<h1 id="结语">结语 </h1>
+<p>python核心的初步学习自此结束，剩余进阶内容见后续笔记，下一部分为python数据结构</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
