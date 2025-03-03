@@ -943,54 +943,49 @@
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <title>背景图片演示</title>
+            <title>精灵图片演示</title>
             <style>
-                div{
-                    /*设置背景图片，属性为background-image，值为url("图片路径")*/
-                    background-image: url("resource1.jpg");
-                    width: 1071px;
-                    height: 801px;
+                .fairy-img-1{
+                    width: 106px;
+                    height: 106px;
                     margin: 50px 0;
-                    padding: 0;
-                    float: left;
-                    border: solid 1px red;
+                    background-image: url("2024-11-21_183153.png");
                 }
-                #img-x-repeat{
-                    /*设置重复为仅沿着x轴，属性为background-repeat，值为repeat-x*/
-                    background-repeat: repeat-x;
+                #b{
+                    background-position: 0 -106px;
                 }
-                #img-y-repeat{
-                    /*设置重复为仅沿着y轴，值为repeat-y*/
-                    background-repeat: repeat-y;
+                #c{
+                    background-position: 0 -212px;
                 }
-                #img-no-repeat{
-                    /*设置不重复，值为no-repeat*/
-                    background-repeat: no-repeat;
+                #d{
+                    background-position: 0 -318px;
                 }
-                #img-pos{
-                    background-repeat: no-repeat;
-                    /*设置背景图片显示位置，属性为background-position，值为水平方位（left，center，right）；水平偏移（不写为0）；竖直方位（top，
-                    center，bottom）；竖直偏移（不写为0）*/
-                    /*background-position的值也可为具体像素值即x,y,坐标是以向右向下为x,y正方向*/
-                    /*当竖直方位不写时,自动为center*/
-                    background-position: left 100px center;
+                .fairy-img-2{
+                    width: 116px;
+                    height: 116px;
+                    margin: 50px 0;
+                    background-image: url("2024-11-21_183344.png");
                 }
-                #img-sim{
-                    /*简化写法，一次行设置完背景颜色，背景图片，重复方式，显示位置即属性为background，值为color；url；重复方式；position*/
-                    background: #666 url("resource1.jpg") no-repeat center center;
-                    /*设置背景图片大小，属性为background-size，值为宽度；高度*/
-                    /*当只写宽度时,高度会等比放大*/
-                    background-size: 200px;
+                #b-1{
+                    background-position: -116px 0;
+                }
+                #c-1{
+                    background-position: -232px 0;
+                }
+                #d-1{
+                    background-position: -348px 0;
                 }
             </style>
         </head>
         <body>
-        <div id="img-default"></div>
-        <div id="img-x-repeat"></div>
-        <div id="img-y-repeat"></div>
-        <div id="img-no-repeat"></div>
-        <div id="img-pos"></div>
-        <div id="img-sim"></div>
+            <div id="a" class="fairy-img-1"></div>
+            <div id="b" class="fairy-img-1"></div>
+            <div id="c" class="fairy-img-1"></div>
+            <div id="d" class="fairy-img-1"></div>
+            <div id="a-1" class="fairy-img-2"></div>
+            <div id="b-1" class="fairy-img-2"></div>
+            <div id="c-1" class="fairy-img-2"></div>
+            <div id="d-1" class="fairy-img-2"></div>
         </body>
         </html>
         ``` 
@@ -1105,36 +1100,50 @@
         <!DOCTYPE html>
         <html lang="en">
         <head>
-        <meta charset="UTF-8">
-        <title>普通边框演示</title>
-        <style>
-            div{
-                margin: 0 auto;
-                width: 100px;
-                height: 100px;
-                text-align: center;
-            }
-            #a{
-                /*设置边框，第一个值为颜色;第二个值为边框宽度，单位px;第三个值为线的样式设置*/
-                /*第三个值的部分选择：1.solid:实线;2.dotted:点线;3.虚线:dashed;4.double:双线边框*/
-                border: red 1px solid;
-            }
-            #b{
-                border: red 1px dotted;
-            }
-            #c{
-                border: red 1px dashed;
-            }
-            #d{
-                border: red 1px double;
-            }
-        </style>
+            <meta charset="UTF-8">
+            <title>精灵图片演示</title>
+            <style>
+                .fairy-img-1{
+                    width: 106px;
+                    height: 106px;
+                    margin: 50px 0;
+                    background-image: url("2024-11-21_183153.png");
+                }
+                #b{
+                    background-position: 0 -106px;
+                }
+                #c{
+                    background-position: 0 -212px;
+                }
+                #d{
+                    background-position: 0 -318px;
+                }
+                .fairy-img-2{
+                    width: 116px;
+                    height: 116px;
+                    margin: 50px 0;
+                    background-image: url("2024-11-21_183344.png");
+                }
+                #b-1{
+                    background-position: -116px 0;
+                }
+                #c-1{
+                    background-position: -232px 0;
+                }
+                #d-1{
+                    background-position: -348px 0;
+                }
+            </style>
         </head>
         <body>
-            <div id="a"><h1>a</h1></div>
-            <div id="b"><h1>b</h1></div>
-            <div id="c"><h1>c</h1></div>
-            <div id="d"><h1>d</h1></div>
+            <div id="a" class="fairy-img-1"></div>
+            <div id="b" class="fairy-img-1"></div>
+            <div id="c" class="fairy-img-1"></div>
+            <div id="d" class="fairy-img-1"></div>
+            <div id="a-1" class="fairy-img-2"></div>
+            <div id="b-1" class="fairy-img-2"></div>
+            <div id="c-1" class="fairy-img-2"></div>
+            <div id="d-1" class="fairy-img-2"></div>
         </body>
         </html>
         ``` 
