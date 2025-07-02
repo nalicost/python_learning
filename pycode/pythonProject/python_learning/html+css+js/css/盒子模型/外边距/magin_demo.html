@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>外边距演示</title>
+    <style>
+        div{
+          border: red 1px solid;
+          width: 80px;
+          height: 80px;
+          margin: 0;
+        }
+        #a{
+          /*统一设置上下左右的外边距*/
+          margin: 10px;
+        }
+        #b{
+          /*分别设置上，右，下，左的外边距*/
+          margin: 10px 20px 30px 40px;
+        }
+        #c{
+          /*分别设置上，左右，下的外边距*/
+          margin: 10px 20px 30px;
+        }
+        #d{
+          /*分别设置上下，左右的外边距*/
+          margin: 10px 20px;
+        }
+        #e{
+          /*居中的特殊写法*/
+          margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="a"></div>
+    <div id="b"></div>
+    <div id="c"></div>
+    <div id="d"></div>
+    <div id="e"></div>
+    <div></div>
+</body>
+</html>

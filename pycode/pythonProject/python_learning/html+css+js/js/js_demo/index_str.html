@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>检索关键词</title>
+    <style>
+        div{
+            margin: 16px 8px;
+        }
+        #normal-text{
+            width: 300px;
+            height: 400px;
+        }
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="normal-text">
+    <div>
+        <input type="text" id="info">
+        <button id="index-str">查找</button>
+    </div>
+    <div id="content">
+        今天天气不错，天气真好，喜欢好天气，天天都是好天气
+        今天天气不错，天气真好，喜欢好天气，天天都是好天气
+        今天天气不错，天气真好，喜欢好天气，天天都是好天气
+        今天天气不错，天气真好，喜欢好天气，天天都是好天气
+    </div>
+    <script>
+        var txtIndex = document.getElementById("info");
+        var indexBtn = document.getElementById("index-str");
+        var conShow = document.getElementById("content");
+        indexBtn.onclick = function (){
+            var reg = new RegExp(txtIndex.value, "ig");
+            console.log(reg.test(conShow.innerHTML))
+            // replace方法并不会直接在原字符串进行，故需将返回值重新赋值元素属性才能更改
+            var newStr = conShow.innerHTML.replace(reg, "<span class='red'>" + txtIndex.value + "</span>");
+            conShow.innerHTML = newStr
+        }
+    </script>
+</div>
+</body>
+</html>

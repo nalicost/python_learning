@@ -1,9 +1,10 @@
 """
             一个模块
 """
+__all__ = ['DoubleListHelper']
 
 
-class DoubleListHelper():
+class DoubleListHelper:
     def __init__(self, x, y):
         self.x = x
         self.y = y

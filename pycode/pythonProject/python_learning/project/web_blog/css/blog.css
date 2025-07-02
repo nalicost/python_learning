@@ -1,0 +1,281 @@
+/* 设置通用样式 */
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #f2f2f0;
+}
+.focus{
+    color: #b1d5e3!important;
+}
+a{
+    text-decoration: none;
+    color: #fff;
+}
+input{
+    outline: none;
+}
+ul{
+    list-style-type: none;
+}
+.advImg{
+    margin-top: 30px;
+    width: 100%;
+    height: 120px;
+}
+.advImg>img{
+    width: 100%;
+    height: 100%;
+}
+#nav>.box,#news>.box,#album>.box{
+    width: 880px;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+#news>.box>.top,#album>.box>.top{
+    background-color: #fff;
+    width: 100%;
+    height: 40px;
+    border-bottom: #9c9a9c 1px solid;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+#news>.box>.top>div:nth-child(1),#album>.box>.top>div:nth-child(1){
+    float: left;
+    font-size: 16px;
+    color: #fff;
+    background-color: black;
+    padding: 8px 16px;
+    height: 24px;
+}
+#news>.box>.top>div:nth-child(2),#album>.box>.top>div:nth-child(2){
+    float: right;
+    padding-top: 20px;
+    height: 20px;
+    font-size: 8px;
+    font-weight: bold;
+}
+/* 设置导航条样式 */
+#nav{
+    width: 100%;
+    height: 30px;
+    position: fixed;
+    padding: 10px 0;
+    top: 0;
+    background-color: #666;
+    overflow: hidden;
+    font-size: 8px;
+    color: #fff;
+    z-index: 999;
+}
+#nav>.box>.top,#nav>.box>.title{
+    float: left;
+}
+#nav>.box>.top{
+    margin-right: 80px;
+    font-size: 16px;
+    color: #b1d5e3;
+}
+#nav>.box>.title>div,#nav>.box>.log>div{
+    float: left;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+#nav>.box>.log{
+    float: right;
+}
+/* 设置登录页样式 */
+#log>img{
+    width: 100%;
+    position: fixed;
+    opacity: 0.5;
+}
+#log>.wid{
+    width: 300px;
+    height: 260px;
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    top: 20%;
+    border: 1px black solid;
+    box-shadow: #000 8px 8px 20px 1px;
+    border-radius: 8px;
+    background-color: #fff;
+    z-index: 999;
+}
+#log>.wid>.title{
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    padding: 16px 0 32px;
+    border-bottom: #666 1px solid;
+}
+#log>.wid>.info{
+    margin-left: 20px;
+    padding: 16px;
+}
+#log>.wid>.info>form>div{
+    margin-bottom: 4px;
+}
+#log>.wid>.info>form>.err{
+    color: red;
+    font-size: 8px;
+    display: none;
+}
+#log>.wid>.info>form>div:nth-child(1){
+    font-size: 12px;
+    color: #333;
+}
+#log>.wid>.info>form>div:nth-child(6){
+    margin-top: 16px;
+}
+#log>.wid>.info>form>div:nth-child(6)>input{
+    border: none;
+    width: 50px;
+    height: 20px;
+    background-color: #9c9a9c;
+    border-radius: 2px;
+    font-size: 12px;
+}
+#log>.wid>.info>form>div:nth-child(6)>input:hover{
+    background-color: #333;
+    color: #fff;
+}
+/* 设置文章列表页面样式 */
+#news>.box>.con>.lCon{
+    float: left;
+    width: 600px;
+    overflow: hidden;
+}
+#news>.box>.con>.lCon>.li{
+    float: left;
+    background-color: #fff;
+    width: 580px;
+    padding: 16px 0 0 20px;
+    margin-bottom: 24px;
+}
+#news>.box>.con>.lCon>.li>.tit{
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+#news>.box>.con>.lCon>.li>.img{
+    float: left;
+    width: 200px;
+    height: 140px;
+    margin-right: 16px;
+}
+#news>.box>.con>.lCon>.li>.img>img{
+    width: 100%;
+    height: 80%;
+}
+#news>.box>.con>.lCon>.li>.passage{
+    float: left;
+    width: 360px;
+}
+#news>.box>.con>.lCon>.li>.passage>.paraA{
+    margin: 8px 0 20px 0;
+    font-size: 12px;
+    color: #222;
+}
+#news>.box>.con>.lCon>.li>.passage>.paraB{
+    color: #666;
+    font-size: 12px;
+}
+#news>.box>.con>.rCon{
+    float: right;
+    background-color: #fff;
+    width: 200px;
+    overflow: hidden;
+    padding: 16px 0 0 20px;
+}
+#news>.box>.con>.rCon>.tit{
+    font-size: 20px;
+    color: #222;
+}
+#news>.box>.con>.rCon>.tit>.line{
+    width: 64px;
+    border-bottom: 2px black solid;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+#news>.box>.con>.rCon>ul>li{
+    margin-bottom: 20px;
+    width: 180px;
+    position: relative;
+    height: 100px;
+}
+#news>.box>.con>.rCon>ul>li>.img>{
+    width: 100%;
+    height: 100%;
+}
+#news>.box>.con>.rCon>ul>li>.img>img{
+    width: 100%;
+    height: 100%;
+}
+#news>.box>.con>.rCon>ul>li>.img>.introShow{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    background-color: rgba(128, 128, 128, 0.5);
+    display: none;
+}
+#news>.box>.con>.rCon>ul>li>.img>.introShow>.box{
+    width: 100%;
+    height: 40px;
+    margin: 20% auto;
+}
+#news>.box>.con>.rCon>ul>li>.img>.introShow>.box>div{
+    margin-bottom: 12px;
+}
+#news>.box>.con>.rCon>ul>li>.img>.introShow>.box>div:nth-child(1){
+    font-weight: bold;
+}
+#news>.box>.con>.rCon>ul>li>.img>.introShow>.box>div:nth-child(2){
+    border: #fff 2px solid;
+    height: 20px;
+    width: 60px;
+    border-radius: 10px;
+    margin: 0 auto;
+    text-align: center;
+}
+/* 设置我的相册页面样式 */
+#album>.box>ul>li{
+    background-color: #fff;
+    width: 200px;
+    height: 160px;
+    float: left;
+    margin-left: 12px;
+    padding-bottom: 12px;
+    position: relative;
+}
+#album>.box>ul>li>img{
+    width: 100%;
+    height: 112px;
+    margin-bottom: 8px;
+}
+#album>.box>ul>li>.tit{
+    font-size: 12px;
+    color: #444;
+    margin-left: 12px;
+}
+#album>.box>ul>li>.tag{
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    background-color: #fe306b;
+    border-radius: 2px;
+    width: 48px;
+    height: 20px;
+    color: #fff;
+    font-size: 9px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 20px;
+}

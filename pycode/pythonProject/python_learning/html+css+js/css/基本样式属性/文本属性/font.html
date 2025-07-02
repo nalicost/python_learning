@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本属性演示</title>
+    <style>
+        #font-size-weight-family{
+            /*设置字体大小,属性为font-size;值为像素值*/
+            font-size: 20px;
+            /*设置字体粗细,属性为font-weight;值为无单位的数*/
+            /*其中特殊的可直接填normal为400,bold为700即加粗*/
+            font-weight: 700;
+            /*设置字体名称,属性为font-family;值为字体名称,多个字体名称逗号分隔,如果有中文或空格要加引号,英文不需要*/
+            /*注意要写sans-serif来兜底,必写*/
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        #font-style{
+            /*设置字体的风格,属性为font-style;值为italic(斜体)等*/
+            font-style: italic;
+        }
+        #font-sim{
+            /*简化设置,属性为font;值为style weight size family*/
+            /*其中size,family必填,写时要按顺序*/
+            font: italic normal 12px "Microsoft Yahei";
+        }
+    </style>
+</head>
+<body>
+    <p id="font-size-weight-family">这是一段文字</p>
+    <p id="font-style">这是一段文字</p>
+    <p id="font-sim">这是一段文字</p>
+</body>
+</html>

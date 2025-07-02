@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>进度条展示</title>
+    <style>
+        .outer{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 200px;
+            background-color: transparent;
+        }
+        .inner{
+            width: 20%;
+            height: 50px;
+            transform: translate(0, -50%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -10%;
+        }
+        .content{
+            width: 50px;
+            margin: 0 auto;
+            background-image: linear-gradient(30deg,#b1d5e3,mediumblue);
+            background-clip: text;
+            color: transparent;
+        }
+        .pro-bar{
+            width: 0;
+            height: 8px;
+            background-color: white;
+            border-radius: 2px;
+            position: absolute;
+            box-shadow: 1px 1px 10px blue;
+            transform: scale(0.2);
+            top: 50%;
+            left: 0;
+            animation: progress-bar 2s infinite linear;
+        }
+        .delay1{
+            animation-delay: 0.5s;
+        }
+        .delay2{
+            animation-delay: 1s;
+        }
+        .delay3{
+            animation-delay: 1.5s;
+        }
+        @keyframes progress-bar {
+            0%{
+
+            }
+            20%{
+                width: 50px;
+                left: 10%;
+                margin-left: -25px;
+            }
+            50%{
+                width: 50px;
+                left: 50%;
+                margin-left: -25px;
+            }
+            100%{
+                width: 0;
+                left: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">
+            <div class="content">加载中</div>
+            <div class="pro-bar"></div>
+            <div class="pro-bar delay1"></div>
+            <div class="pro-bar delay2"></div>
+            <div class="pro-bar delay3"></div>
+        </div>
+    </div>
+</body>
+</html>

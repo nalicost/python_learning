@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格练习</title>
+    <style>
+        body{
+            font-size: 12px;
+        }
+        /*设置超链接的样式*/
+        a{
+            /*去除超链接下划线*/
+            text-decoration: none;
+        }
+        /*设置超链接为点击时的颜色*/
+        a:link{
+            color: #005aa0
+        }
+        /*设置表格整体宽度和边框的颜色*/
+        table{
+            width: 990px;
+            border-bottom: #ccc solid 1px;
+        }
+        /*设置表头的样式*/
+        table tr th{
+            width: 190px;
+            color: #666;
+            border-bottom: #ccc solid 1px;
+            text-align: center
+        }
+        /*设置所有单元行的高度*/
+        table>tr{
+            height: 15px;
+        }
+        /*单独设置表头中不同的样式*/
+        .ws610{
+            width: 610px;
+            text-align: left
+        }
+        /*设置所有单元格的样式*/
+        table tr td{
+            color: #9c9a9c;
+            border-bottom: #eee dashed 1px;
+            text-align: center;
+        }
+        /*设置单元格中不同的样式*/
+        .left{
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr id="tr1">
+            <th class="ws610">主题</th>
+            <th>回复/浏览</th>
+            <th>作者</th>
+            <th>时间</th>
+        </tr>
+        <tr>
+            <!--此处超链接地址指向自己-->
+            <td class="left"><a href="#">银灰色的,很酷</a></td>
+            <td>0/0</td>
+            <td><a href="#">2001年冬天</a></td>
+            <td>2014-11-19 13:54:40</td>
+        </tr>
+        <tr>
+            <td class="left"><a href="#">性价比超高,活动给力</a></td>
+            <td>0/0</td>
+            <td><a href="#">xpx2001</a></td>
+            <td>2014-11-18 10:21:29</td>
+        </tr>
+        <tr>
+            <td class="left"><a href="#">外形精致,值得购买</a></td>
+            <td>0/0</td>
+            <td><a href="#">xpx2001</a></td>
+            <td>2014-11-18 15:27:58</td>
+        </tr>
+        <tr>
+            <td class="left"><a href="#">支持,不错</a></td>
+            <td>0/0</td>
+            <td><a href="#">2001年冬天</a></td>
+            <td>2014-11-19 10:22:27</td>
+        </tr>
+      </table>
+</body>
+</html>

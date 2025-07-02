@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车标签</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #tag{
+            border: #666 1px solid ;
+            position: relative;
+            width: 80px;
+            height: 10px;
+            margin: 10px 0;
+            padding: 2px 0;
+        }
+        #tag>div:nth-child(1) {
+          font-size: 8px;
+          color: #666;
+          position: absolute;
+          right: 18px;
+        }
+        #tag>div:nth-child(2){
+            height: 8px;
+            width: 20px;
+            position: absolute;
+            font-size: 4px;
+            right: 10px;
+        }
+        #tag>div:nth-child(2)>div:nth-child(1){
+            height: 0;
+            width: 0;
+            position: absolute;
+            top: -3px;
+            right: 3px;
+            border-top: 1px solid transparent;
+            border-left: 1px solid transparent;
+            border-bottom: 2px solid red;
+            border-right: 3px solid transparent;
+        }
+        #tag>div:nth-child(2)>div:nth-child(2){
+            position: absolute;
+            top: -5px;
+            right: 0;
+            width: 6px;
+            height: 5px;
+            text-align: center;
+            color: white;
+            background-color: red;
+            border-radius: 50%;
+        }
+        #tag>div:nth-child(3){
+            font-size: 8px;
+            width: 5px;
+            color: #666;
+            position: absolute;
+            right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="tag">
+    <div>我的购物车</div>
+    <div><div></div><div>1</div></div>
+    <div>&gt;</div>
+</div>
+</body>
+</html>

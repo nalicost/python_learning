@@ -53,8 +53,8 @@ def student_information_output(target_list):
 # while i != 0:
 #     i = student_object(student_information_list)
 # student_information_output(student_information_list)
-
-list_01 = [Student('aa', 30, '男'), Student('ab', 100, '女'), Student('ac', 200, '女')]
+#
+# list_01 = [Student('aa', 30, '男'), Student('ab', 100, '女'), Student('ac', 200, '女')]
 
 
 def search_01(target_list, search_object):

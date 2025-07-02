@@ -17,7 +17,7 @@ def request(conn_recv):
 
 sockFD = socket()
 sockFD.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-sockFD.bind(('192.168.137.1', 10086))
+sockFD.bind(('127.0.0.1', 10086))
 sockFD.listen(3)
 while True:
     conn, addr = sockFD.accept()

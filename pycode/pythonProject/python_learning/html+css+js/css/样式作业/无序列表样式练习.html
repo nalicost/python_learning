@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无序列表样式练习</title>
+    <style>
+        p{
+            margin: 16px 0;
+        }
+        span{
+            margin: 0 10px;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: bolder;
+        }
+        #news{
+            border: #666 solid 1px;
+            border-top: #666 solid 4px;
+            width: 800px;
+            height: 220px;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        li{
+            margin: 16px;
+            border-bottom: #666 solid 1px;
+        }
+        .last{
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="news">
+        <ul>
+            <li>
+                <p><span>1</span>媒体：勒索病毒还未收场&nbsp;内幕已经足够惊人</p>
+            </li>
+            <li>
+                <p><span>2</span>韩公布赴中美俄日特使人选&nbsp;前总理成为来华特使</p>
+            </li>
+            <li>
+                <p><span>3</span>微软CEO就勒索病毒表态：怒斥美国政府情报机关</p>
+            </li>
+            <li class="last">
+                <p><span>4</span>勒索病毒重创微软&nbsp;CEO怒斥美国政府情报机关</p>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

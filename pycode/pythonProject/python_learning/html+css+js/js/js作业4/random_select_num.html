@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机选取数字</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #random-choice{
+            width: 200px;
+            height: 20px;
+            padding: 4px;
+            overflow: hidden;
+            border: #666 1px solid;
+            margin: 0 auto;
+        }
+        #random-choice>div:nth-child(1){
+            float: left;
+            width: 70%;
+            height: 20px;
+            margin-right: 4px;
+        }
+        #random-choice>div:nth-child(2){
+            float: right;
+            width: 28%;
+            height: 20px;
+            border-radius: 8px;
+            background-color: #9c9a9c;
+            text-align: center;
+            box-shadow: 1px 1px 1px 1px;
+        }
+        #random-choice>div:nth-child(1)>span{
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: red;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="random-choice">
+    <div>
+        <span class="num">00</span>
+        <span class="num">00</span>
+        <span class="num">00</span>
+        <span class="num">00</span>
+        <span class="num">00</span>
+        <span class="num">00</span>
+    </div>
+    <div id="change-num">换一换</div>
+    <script>
+        var chBtn = document.getElementById("change-num")
+        var numArr = document.getElementsByClassName("num")
+        chBtn.onclick = function (){
+            var reArr = []
+            for (var i=0;i<6;i++){
+                var ranNum = Math.floor(33 * Math.random() + 1)
+                reArr.push(ranNum)
+                for (var o=0;o<reArr.length-1;o++){
+                    if (reArr[o] === ranNum){
+                        i--
+                        reArr.pop()
+                        break
+                    }
+                }
+            }
+            for (var c=0;c<reArr.length;c++){
+                if (reArr[c]<10){
+                    num = "0" + reArr[c]
+                }else{
+                    num = reArr[c]
+                }
+                numArr[c].innerText = num
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

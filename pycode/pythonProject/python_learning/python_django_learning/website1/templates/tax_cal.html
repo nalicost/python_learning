@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人税务计算</title>
+</head>
+<body>
+<form action="/tax" method="post">
+    <div>
+        <label for="baseNum">
+            请输入基数
+        </label>
+        <input type="text" id="baseNum" name="baseNum" value="{{ base }}">
+    </div>
+    <div>
+        <label for="type">
+            请选择户口
+        </label>
+        <select id="type" name="type">
+            <option value="0" {% if loc == '0' %}selected{% endif %} >城镇户口</option>
+            <option value="1" {% if loc == '1' %}selected{% endif %}>农村户口</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="开始计算">
+    </div>
+</form>
+{% if re == 'op' %}
+	<table border="1px solid #666" cellspacing="0">
+    <tr style="background-color: mistyrose">
+        <th>项目</th>
+        <th>个人缴纳</th>
+        <th>单位缴纳</th>
+    </tr>
+    {% for item in re_list %}
+    <tr style="background-color: {% if item.1 == 1 %}mistyrose{% endif %}">
+        <td>{{ item.0.proj }}</td>
+        <td>{% if item.0.self_mon != 0 %}{{ item.0.self_mon }}元{% endif %}</td>
+        <td>{% if item.0.ent_mon != 0 %}{{ item.0.ent_mon }}元{% endif %}</td>
+    </tr>
+    {% empty %}
+        <tr>
+            <td colspan="3"><h1 style="color: red;font-weight: bold">请填入正确数据</h1></td>
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}
+</body>
+</html>

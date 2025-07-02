@@ -24,6 +24,9 @@ if __name__ == '__main__':
 
 list_ = Array('i', [1, 2, 3, 4])
 list_a = Array('c', b'hello')
+list_b = Array('i', 4)
+for i in list_b:
+    print(i, 'list_b')
 
 
 def worker_c(list_target):

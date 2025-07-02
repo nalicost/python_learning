@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加载页面</title>
+    <style>
+        .curtain{
+            background-image: linear-gradient(to bottom,black, #080548, #140E83, darkblue);
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        .curtain>.bg-img{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .section{
+            width: 100%;
+            position: relative;
+        }
+        .front-anim{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate3d(0, 1, 0, 0);
+            animation: StarRotate2DRender3D 8s 0s linear infinite;
+        }
+        .line{
+            background-color: skyblue;
+            height: 1px;
+            position: absolute;
+            transition: all 2s ease;
+            width: 0;
+        }
+        .line1{
+            top: 120px;
+            left: 20px;
+            transform: rotate(60deg);
+            transform-origin: left;
+        }
+        .line2{
+            top: 172px;
+            left: 51px;
+            transform: rotate(110deg);
+            transform-origin: left;
+        }
+        .line3{
+            top: 211px;
+            left: 36px;
+            transform: rotate(30deg);
+            transform-origin: left;
+        }
+        .line4{
+            top: 275px;
+            left: 148px;
+            transform: rotate(-83deg);
+            transform-origin: left;
+        }
+        .line5{
+            top: 41px;
+            left: 176px;
+            transform: rotate(-25deg);
+            transform-origin: left;
+        }
+        .line6{
+            top: 16px;
+            left: 230px;
+            transform: rotate(60deg);
+            transform-origin: left;
+        }
+        .point{
+            width: 2px;
+            height: 2px;
+            background-image: radial-gradient(white, deepskyblue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rebeccapurple;
+            position: absolute;
+            z-index: 999;
+            opacity: 0;
+        }
+        .point1{
+            left: 10%;
+            top: 8%;
+            animation: shineA 3s ease infinite alternate;
+        }
+        .point2{
+            left: 50%;
+            top: 20%;
+            animation: shineA 1s ease infinite alternate;
+        }
+        .point3{
+            left: 30%;
+            top: 40%;
+            animation: shineA 1s ease infinite alternate;
+        }
+        .point4{
+            left: 80%;
+            top: 20%;
+            animation: shineA 2s ease infinite alternate;
+        }
+        .point5{
+            left: 90%;
+            top: 80%;
+            animation: shineA 1s ease infinite alternate;
+        }
+        .point6{
+            left: 70%;
+            top: 50%;
+            animation: shineA 2s ease infinite alternate;
+        }
+        .point7{
+            left: 60%;
+            top: 25%;
+            animation: shineA 1s ease infinite alternate;
+        }
+        .point8{
+            left: 45%;
+            top: 90%;
+            animation: shineA 2s ease infinite alternate;
+        }
+        .point9{
+            left: 30%;
+            top: 20%;
+            animation: shineA 1s ease infinite alternate;
+        }
+        .point10{
+            left: 20%;
+            top: 10%;
+            animation: shineA 3s ease infinite alternate;
+        }
+        .point-anim{
+            width: 6px;
+            height: 6px;
+            background-image: radial-gradient(white, deepskyblue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rebeccapurple;
+            position: absolute;
+            z-index: 999;
+            opacity: 0;
+            animation: shineA 2s ease infinite alternate
+        }
+        .water{
+            background-image: linear-gradient(30deg, white 24px, deepskyblue 30px, rebeccapurple 36px);
+            width: 1px;
+            height: 40px;
+            box-shadow: 0 0 50px 2px white;
+            opacity: 0;
+            transform: rotate(60deg) translate(0, 0) scale(2);
+            position: absolute;
+            z-index: 998;
+        }
+        .water1{
+            top: -30px;
+            left: 10%;
+            animation: flowing 5s  8s ease-in infinite;
+        }
+        .water2{
+            top: -60px;
+            left: 30%;
+            animation: flowing 6s  6s ease-in infinite;
+        }
+        .water3{
+            top: -90px;
+            left: 60%;
+            animation: flowing 2s  4s ease-in infinite;
+        }
+        .water4{
+            top: -120px;
+            left: 90%;
+            animation: flowing 3s 2s ease-in infinite;
+        }
+        .point11{
+            top: 119px;
+            left: 19px;
+        }
+        .point12{
+            top: 170px;
+            left: 48px;
+        }
+        .point13{
+            top: 208px;
+            left: 34px;
+        }
+        .point14{
+            top: 272px;
+            left: 145px;
+        }
+        .point15{
+            top: 39px;
+            left: 174px;
+        }
+        .point16{
+            top: 14px;
+            left: 228px;
+        }
+        .point17{
+            top: 248px;
+            left: 363px;
+        }
+        @keyframes shineA {
+            0%{
+                opacity: 0.8;
+            }
+            100%{
+                opacity: 1;
+                box-shadow: 0 0 40px 5px white;
+            }
+        }
+        @keyframes StarRotate2DRender3D {
+            8%{
+                transform: translate(-50%, -50%) rotate3d(1, 1, 0.3, 90deg);
+            }
+            25%{
+                transform: translate(-50%, -50%) rotate3d(1, 1, 0.6, 180deg);
+            }
+            40%{
+                transform: translate(-50%, -50%) rotate3d(1, 1, 0.8, 270deg);
+            }
+            50%{
+                transform: translate(-50%, -50%) rotate3d(1, 1, 1, 360deg);
+            }
+            60%{
+                transform: translate(-50%, -50%) rotate3d(0.8, 1, 1, 90deg);
+            }
+            80%{
+                transform: translate(-50%, -50%) rotate3d(0.6, 1, 1, 180deg);
+            }
+            90%{
+                transform: translate(-50%, -50%) rotate3d(0.3, 1, 1, 270deg);
+            }
+            100%{
+                transform: translate(-50%, -50%) rotate3d(1, 1, 1, 360deg);
+            }
+        }
+        @keyframes flowing {
+            0%{
+
+            }
+            30%{
+                opacity: 1;
+            }
+            100%{
+                transform: rotate(45deg) translate(0, 105vw) scale(2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        window.addEventListener('load', function (){
+            const width_li = [60, 40, 128, 234, 60, 268]
+            const lineLi = document.querySelectorAll('.line')
+            const lineGrowing = () => {
+                for (let i = 0; i < lineLi.length; i++){
+                    lineLi[i].style.width = width_li[i] + 'px'
+                    lineLi[i].style.opacity = 0.6
+                    lineLi[i].style.backgroundColor = 'skyblue'
+                }
+            }
+            const clearLineShow = () => {
+                for (let i = 0; i < lineLi.length; i++){
+                    lineLi[i].style.opacity = 0
+                }
+            }
+            const clearLineGrow = () => {
+                for (let i = 0; i < lineLi.length; i++){
+                    lineLi[i].style.width = 0
+                }
+            }
+            lineGrowing()
+            let intervalId = setInterval(lineGrowing, 6000)
+            let timeOutClearShowId = setTimeout(() => {
+                clearLineShow()
+                setInterval(clearLineShow, 6000)
+            }, 3000)
+            let timeOutClearGrowId = setTimeout(() => {
+                clearLineGrow()
+                setInterval(clearLineGrow, 6000)
+            }, 5000)
+        })
+    </script>
+    <div class="curtain">
+        <div class="front-anim">
+            <div class="line-set">
+                <div class="line line1" data-id="0"></div>
+                <div class="line line2" data-id="1"></div>
+                <div class="line line3" data-id="2"></div>
+                <div class="line line4" data-id="3"></div>
+                <div class="line line5" data-id="4"></div>
+                <div class="line line6" data-id="5"></div>
+            </div>
+            <div class="point-set">
+                <div class="point point-anim point11"></div>
+                <div class="point point-anim point12"></div>
+                <div class="point point-anim point13"></div>
+                <div class="point point-anim point14"></div>
+                <div class="point point-anim point15"></div>
+                <div class="point point-anim point16"></div>
+                <div class="point point-anim point17"></div>
+            </div>
+        </div>
+        <div class="bg-img">
+            <div class="above-wid">
+                <div class="water water4"></div>
+                <div class="water water2"></div>
+                <div class="water water1"></div>
+                <div class="water water3"></div>
+            </div>
+            <div class="section top">
+                <div class="point point1"></div>
+                <div class="point point2"></div>
+                <div class="point point3"></div>
+                <div class="point point4"></div>
+                <div class="point point5"></div>
+                <div class="point point6"></div>
+                <div class="point point7"></div>
+                <div class="point point8"></div>
+                <div class="point point9"></div>
+                <div class="point point10"></div>
+            </div>
+            <div class="section med">
+                <div class="point point3"></div>
+                <div class="point point4"></div>
+                <div class="point point5"></div>
+                <div class="point point6"></div>
+                <div class="point point7"></div>
+                <div class="point point8"></div>
+                <div class="point point9"></div>
+            </div>
+            <div class="section bottom">
+                <div class="point point1"></div>
+                <div class="point point7"></div>
+                <div class="point point9"></div>
+                <div class="point point4"></div>
+                <div class="point point3"></div>
+                <div class="point point10"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

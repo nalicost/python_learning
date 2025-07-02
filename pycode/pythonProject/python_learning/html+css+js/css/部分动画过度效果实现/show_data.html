@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据呈现</title>
+    <style>
+        .outer{
+            width: 400px;
+            height: 600px;
+            margin: 0 auto;
+            background-image: linear-gradient(to top,whitesmoke 80px, ghostwhite 100px, slategrey,
+                                                whitesmoke 580px, ghostwhite 590px);
+            position: relative;
+            box-shadow: 4px 4px 10px;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding-top: 20px;
+        }
+        ul{
+            list-style-type: none;
+        }
+        .content{
+            display: inline-block;
+            opacity: 0;
+            transition: 1s ease-in;
+            color: red;
+            width: 36px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        .bar{
+            margin-top: 36px;
+            margin-left: 5px;
+            height: 40px;
+            width: 0;
+            display: inline-block;
+            border-radius: 1px;
+            background-color: skyblue;
+            transition: 1s ease-out 2s;
+        }
+        .button, .load{
+            background-color: black;
+            color: white;
+            width: 100px;
+            height: 40px;
+            border: 1px solid #b1d5e3;
+            border-radius: 1px;
+            box-shadow: 1px 1px 10px #fff;
+            text-align: center;
+            line-height: 40px;
+            position: absolute;
+            bottom: 10%;
+        }
+        .button{
+            right: 20%;
+        }
+        .load{
+            left: 20%;
+        }
+        .line1{
+            position: absolute;
+            height: 0;
+            width: 1px;
+            background-color: darkslategrey;
+            top: 15%;
+            left: 80px;
+            opacity: 0;
+            transition: 1s ease-out;
+        }
+        .line1>.dir{
+            display: inline-block;
+            position: absolute;
+            bottom: -8px;
+            right: -5px;
+            transform: rotate(90deg);
+        }
+        .line2{
+            position: absolute;
+            height: 1px;
+            width: 0;
+            background-color: darkslategrey;
+            top: 15%;
+            left: 80px;
+            opacity: 0;
+            transition: 1s ease-out;
+        }
+        .line2>.dir{
+            display: inline-block;
+            position: absolute;
+            top: -12px;
+            right: 0;
+        }
+        .title{
+            text-align: center;
+            width: 200px;
+            color: red;
+            font-size: 20px;
+            opacity: 1;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="title">
+            季度销量柱形图
+        </div>
+        <div class="line1"><div class="dir">&gt;</div></div>
+        <div class="line2"><div class="dir">&gt;</div></div>
+        <ul class="table">
+        </ul>
+        <div class="load">
+            加载数据
+        </div>
+        <div class="button">
+            展示数据
+        </div>
+    </div>
+    <script>
+        let arrList = [100, 40, 300]
+        let $table = document.getElementsByClassName('table')[0]
+        document.getElementsByClassName('load')[0].onclick = function (){
+            let re = ''
+            for (let i=0;i<arrList.length;i++){
+                re += `<li><span class="content">第${i+1}季度总量：${arrList[i]}</span><div class="bar"></div></li>`
+            }
+            $table.innerHTML = re
+            document.getElementsByClassName('line1')[0].style.opacity = 1
+            document.getElementsByClassName('line1')[0].style.height = '300px'
+            document.getElementsByClassName('line2')[0].style.opacity = 1
+            document.getElementsByClassName('line2')[0].style.width = '200px'
+        }
+        document.getElementsByClassName('button')[0].onclick = function (){
+            let con = document.getElementsByClassName('content')
+            let barShow = document.getElementsByClassName('bar')
+            for (let i=0;i<con.length;i++){
+                con[i].style.opacity = 1
+                barShow[i].style.width = `${arrList[i]}px`
+            }
+        }
+    </script>
+</body>
+</html>

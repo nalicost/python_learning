@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格标签演示</title>
+</head>
+<body>
+    <!--table为块元素-->
+     <!--一般的表格，有边框，有标题，各个单元格没有间隙-->
+    <table border="1" cellspacing="0" width="240px">
+        <caption>这是一个表格</caption>
+        <tr style="height: 80px">
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr style="height: 80px">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr style="height: 80px">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr style="height: 80px">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <br><br>
+    <!--有边框但各个单元格之间有空隙的-->
+    <table border="1" cellspacing="1" width="240px">
+        <tr style="height: 80px">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr style="height: 80px">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr style="height: 80px">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <br><br>
+    <!--只设置下边界的表格，同时表格的每一行的颜色不同-->
+    <table border="0" cellspacing="0" width="240px">
+        <tr style="height: 80px;background-color: aqua">
+            <td style="border-bottom: black solid 1px"></td>
+            <td style="border-bottom: black solid 1px"></td>
+            <td style="border-bottom: black solid 1px"></td>
+        </tr>
+        <tr style="height: 80px;background-color: yellow">
+            <td style="border-bottom: black solid 1px"></td>
+            <td style="border-bottom: black solid 1px"></td>
+            <td style="border-bottom: black solid 1px"></td>
+        </tr>
+        <tr style="height: 80px;background-color: pink">
+            <td style="border-bottom: black solid 1px"></td>
+            <td style="border-bottom: black solid 1px"></td>
+            <td style="border-bottom: black solid 1px"></td>
+        </tr>
+    </table>
+    <!--表格跨行与跨列合并，表格文字居中-->
+    <table border="1" cellspacing="1" width="240px">
+        <tr style="height: 80px">
+            <td colspan="2" style="text-align: center">10</td>
+            <td>10</td>
+        </tr>
+        <tr style="height: 80px">
+            <td rowspan="2"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr style="height: 80px">
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>侧边固定广告</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #advertisement{
+            position: fixed;
+            right: 0;
+            top: 200px;
+            width: 165px;
+            height: 250px;
+        }
+        #advertisement>div>img{
+            width: 165px;
+            height: 234px;
+        }
+        #advertisement>#close-1{
+            position: absolute;
+            right: 1px;
+            bottom: 12px;
+            border: #666 solid 1px;
+            width: 16px;
+            height: 8px;
+            font-size: 8px;
+            box-shadow: black -1px -1px 20px 1px;
+
+        }
+        #advertisement>#close-1>div{
+            border-radius: 1px;
+            outline: #666 solid 1px;
+            width: 6px;
+            height: 4px;
+            position: absolute;
+            left: 1px;
+            top: 2px;
+        }
+        #advertisement>#close-1>div>span{
+            color: #666;
+            position: absolute;
+        }
+        #advertisement>#close-1>div>span:nth-child(1){
+            left: -1px;
+            top: -4px;
+        }
+        #advertisement>#close-1>div>span:nth-child(2){
+            left: 1px;
+            top: -4px;
+        }
+        #advertisement>#close-1>div>div{
+            font-size: 4px;
+            width: 10px;
+            height: 8px;
+            position: absolute;
+            left: 7px;
+            top: -1px;
+        }
+    </style>
+</head>
+<body>
+    <div id="advertisement">
+        <div>
+            <img src="th2.jpg" alt="图片未找到">
+        </div>
+        <div id="close-1" onclick="document.getElementById('advertisement').style.display='none'">
+            <div>
+               <span>&gt;</span>
+               <span>&lt;</span>
+                <div>关闭</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

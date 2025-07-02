@@ -37,23 +37,23 @@ import random
 # list_choice=[]
 # list_reword=[]
 # while i < 8:
-#     clour,b,k='红',34,i
+#     colour,b,k='红',34,i
 #     if i==7:
-#         clour,b,k='蓝',17,i-6
-#     user_choice=input(f'您选择的第{k}个{clour}球号码是：').strip()
-#     if user_choice.isdigit() and 0 < int(user_choice) < b and clour+user_choice not in list_choice:
-#             choice=clour+user_choice
+#         colour,b,k='蓝',17,i-6
+#     user_choice=input(f'您选择的第{k}个{colour}球号码是：').strip()
+#     if user_choice.isdigit() and 0 < int(user_choice) < b and colour+user_choice not in list_choice:
+#             choice=colour+user_choice
 #             list_choice.append(choice)
 #             i+=1
 #     else:
 #         print('请输入符合要求的号码。')
 # print(list_choice)
 # for i in range(2):
-#     b,k,clour=34,6,'红'
+#     b,k,colour=34,6,'红'
 #     if i==1:
-#         b,k,clour=17,1,'蓝'
+#         b,k,colour=17,1,'蓝'
 #     x=random.sample(range(1,b),k)
-#     list_reword+=[clour+str(i) for i in x]
+#     list_reword+=[colour+str(i) for i in x]
 # print('本次的开奖号码为：',list_reword)
 # if list_reword==list_choice : print('你中奖了。')
 # else: print("还得积积德。")6

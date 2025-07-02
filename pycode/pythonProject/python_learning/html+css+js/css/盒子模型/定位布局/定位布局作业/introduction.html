@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中医介绍</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #center{
+            border: solid 1px #666;
+            width: 300px;
+            height: 200px;
+        }
+        #title{
+            color: saddlebrown;
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 40px;
+            margin-bottom: 20px;
+        }
+        #main{
+            width: 300px;
+            height: 150px;
+            border: solid 0 red;
+            position: relative;
+        }
+        #main>div:nth-child(1){
+            width: 125px;
+            height: 125px;
+            position: absolute;
+            left: 20px;
+            top: -10px;
+        }
+        #center>#main>div:nth-child(1)>img{
+            width: 100%;
+            height: 100%;
+        }
+        #center>#main>div:nth-child(1)>div{
+            position: absolute;
+            font-size: 12px;
+            color: #fff;
+            text-align: center;
+            background-color: saddlebrown;
+            bottom: 0;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+        }
+        #center>#main>div:nth-child(2){
+            width: 100%;
+            height: 60px;
+            color: #fff;
+            background-color: saddlebrown;
+            overflow: hidden;
+        }
+         #center>#main>div:nth-child(2)>div{
+             position: relative;
+             left: 160px;
+             font-size: 16px;
+             height: 60px;
+             width: 140px;
+         }
+         #center>#main>div:nth-child(3){
+             position: relative;
+             left: 160px;
+             font-size: 16px;
+             height: 60px;
+             width: 140px;
+             color: #666;
+         }
+    </style>
+</head>
+<body>
+<div id="center">
+    <div id="title">名中医推荐</div>
+    <div id="main">
+        <div>
+            <img src="th.jpg" alt="图片未找到">
+            <div>张学智</div>
+        </div>
+        <div>
+            <div>
+               张学智教授谈从脾胃治糖尿病
+            </div>
+        </div>
+        <div>北大医院中医科主任医师</div>
+    </div>
+</div>
+</body>
+</html>

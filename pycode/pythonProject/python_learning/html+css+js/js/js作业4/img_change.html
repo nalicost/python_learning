@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片变换</title>
+    <style>
+        div{
+            margin: 0;
+            padding: 0;
+            border: #666 0 solid;
+        }
+        #img-show{
+            width: 400px;
+            height: 240px;
+            position: relative;
+        }
+        #img-show>.img{
+            width: 100%;
+            height: 100%;
+        }
+        #img-show>.img>img{
+            width: 100%;
+            height: 240px;
+        }
+        #img-show>.nav{
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 10%;
+            height: 100%;
+        }
+        #img-show>.nav>.choice{
+            text-align: center;
+            margin: 13px 13px;
+            font-size: 10px;
+            line-height: 16px;
+            width: 16px;
+            height: 16px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+        #img-show>.nav>.selected{
+            background-color: orangered;
+        }
+    </style>
+</head>
+<body>
+<div id="img-show">
+    <div class="img">
+        <img src="3ac79f3df8dcd100ebdebd80708b4710b8122fd4.webp" alt="图片未找到" id="img">
+    </div>
+    <div class="nav">
+      <div class="choice selected">1</div>
+      <div class="choice">2</div>
+      <div class="choice">3</div>
+      <div class="choice">4</div>
+      <div class="choice">5</div>
+      <div class="choice">6</div>
+      <div class="choice">7</div>
+      <div class="choice">8</div>
+    </div>
+    <script>
+        var imgArr = [
+                "3ac79f3df8dcd100ebdebd80708b4710b8122fd4.webp", "4ec2d5628535e5ddccb4df5f78c6a7efcf1b6291.webp",
+                "8d5494eef01f3a292df5ee4ff66cab315c6034a8d653.webp", "72f082025aafa40f4bfb5ec4983d144f78f0f736b32b.webp",
+                "79f0f736afc37931789dcce2e3c4b74542a91107.webp", "80cb39dbb6fd5266d016e84a494a802bd40735fa9868.webp",
+                "8326cffc1e178a825b955f69fd03738da877e84a.webp", "a044ad345982b2b725fc7daa38adcbef76099b79.webp"
+        ]
+        var choBtnArr = document.getElementsByClassName("choice");
+        var imgShow = document.getElementById("img");
+        // 遍历绑定所有按钮
+        for (var i=0;i<choBtnArr.length;i++){
+            choBtnArr[i].onclick = function (){
+                // 获取按钮所对应的索引
+                imgShow.src = imgArr[Number(this.innerText) - 1];
+                // 清空所有按钮的选中状态
+                for (var o=0;o<choBtnArr.length;o++){
+                    choBtnArr[o].className = "choice"
+                }
+                // 使对应按钮有选中状态
+                this.className = "choice selected";
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片文字样式练习-有浮动布局</title>
+    <style>
+        a{
+            text-decoration: none;
+        }
+        a:link{
+            color: black;
+        }
+        a:visited{
+            color: black;
+        }
+        #comic{
+            color: orange;
+        }
+        .grey-all,.grey-color{
+            color: rgba(128,128,128,0.5);
+        }
+        .grey-all{
+            background-color: rgba(128,128,128,0.1);
+        }
+        p,img{
+            margin: 0;
+        }
+        h4{
+            margin: 5px 0;
+            color: black;
+        }
+        div{
+            margin: 5px 5px;
+        }
+        #goods{
+            width: 310px;
+            height: 510px;
+            margin: 0 auto;
+            border: #666 1px solid;
+        }
+        #top{
+            width: 300px;
+            height: 30px;
+        }
+        #center{
+            width: 300px;
+            height: 400px;
+        }
+        .mid{
+            width: 290px;
+            height: 195px;
+            overflow: hidden;
+        }
+        .mid>div{
+            margin: 0;
+        }
+        .mid>img{
+            width: 100%;
+            height: 70%;
+        }
+        .mid h4, .mid p{
+            width: 100%;
+            height: 9%;
+            text-align: center;
+        }
+        #ll, #rr{
+            width: 140px;
+            height: 185px;
+            text-align: center;
+        }
+        #ll{
+            float: left;
+        }
+        #rr{
+            float: right;
+        }
+        #ll>img,#rr>img{
+            width: 100%;
+            height: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div id="goods">
+        <div id="top">
+            <h3>众筹</h3>
+        </div>
+        <div id="center">
+            <div class="mid">
+                <img src="resource1.jpg" alt="图片未找到">
+                <div class="grey-all">
+                    <h4>苹果I-Watch手表上市</h4>
+                    <p>一场手表的科技进化</p>
+                </div>
+            </div>
+            <div class="mid">
+                <div id="ll">
+                    <img src="resource3.jpg" alt="图片未找到">
+                    <h4>大圣玩偶</h4>
+                </div>
+                <div id="rr">
+                    <img src="resource2.jpg" alt="图片未找到">
+                    <h4>智能运动鞋</h4>
+                </div>
+            </div>
+        </div>
+        <div id="bottom">
+            <div>
+                &nbsp;<a href="#">智能手表</a><span class="grey-color">&nbsp;|&nbsp;</span>
+                <a href="#">创意新品</a><span class="grey-color">&nbsp;|&nbsp;</span>
+                <a href="#">时尚家居</a>
+                <br>
+                <span class="grey-color">&nbsp;|&nbsp;</span><a href="#" id="comic">动漫周边</a>
+                <span class="grey-color">&nbsp;|&nbsp;</span><a href="#">指纹手机</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

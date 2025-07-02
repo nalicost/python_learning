@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>界面切换效果</title>
+    <style>
+        .curtain{
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-image: linear-gradient(to bottom,black, #080548, #140E83, darkblue);
+            background-size: cover;
+            animation: shifting 2s linear;
+        }
+        .core{
+            height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-between;
+        }
+        .water{
+            background-image: linear-gradient(30deg, white 24px, deepskyblue 30px, rebeccapurple 36px);
+            width: 1px;
+            height: 40px;
+            box-shadow: 0 0 50px 2px white;
+            opacity: 0;
+            transform: rotate(60deg) translate(0, 0) scale(2);
+        }
+        .water1{
+            margin-right: 10px;
+            margin-top: 4px;
+            animation: flowing 5s  8s ease-in infinite;
+        }
+        .water2{
+            margin-right: 16px;
+            margin-top: 10px;
+            animation: flowing 6s  6s ease-in infinite;
+        }
+        .water3{
+            margin-right: 24px;
+            margin-top: 8px;
+            animation: flowing 2s  4s ease-in infinite;
+        }
+        .water4{
+            margin-right: 32px;
+            margin-top: 16px;
+            animation: flowing 3s 2s ease-in infinite;
+        }
+        .top, .middle, .bottom{
+            display: flex;
+            justify-content: space-evenly;
+            width: 100vw;
+        }
+        .point{
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 40px 0 white;
+            position: fixed;
+            z-index: 999;
+            opacity: 0;
+            animation: shine 3s ease infinite alternate;
+        }
+        .point1{
+            left: 10%;
+            top: 8%;
+        }
+        .point2{
+            left: 50%;
+            top: 20%;
+        }
+        .point3{
+            left: 30%;
+            top: 40%;
+        }
+        .point4{
+            left: 80%;
+            top: 20%;
+        }
+        .point5{
+            left: 90%;
+            top: 15%;
+        }
+        .point6{
+            left: 70%;
+            top: 18%;
+        }
+        .point7{
+            left: 60%;
+            top: 25%;
+        }
+        .point8{
+            left: 45%;
+            top: 10%;
+        }
+        .point9{
+            left: 30%;
+            top: 20%;
+        }
+        .point10{
+            left: 20%;
+            top: 10%;
+        }
+        @keyframes shifting {
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        @keyframes flowing {
+            0%{
+
+            }
+            30%{
+                opacity: 1;
+            }
+            100%{
+                transform: rotate(45deg) translate(0, 105vw) scale(2);
+            }
+        }
+        @keyframes shine {
+            0%{
+                opacity: 0.8;
+            }
+            100%{
+                opacity: 1;
+                box-shadow: 0 0 40px 5px white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="curtain">
+        <div class="point point1"></div>
+        <div class="point point2"></div>
+        <div class="point point3"></div>
+        <div class="point point4"></div>
+        <div class="point point5"></div>
+        <div class="point point6"></div>
+        <div class="point point7"></div>
+        <div class="point point8"></div>
+        <div class="point point9"></div>
+        <div class="point point10"></div>
+        <div class="core">
+            <div class="top">
+                <div class="water water4"></div>
+                <div class="water water2"></div>
+                <div class="water water2"></div>
+                <div class="water water2"></div>
+                <div class="water water1"></div>
+                <div class="water water3"></div>
+            </div>
+            <div class="middle">
+                <div class="water water2"></div>
+                <div class="water water4"></div>
+                <div class="water water3"></div>
+                <div class="water water2"></div>
+                <div class="water water2"></div>
+                <div class="water water1"></div>
+            </div>
+            <div class="middle">
+                <div class="water water2"></div>
+                <div class="water water1"></div>
+                <div class="water water3"></div>
+                <div class="water water3"></div>
+                <div class="water water1"></div>
+                <div class="water water2"></div>
+                <div class="water water4"></div>
+                <div class="water water4"></div>
+            </div>
+            <div class="middle">
+                <div class="water water1"></div>
+                <div class="water water4"></div>
+                <div class="water water2"></div>
+                <div class="water water1"></div>
+                <div class="water water3"></div>
+                <div class="water water3"></div>
+            </div>
+            <div class="bottom">
+                <div class="water water1"></div>
+                <div class="water water1"></div>
+                <div class="water water2"></div>
+                <div class="water water4"></div>
+                <div class="water water3"></div>
+                <div class="water water1"></div>
+                <div class="water water1"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

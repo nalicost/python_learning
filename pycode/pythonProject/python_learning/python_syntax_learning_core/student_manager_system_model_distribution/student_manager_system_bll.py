@@ -7,7 +7,7 @@ class StudentManagerController:
     __student_list = []
 
     @staticmethod
-    def __add_student(student_info):
+    def add_student(student_info):
         StudentManagerController.__student_list.append(student_info)
 
     @classmethod

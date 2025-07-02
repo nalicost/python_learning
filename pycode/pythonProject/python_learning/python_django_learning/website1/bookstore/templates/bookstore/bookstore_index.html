@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书主页</title>
+    <style>
+        body{
+            background-color: ghostwhite;
+        }
+        a{
+            text-decoration: none;
+            color: crimson;
+        }
+        a:hover{
+            color: lightblue;
+        }
+        div{
+            margin-top: 12px;
+        }
+        table{
+            margin: 0 auto;
+            background-color: beige;
+        }
+        tr{
+            height: 40px;
+        }
+        tr>th{
+            width: 120px;
+            font-weight: normal;
+        }
+        tr>td{
+            width: 120px;
+            text-align: center;
+            font-weight: normal;
+            font-size: 12px;
+        }
+        tr>td:nth-child(5), tr>td:nth-child(6){
+            width: 60px;
+        }
+        .button{
+            border: 1px black solid;
+            box-shadow: #666 1px 1px 2px;
+            font-size: 12px;
+            width: 60px;
+            text-align: center;
+            background-color: #eee;
+        }
+        .error{
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #but{
+            position: relative;
+            margin: 8px auto;
+            width: 100%;
+        }
+        #but>div{
+            width: 600px;
+            text-align: right;
+            margin: 0 auto;
+        }
+        #but>div>a{
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center">图书目录主页</h1>
+    <div>
+        <table border="1px solid #666" cellspacing="0">
+            <tr>
+                <th >书名</th>
+                <th >出版社</th>
+                <th >价格</th>
+                <th >市场价格</th>
+                <th colspan="2">目录操作</th>
+            </tr>
+            {% for item in iter_re %}
+                <tr>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.pub }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.market_price }}</td>
+                    <td><a href="mod/{{ item.id }}">修改</a></td>
+                    <td><a href="del/{{ item.id }}">删除</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td class="error" colspan="6">没有查找到数据</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="but">
+        <div>
+            <a href="filter/" class="button">筛选图书</a>
+            <a href="add/" class="button">添加图书</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>相对定位演示</title>
+    <style>
+        div{
+            border: solid 1px red;
+            margin: 0;
+            padding: 0;
+            width: 100px;
+            height: 80px;
+        }
+        #a{
+            /*定位属性为position，相对定位的值为relative*/
+            position: relative;
+            /*距离顶部向下3px*/
+            top: 3px;
+        }
+        #b{
+            position: relative;
+            /*距离左侧向右3px*/
+            left: 3px;
+        }
+        #c{
+            position: relative;
+            /*距离右侧向左3px*/
+            right: 3px;
+        }
+        #d{
+            position: relative;
+            /*距离底部向上3px*/
+            bottom: 3px;
+        }
+        #e{
+            position: relative;
+            /*距离顶部向上3px*/
+            top: -3px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div id="a"></div>
+    <div id="b"></div>
+    <div id="c"></div>
+    <div id="d"></div>
+    <div id="e"></div>
+</body>
+</html>

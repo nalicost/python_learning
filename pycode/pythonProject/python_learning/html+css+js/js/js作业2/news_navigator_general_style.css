@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    outline: solid 0 #666;
+}
+#nav{
+    width: 400px;
+    height: 200px;
+    font-size: 12px;
+    margin: 8px auto;
+}
+.title>div{
+    float: left;
+    width: 25%;
+    height: 100%;
+}
+#nav>.text-formal{
+    width: 100%;
+    height: 25%;
+    line-height: 80px;
+    position: relative;
+    border-bottom: #aaa 1px dashed;
+}
+.text-formal>.aspect{
+    position: absolute;
+    left: 4px;
+    color: darkslateblue;
+}
+.text-formal>.intro{
+    position: absolute;
+    left: 70px;
+}
+.text-formal>.time{
+    position: absolute;
+    right: 4px;
+    font-size: 10px;
+    color: #aaa;
+}

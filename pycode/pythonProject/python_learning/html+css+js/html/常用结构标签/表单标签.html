@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单标签演示</title>
+</head>
+<body>
+    <div id="reg" style="width: 296px">
+        <!--form为块元素,其中action中的#表示提交到当前页面,method表示提交方式,onsubmit表示提交时触发的执行函数-->
+        <form action="#" method="get" onsubmit="">
+            <div>
+                <!--label为内联元素,for用来绑定后面元素的id-->
+                <label for="name">用户</label>
+                <!--text就是文本框,placeholder为提示语,maxlength为最长输入长度-->
+                <input type="text" id="name" name="username" placeholder="请输入用户名" maxlength="10">
+            </div>
+            <div>
+                <label for="password">密码</label>
+                <!--password即密码类型,输入看不见-->
+                <input type="password" id="password" name="pass" placeholder="请输入密码" maxlength="18">
+            </div>
+            <div>
+                <label for="xl">学历
+                   <!--select为下拉选项,其中selected为默认勾选,value是提交后显示的值-->
+                    <select name="certificate" id="xl">
+                        <option value="-1" selected>请选择</option>
+                        <option value="0">小学</option>
+                        <option value="1">中学</option>
+                        <option value="2">大学</option>
+                    </select>
+                </label>
+                <!--radio圆圈选项类型,如果name名字一样,则会选项互斥,checked为默认勾选-->
+                <label>性别
+                    <input type="radio" name="gender" value="1" checked>男
+                    <input type="radio" name="gender" value="2">女
+                </label>
+            </div>
+            <div>
+                <label>爱好</label>
+                <!--checkbox为方块选项类型,checked为默认勾选-->
+                <label for="like01">唱</label>
+                    <input type="checkbox" id="like01" name="like01">
+                <label for="like02">跳</label>
+                    <input type="checkbox" id="like02" name="like02">
+                <label for="like03">rap</label>
+                    <input type="checkbox" id="like03" name="like03">
+                <label for="like04">篮球</label>
+                    <input type="checkbox" id="like04" name="like04" checked>
+            </div>
+            <div>
+                <label for="demo">简介</label>
+                <!--textarea为长文本输入,cols为列,rows为行-->
+                <textarea name="introduction" id="demo" cols="30" rows="10" placeholder="自我介绍300字"></textarea>
+            </div>
+            <div style="text-align: center">
+                <!--reset为重置按键类型,value为显示在按键上的文字-->
+                <input type="reset" value="重置">
+                <!--submit为提交按键类型,value为显示在按键上的文字-->
+                <input type="submit" value="注册">
+            </div>
+            <div>
+                <label for="roll-line">滚动条</label>
+                <!-- range为滚动条类型，max为滚动条的最大值；min为滚动条的最小值；step为步长的值；value为初始值 -->
+                <input type="range" id="roll-line" max="100" min="0" step="10" value="10">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

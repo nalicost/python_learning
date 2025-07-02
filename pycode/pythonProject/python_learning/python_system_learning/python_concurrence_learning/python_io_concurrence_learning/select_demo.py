@@ -20,6 +20,7 @@ while True:
         else:
             data = item.recv(1024)
             if not data:
+                read_list.remove(item)
                 continue
             print(data.decode())
             write_list.append(item)

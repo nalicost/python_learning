@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>换一换功能</title>
+    <style>
+        div{
+            margin: 0;
+            padding: 0;
+            border: #666 0 solid;
+        }
+        #searchBook{
+            margin: 0 auto;
+            padding: 2px;
+            width: 400px;
+            height: 220px;
+            overflow: hidden;
+            border: #666 1px solid;
+        }
+        #searchBook>.nav{
+            width: 100%;
+            height: 10%;
+            margin-bottom: 8px;
+        }
+        #searchBook>.nav>span:nth-child(1){
+            float: left;
+        }
+        #searchBook>.nav>span:nth-child(2){
+            float: right;
+            color: #666;
+            cursor: pointer;
+        }
+        #searchBook>.nav-con{
+            width: 100%;
+            height: 90%;
+        }
+        #searchBook>.nav-con>.book-intro{
+            float: left;
+            width: 22%;
+            height: 100%;
+            margin: 0 5px;
+        }
+        .nav-con>.book-intro>.img-show>img{
+            width: 100%;
+            height: 136px;
+            outline: #9c9a9c 1px solid;
+        }
+        .book-intro>.book-name{
+            text-align: center;
+            color: #005aa0;
+            text-decoration: #005aa0 underline;
+            margin-bottom: 8px;
+        }
+        .book-intro>.book-author{
+            text-align: center;
+            color: #9c9a9c;
+        }
+    </style>
+</head>
+<body>
+<div id="searchBook">
+  <div class="nav">
+      <span>相关书籍</span><span id="change-book">换一换</span>
+  </div>
+  <div class="nav-con">
+      <div class="book-intro">
+          <div class="img-show">
+              <img src="4ec2d5628535e5ddccb4df5f78c6a7efcf1b6291.webp" alt="图片未找到">
+          </div>
+          <div class="book-name">老人与海</div>
+          <div class="book-author">海明威</div>
+      </div>
+      <div class="book-intro">
+          <div class="img-show">
+              <img src="72f082025aafa40f4bfb5ec4983d144f78f0f736b32b.webp" alt="图片未找到">
+          </div>
+          <div class="book-name">红楼梦</div>
+          <div class="book-author">曹雪芹</div>
+      </div>
+      <div class="book-intro">
+          <div class="img-show">
+              <img src="8326cffc1e178a825b955f69fd03738da877e84a.webp" alt="图片未找到">
+          </div>
+          <div class="book-name">人间词话</div>
+          <div class="book-author">王国维</div>
+      </div>
+      <div class="book-intro">
+          <div class="img-show">
+              <img src="79f0f736afc37931789dcce2e3c4b74542a91107.webp" alt="图片未找到">
+          </div>
+          <div class="book-name">呐喊</div>
+          <div class="book-author">鲁迅</div>
+      </div>
+  </div>
+</div>
+<script>
+    function $$(clsName){
+        return document.getElementsByClassName(clsName)
+    }
+    function arrIndex(elem, arr){
+        // 确认元素是否在数组中
+        for (var i=0;i<arr.length;i++){
+            if (arr[i] === elem){
+                return true
+            }
+        }
+        return false
+    }
+    function ranGen(len, arr){
+        // 随机获取数组中若干元素
+        var reArr = [];
+        for(var i=0;i<len;i++){
+            // 获取0-4随机数
+            indexNum = Math.floor((arr.length * Math.random()));
+            if (arrIndex(arr[indexNum], reArr)){
+                // 以存在跳过
+                i--
+                continue
+            }
+            reArr.push(arr[indexNum])
+        }
+        return reArr
+    }
+    var ChBtn = document.getElementById("change-book")
+    var imgShowArr = $$("img-show")
+    var bookNameArr = $$("book-name")
+    var bookAuthArr = $$("book-author")
+    var bookArr = [
+        ["4ec2d5628535e5ddccb4df5f78c6a7efcf1b6291.webp", ["老人与海", "海明威"]],
+        ["72f082025aafa40f4bfb5ec4983d144f78f0f736b32b.webp", ["红楼梦", "曹雪芹"]],
+        ["8326cffc1e178a825b955f69fd03738da877e84a.webp", ["人间词话", "王国维"]],
+        ["79f0f736afc37931789dcce2e3c4b74542a91107.webp", ["呐喊", "鲁迅"]],
+        ["a044ad345982b2b725fc7daa38adcbef76099b79.webp", ["骆驼祥子", "老舍"]],
+        ["3ac79f3df8dcd100ebdebd80708b4710b8122fd4.webp", ["悲惨世界", "维克多·雨果"]],
+        ["8d5494eef01f3a292df5ee4ff66cab315c6034a8d653.webp", ["神曲", "但丁·阿利吉耶里"]],
+        ["80cb39dbb6fd5266d016e84a494a802bd40735fa9868.webp", ["活着", "余华"]],
+    ]
+    ChBtn.onclick = function (){
+        var ranArr = ranGen(4, bookArr)
+        for (var i=0;i<4;i++){
+            imgShowArr[i].innerHTML = "<img src='" + ranArr[i][0] + "' alt='图片未找到'>"
+            bookNameArr[i].innerText = ranArr[i][1][0]
+            bookAuthArr[i].innerText = ranArr[i][1][1]
+        }
+    }
+</script>
+</body>
+</html>

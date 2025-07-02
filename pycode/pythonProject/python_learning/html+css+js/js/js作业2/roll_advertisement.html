@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>滚动广告</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #roll-adv{
+            width: 400px;
+            height: 300px;
+            border: #666 1px solid;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+        }
+        #roll-adv img{
+            width: 400px;
+            height: 300px;
+        }
+        .l-mark,.r-mark{
+            width: 16px;
+            height: 20px;
+            font-size: 16px;
+            background-color: rgba(0,0,0,0.2);
+            padding: 8px 2px;
+            position: absolute;
+            color: #fff;
+            top: 50%;
+            margin: -10px 0;
+        }
+        .l-mark{
+            left: 0;
+        }
+        .r-mark{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="roll-adv">
+        <div class="l-mark">&lt;</div>
+        <div class="r-mark">&gt;</div>
+        <div>
+            <img src="th0.jpg" alt="图片未找到" id="imgShow">
+        </div>
+        <script>
+            var posNum = 0;
+            var mvImgLeft = document.getElementsByClassName("l-mark")[0];
+            var mvImgRight = document.getElementsByClassName("r-mark")[0];
+            mvImgLeft.onclick = function mvOrder(){
+                posNum += 1
+                if(posNum === 4){
+                    posNum = 0
+                }else if(posNum === -1){
+                    posNum = 3
+                }
+                var urlImg = "th" + posNum + ".jpg"
+                var ImgInfo = document.getElementById("imgShow")
+                ImgInfo.src = urlImg
+            }
+            mvImgRight.onclick = function mvOrder(){
+                posNum -= 1
+                if(posNum === 4){
+                    posNum = 0
+                }else if(posNum === -1){
+                    posNum = 3
+                }
+                var urlImg = "th" + posNum + ".jpg"
+                var ImgInfo = document.getElementById("imgShow")
+                ImgInfo.src = urlImg
+            }
+        </script>
+    </div>
+</body>
+</html>

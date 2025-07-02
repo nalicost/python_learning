@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>背景图片演示</title>
+    <style>
+        div{
+            /*设置背景图片，属性为background-image，值为url("图片路径")*/
+            background-image: url("resource1.jpg");
+            width: 1071px;
+            height: 801px;
+            margin: 50px 0;
+            padding: 0;
+            float: left;
+            border: solid 1px red;
+        }
+        #img-x-repeat{
+            /*设置重复为仅沿着x轴，属性为background-repeat，值为repeat-x*/
+            background-repeat: repeat-x;
+        }
+        #img-y-repeat{
+            /*设置重复为仅沿着y轴，值为repeat-y*/
+            background-repeat: repeat-y;
+        }
+        #img-no-repeat{
+            /*设置不重复，值为no-repeat*/
+            background-repeat: no-repeat;
+        }
+        #img-pos{
+            background-repeat: no-repeat;
+            /*设置背景图片显示位置，属性为background-position，值为水平方位（left，center，right）；水平偏移（不写为0）；竖直方位（top，
+            center，bottom）；竖直偏移（不写为0）*/
+            /*background-position的值也可为具体像素值即x,y,坐标是以向右向下为x,y正方向*/
+            /*当竖直方位不写时,自动为center*/
+            background-position: left 100px center;
+        }
+        #img-sim{
+            /*简化写法，一次行设置完背景颜色，背景图片，重复方式，显示位置即属性为background，值为color；url；重复方式；position*/
+            background: #666 url("resource1.jpg") no-repeat center center;
+            /*设置背景图片大小，属性为background-size，值为宽度；高度*/
+            /*当只写宽度时,高度会等比放大*/
+            background-size: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="img-default"></div>
+<div id="img-x-repeat"></div>
+<div id="img-y-repeat"></div>
+<div id="img-no-repeat"></div>
+<div id="img-pos"></div>
+<div id="img-sim"></div>
+</body>
+</html>

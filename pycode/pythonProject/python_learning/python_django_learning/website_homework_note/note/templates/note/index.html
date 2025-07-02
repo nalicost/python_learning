@@ -1,0 +1,106 @@
+{% extends 'index/index.html' %}
+{% block title %}
+    <title>我的笔记</title>
+{% endblock title %}
+{% block cssStyle %}
+    #main{
+        margin-top: 60px;
+        position: relative;
+    }
+    .errorA{
+        color: red;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .but{
+        color: darkseagreen !important;
+        font-weight: bold;
+        border: 1px solid #666;
+        box-shadow: 1px 1px 2px;
+        padding: 4px 2px;
+        border-radius: 2px;
+        background-color: white;
+    }
+    .bottom{
+        position: absolute;
+        right: 400px;
+        margin-top: 40px
+    }
+    table{
+        margin: 0 auto;
+    }
+    h3{
+        text-align: center;
+        margin: 16px 0;
+    }
+    tr{
+        height: 40px;
+    }
+    th{
+        font-size: 16px;
+        font-weight: bold;
+    }
+    tr,th{
+        width: 200px;
+    }
+    th>a{
+        color: red;
+    }
+    #pageJump{
+        margin-left: 300px;
+    }
+    #pageJump>span{
+        margin-left: 16px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+{% endblock cssStyle %}
+{% block body %}
+<div id="main">
+    <h3>我的笔记列表</h3>
+    <table cellspacing="0" border="1px solid #666">
+        <tr>
+            <th>笔记名</th>
+            <th>创建时间</th>
+            <th>更新时间</th>
+            <th>修改</th>
+            <th>删除</th>
+        </tr>
+
+            {% for item in notes %}
+                <tr>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.create_date }}</td>
+                    <td>{{ item.update_date }}</td>
+                    <td><a href="/note/mod/{{ item.id }}">修改</a></td>
+                    <td><a href="/note/del/{{ item.id }}">删除</a></td>
+            {% empty %}
+                    <td colspan="5" class="errorA">暂时没有笔记</td>
+                </tr>
+            {% endfor %}
+    </table>
+    <div id="pageJump">
+    {{ page_need }}
+        {% if notes.has_previous %}
+            <span><a href="/note?page={{ notes.previous_page_number }}">上一页</a></span>
+        {% else %}
+            <span>上一页</span>
+        {% endif %}
+        {% for page_number in paginator_note.page_range %}
+            {% if page_number == notes.number %}
+                <span>{{ page_number }}</span>
+            {% else %}
+                <span><a href="/note?page={{ page_number }}">{{ page_number }}</a></span>
+            {% endif %}
+        {% endfor %}
+        {% if notes.has_next %}
+            <span><a href="/note?page={{ notes.next_page_number }}">下一页</a></span>
+        {% else %}
+            <span>下一页</span>
+        {% endif %}
+    </div>
+    <div class="bottom">
+        <a href="/note/add" class="but">添加笔记</a>
+    </div>
+</div>
+{% endblock body%}

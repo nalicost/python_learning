@@ -1,0 +1,49 @@
+var mainNews= document.getElementById("nav-choice")
+var newChoice1 = document.getElementById("choice1")
+var newChoice2 = document.getElementById("choice2")
+var newChoice3 = document.getElementById("choice3")
+var newChoice4 = document.getElementById("choice4")
+newChoice1.onclick = function chooseNews() {
+    newChoice2.style.backgroundColor = "#ccc";
+    newChoice2.style.color = "#666";
+    newChoice3.style.backgroundColor = "#ccc";
+    newChoice3.style.color = "#666";
+    newChoice4.style.backgroundColor = "#ccc";
+    newChoice4.style.color = "#666";
+    newChoice1.style.backgroundColor = "#005aa0";
+    newChoice1.style.color = "#fff";
+    mainNews.src = "news_navigate_choice_1.html";
+}
+newChoice2.onclick = function chooseNews() {
+    newChoice1.style.backgroundColor = "#ccc";
+    newChoice1.style.color = "#666";
+    newChoice3.style.backgroundColor = "#ccc";
+    newChoice3.style.color = "#666";
+    newChoice4.style.backgroundColor = "#ccc";
+    newChoice4.style.color = "#666";
+    newChoice2.style.backgroundColor = "#005aa0";
+    newChoice2.style.color = "#fff";
+    mainNews.src = "news_navigate_choice_2.html";
+}
+newChoice3.onclick = function chooseNews() {
+    newChoice1.style.backgroundColor = "#ccc";
+    newChoice1.style.color = "#666";
+    newChoice2.style.backgroundColor = "#ccc";
+    newChoice2.style.color = "#666";
+    newChoice4.style.backgroundColor = "#ccc";
+    newChoice4.style.color = "#666";
+    newChoice3.style.backgroundColor = "#005aa0";
+    newChoice3.style.color = "#fff";
+    mainNews.src = "news_navigate_choice_3.html";
+}
+newChoice4.onclick = function chooseNews() {
+    newChoice1.style.backgroundColor = "#ccc";
+    newChoice1.style.color = "#666";
+    newChoice2.style.backgroundColor = "#ccc";
+    newChoice2.style.color = "#666";
+    newChoice3.style.backgroundColor = "#ccc";
+    newChoice3.style.color = "#666";
+    newChoice4.style.backgroundColor = "#005aa0";
+    newChoice4.style.color = "#fff";
+    mainNews.src = "news_navigate_choice_4.html";
+}

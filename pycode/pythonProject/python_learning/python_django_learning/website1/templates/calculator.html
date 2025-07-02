@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算页面</title>
+</head>
+<body>
+<form action="#" method="post">
+    <div>
+        <h1>数学计算</h1>
+        <h5>支持简单的数学加减乘除运算，除法返回至多两位小数结果</h5>
+    </div>
+    <div>
+        <div>
+            <label for="val_1"></label>
+            <input type="text" name="val_1" id="val_1" value="{{ val_f }}">
+            <label for="type"></label>
+            <select name="type" id="type">
+                <option value="+" {{ sel_1 }}>+</option>
+                <option value="-" {{ sel_2 }}>-</option>
+                <option value="*" {{ sel_3 }}>*</option>
+                <option value="/" {{ sel_4 }}>/</option>
+            </select>
+            <label for="val_2"></label>
+            <input type="text" name="val_2" id="val_2" value="{{ val_e }}">
+            <span>=</span>
+            <label style=" outline:#666 1px solid;display: inline-block;width: 32px;height: 18px;position: relative;top: 4px">{{ res }}</label>
+        </div>
+        <div style="margin-top:16px;">
+            <input type="submit" value="计算" style="margin-left: 20px">
+        </div>
+    </div>
+</form>
+</body>
+</html>

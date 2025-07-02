@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>固定定位演示</title>
+    <style>
+        div{
+            margin: 0;
+            padding: 0;
+            background-color: red;
+            width: 100px;
+            height: 80px;
+            text-align: center;
+        }
+        #a{
+            /*设置固定定位，属性为position，值为fixed*/
+            position: fixed;
+            /*距离页面窗口顶部向下20px*/
+            top: 20px;
+            /*距离页面窗口左部向右300px*/
+            left: 300px;
+        }
+        #b{
+            position: fixed;
+            /*距离页面窗口顶部向下300px*/
+            top: 300px;
+            /*距离页面窗口左部向右20px*/
+            left: 20px;
+        }
+        #c{
+            position: fixed;
+            /*距离页面窗口底部向上300px*/
+            bottom: 300px;
+            /*距离页面窗口右部向左20px*/
+            right: 20px;
+        }
+        #d{
+            position: fixed;
+            /*距离页面窗口右部向左300px*/
+            right: 300px;
+            /*距离页面窗口底部向上20px*/
+            bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="a">a</div>
+    <div id="b">b</div>
+    <div id="c">c</div>
+    <div id="d">d</div>
+    <div style="height: 1000px;width: 100%;background-color: blue;font-size: 100px">a</div>
+    <div style="height: 1000px;width: 100%;background-color: blue;font-size: 100px">b</div>
+</body>
+</html>

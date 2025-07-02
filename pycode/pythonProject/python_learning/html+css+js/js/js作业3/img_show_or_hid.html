@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片显示与隐藏</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: #666 0 solid;
+        }
+        #drawing{
+            width: 300px;
+            height: 400px;
+        }
+        #drawing>div{
+            margin-bottom: 8px;
+        }
+        #drawing>.btn{
+            width: 100%;
+            text-align: center;
+            height: 5%;
+        }
+        .btn>input{
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .btn>span{
+            display: inline-block;
+            padding: 1px;
+            width: 8px;
+            height: 8px;
+            border: 1px #666 solid;
+            border-radius: 50%;
+            margin-left: 20px;
+            margin-right: 20px;
+            background-color: white;
+        }
+        .btn>label{
+            margin-left: -20px;
+        }
+        #drawing>.img{
+            height: 70%;
+            position: relative;
+        }
+        #drawing>.img>img{
+            position: absolute;
+        }
+        #drawing>.img>img:nth-child(1){
+            width: 200px;
+            height: 100%;
+            left: 50px;
+        }
+        #drawing>.img>.rear{
+            width: 20px;
+            height: 20px;
+            left: 168px;
+            top: 20px;
+            display: none;
+        }
+        #drawing>.img>.lear{
+            width: 20px;
+            height: 20px;
+            left: 112px;
+            top: 20px;
+            display: none;
+        }
+        #drawing>.img>.eye{
+            width: 24px;
+            height: 24px;
+            left: 138px;
+            top: 20px;
+            display: none;
+        }
+        #drawing>.img>.nose{
+            width: 12px;
+            height: 12px;
+            left: 144px;
+            top: 40px;
+            display: none;
+        }
+        #drawing>.img2{
+            text-align: center;
+            width: 100%;
+            height: 20%;
+        }
+        #drawing>.img2>img{
+            width: 40%;
+            height: 60%;
+        }
+        #drawing>#hid{
+            width: 100%;
+            height: 5%;
+            position: absolute;
+            border: #666 0 solid;
+            top: 314px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="drawing">
+    <div class="btn">
+        <input type="checkbox" id="mainControl"><label for="mainControl">开启功能</label>
+    </div>
+    <div class="img">
+        <img src="OIP-C.jpg" alt="图片不存在">
+        <img src="OIP-C%20(2).jpg" alt="图片不存在" class="lear">
+        <img src="OIP-C%20(1).jpg" alt="图片不存在" class="rear">
+        <img src="th%20(1).jpg" alt="图片不存在" class="eye">
+        <img src="th%20(2).jpg" alt="图片不存在" class="nose">
+    </div>
+    <div class="btn">
+        <span id="nose"></span><label for="nose">鼻子</label>
+        <span id="eye"></span><label for="eye">眼睛</label>
+        <span id="ear"></span><label for="ear">耳朵</label>
+    </div>
+    <div class="img2">
+        <img src="OIP-C%20(3).jpg" alt="图片不存在">
+    </div>
+    <div id="hid"></div>
+    <script>
+        var btnMain = document.getElementById("mainControl");
+        var btnNose = document.getElementById("nose");
+        var btnEye = document.getElementById("eye");
+        var btnEar = document.getElementById("ear");
+        var hidEle = document.getElementById("hid");
+        var imgEye = document.getElementsByClassName("eye")[0];
+        var imgNose = document.getElementsByClassName("nose")[0];
+        var imgLEar = document.getElementsByClassName("lear")[0];
+        var imgREar = document.getElementsByClassName("rear")[0];
+        imgDisplay = {
+            showELe:function (arrEle){
+                for(var i=0;i < arrEle.length;i++){
+                    // 获取当前值，由于直接使用style属性获取，js只能获取行内，不能获取内嵌
+                    var state = getComputedStyle(arrEle[i], null).display;
+                    if (state === "block"){
+                        state = "none";
+                    }else if (state === "none"){
+                        state = "block";
+                    }
+                    arrEle[i].style.display = state;
+                }
+            },
+            btnLight:function (btn){
+                var bgColor = getComputedStyle(btn, null).backgroundColor;
+                // rgb中每一个逗号与数字之间有一个空格，判断相等的时候一定注意
+                if (bgColor === "rgb(255, 255, 255)"){
+                    bgColor = "rgb(0, 0, 0)";
+                }else if (bgColor === "rgb(0, 0, 0)"){
+                    bgColor = "rgb(255, 255, 255)";
+                }
+                btn.style.backgroundColor = bgColor;
+            }
+        }
+        btnMain.onchange = function (){
+            imgDisplay.showELe([hidEle, ])
+        }
+        btnEar.onclick = function (){
+            imgDisplay.showELe([imgLEar, imgREar])
+            imgDisplay.btnLight(btnEar)
+        }
+        btnEye.onclick = function (){
+            imgDisplay.showELe([imgEye, ])
+            imgDisplay.btnLight(btnEye)
+        }
+        btnNose.onclick = function (){
+            imgDisplay.showELe([imgNose, ])
+            imgDisplay.btnLight(btnNose)
+        }
+    </script>
+</div>
+</body>
+</html>

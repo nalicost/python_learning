@@ -8,15 +8,15 @@ nul.sort()
 # result = [False] #默认false
 # def seek_01( nul_0, list_0, list_index, list_len_max, list_len_min, result): #定义函数，传入内容分别为要找的数字，原列表，查找位置，已确认的最大位置，已确认的最小位置，结果接收
 #     if abs(list_len_min - list_len_max) == 1 : #递归终止条件，查找到底了
-#         c = 1 #无实际意义
+#         result = [bool(list_0[list_len_min] == nul_0 or list_0[list_len_max] == nul_0)]
 #     elif list_0[list_index - 1] != nul_0 : #找不到，则继续往下查找
 #         output = [(list_len_max + list_index) // 2, list_index, list_len_max] if list_0[list_index - 1] < nul_0 else [
 #             (list_len_min + list_index) // 2, list_len_min, list_index] #三元赋值，如果找到的值小了说明一定比这个位置的数大，故将已确认最小位置修改，反之亦然
 #         seek_01(nul_0, list_0, output[0], output[2], output[1] ,result) #找不到则继续函数递归
 #     else: #找到了，修改可变类型数据结果，变为true
 #         result[0] = True
-# nul_0 = int(input(':>'))
-# n = seek_01(nul_0, nul, (len(nul) + 0) // 2 , len(nul) , 0, result)
+# nul_ = int(input(':>'))
+# n = seek_01(nul_, nul, (len(nul) - 1) // 2 , len(nul) - 1 , 0, result)
 # print(result[0])
 
 
@@ -32,17 +32,17 @@ def seek_01(nul_0, list_0, list_index, list_len_max, list_len_min=0):
     :return: bool
     """
     if abs(list_len_min - list_len_max) == 1:  # 递归停止条件
-        return False
+        return list_0[list_len_min] == nul_0 or list_0[list_len_max] == nul_0
     elif list_0[list_index - 1] != nul_0:
         output = ((list_len_max + list_index) // 2, list_index, list_len_max) if list_0[list_index - 1] < nul_0 else \
-            ((list_len_min + list_index) // 2, list_len_min, list_index)
+                    ((list_len_min + list_index) // 2, list_len_min, list_index)
+        return seek_01(nul_0, list_0, output[0], output[2], output[1])  # 通过改return来递归函数，并将结果递归会表层
     else:  # 递归找到结果
         return True
-    return seek_01(nul_0, list_0, output[0], output[2], output[1])  # 通过改return来递归函数，并将结果递归会表层
 
 
-nul_0 = int(input(':>'))
-n = seek_01(nul_0, nul, (len(nul) + 0) // 2, len(nul))
+nul_ = int(input(':>'))
+n = seek_01(nul_, nul, (len(nul) - 1) // 2, len(nul) - 1)
 print(n)
 
 # 方法三：结果返回表层方式于上方相同，算法实现方式不同

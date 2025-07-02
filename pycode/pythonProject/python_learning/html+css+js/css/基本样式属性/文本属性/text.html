@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本属性演示</title>
+    <style>
+        #text-color-decoration-align-height{
+            height: 40px;
+            /*设置文本颜色,属性为color;值为颜色*/
+            color: red;
+            /*设置文本的装饰线,属性为text-decoration;值为装饰线类型和颜色*/
+            /*装饰线类型包括,underline下划线,overline上划线,line-through删除线,none取消装饰线*/
+            text-decoration: line-through blue;
+            /*设置文本对齐方式,属性为text-align;值为对齐方式*/
+            /*对齐方式的类型包括,left默认,center,right*/
+            text-align: center;
+            /*设置行高,属性为line-height;值为像素值*/
+            /*可以利用文字永远相对行高垂直居中的特性,来调整文本在元素中的位置,当行高等于元素高时,文本垂直居中;当行高小于元素高时,文本偏上;当行高
+            大于元素高时,文本偏下*/
+            /*特殊的,当值不写单位时,则为字体大小的倍数*/
+            line-height: 30px;
+            border: solid 1px green;
+        }
+    </style>
+</head>
+<body>
+    <div id="text-color-decoration-align-height">这是一段文字</div>
+</body>
+</html>

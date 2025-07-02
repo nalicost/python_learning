@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自制弹框</title>
+    <style>
+        *{
+            border: black solid 0;
+            margin: 0;
+            padding: 0;
+        }
+        .underline{
+            height: 20px;
+            border-bottom: #666 1px solid;
+        }
+        #wid{
+            border-radius: 2px;
+            width: 200px;
+            height: 100px;
+            position: fixed;
+            top: 200px;
+            left: 400px;
+            display: none;
+            z-index: 2;
+        }
+        #wid>div:nth-child(1){
+            background-color: green;
+            width: 100%;
+            height: 15%;
+            position: relative;
+        }
+        #wid>div:nth-child(1)>div:nth-child(1){
+            position: absolute;
+            left: 4px;
+            width: 10%;
+            height: 100%;
+            font-size: 10px;
+            color: #fff;
+        }
+        #wid>div:nth-child(1)>div:nth-child(2){
+            position: absolute;
+            right: 4px;
+            width: 10%;
+            height: 100%;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: right;
+        }
+        #wid>div:nth-child(2){
+            background-color: #f5f5f5;
+            width: 100%;
+            height: 85%;
+            position: relative;
+        }
+        #wid>div:nth-child(2)>div:nth-child(1){
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40%;
+            height: 100%;
+        }
+        #wid>div:nth-child(2)>div:nth-child(1)>img{
+            position: absolute;
+            top: 20px;
+            left: 16px;
+            width: 60%;
+            height: 60%;
+        }
+        #wid>div:nth-child(2)>div:nth-child(2){
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 60%;
+            height: 50%;
+            font-size: 10px;
+            line-height: 60px;
+        }
+        #wid>div:nth-child(2)>div:nth-child(3){
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 60%;
+            height: 50%;
+        }
+        #wid>div:nth-child(2)>div:nth-child(3)>button{
+            position: absolute;
+            right: 42px;
+            bottom: 16px;
+            background-color: green;
+            color: #fff;
+            font-size: 12px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        body>#bg{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(128,128,128,0.5);
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        #btnShow{
+            border: red 1px solid;
+            margin: 8px 8px;
+        }
+    </style>
+</head>
+<body>
+<div id="bg"></div>
+<div>
+    <input type="button" id="btnShow" value="点击">
+</div>
+<div id="text-area">
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+</div>
+<div id="wid">
+    <div>
+        <div>提示</div>
+        <div id="close-1">
+            x
+        </div>
+    </div>
+    <div>
+        <div>
+            <img src="th%20(1).jpg" alt="图片未找到">
+        </div>
+        <div>
+            你看到的是SimplePop
+        </div>
+        <div>
+            <button id="close-2">确定</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById("btnShow").onclick=function(){
+            document.getElementById('wid').style.display='inline-block';
+            document.getElementById('bg').style.display = 'block';}
+        clBtn1 = document.getElementById('close-1')
+        clBtn2 = document.getElementById('close-2')
+        clBtn1.onclick = function(){
+            document.getElementById('wid').style.display='none';
+            document.getElementById('text-area').style.backgroundColor = 'white';
+        }
+        clBtn2.onclick = function(){
+            document.getElementById('wid').style.display='none';
+            document.getElementById('bg').style.display = 'none';
+        }
+    </script>
+</div>
+</body>
+</html>

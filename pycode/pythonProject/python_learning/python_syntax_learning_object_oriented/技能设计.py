@@ -71,24 +71,24 @@ class CatchAttentionEffect(SkillEffect):
 
 
 class SkillEffectManager:
-    skill_effect = SkillEffect()
-
     def __init__(self, name):
         # 封装技能效果与技能名字
         self.name = name
-        skill_dict_config = self.get_skills_config()
-        self.skill_effect_list = self.get_skill_config(skill_dict_config)
+        self.skill_effect_list = self.get_skill_config()
 
-    def get_skills_config(self):
+    @staticmethod
+    def get_skills_config():
         return {"狮吼功": [DizzinessEffect(5), DamageEffect(100, 10)]}
 
-    def get_skill_config(self, skill_dict):
-        return skill_dict[self.name]
+    def get_skill_config(self):
+        return SkillEffectManager.skill_dict_config[self.name]
 
     def affect_skill(self):
         for skill_effect in self.skill_effect_list:
-            # 组合复用，跨类调用技能效果方法
+            # 依赖倒置，跨类调用技能效果方法
             skill_effect.impact()
+
+    skill_dict_config = get_skills_config()
 
 
 shg = SkillEffectManager('狮吼功')

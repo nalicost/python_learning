@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内边距演示</title>
+    <style>
+        div{
+            border: 1px red solid;
+        }
+        #a{
+            /*统一设置四个方向的内边距*/
+            padding: 10px;
+        }
+        #b{
+            /*从上右下左，分别设置四个方向的内边距*/
+            padding: 10px 20px 30px 40px;
+        }
+        #c{
+            /*分别设置上，左右，下的内边距*/
+            padding: 10px 20px 30px;
+        }
+        #d{
+            /*分别设置上下，左右的内边距*/
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="a"><label>a</label></div>
+    <div id="b"><label>b</label></div>
+    <div id="c"><label>c</label></div>
+    <div id="d"><label>d</label></div>
+</body>
+</html>

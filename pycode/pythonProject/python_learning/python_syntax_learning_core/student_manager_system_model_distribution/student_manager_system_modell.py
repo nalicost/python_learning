@@ -14,7 +14,7 @@ class StudentModel:
         self.score = int(score)
         self.age = int(age)
         self.id = StudentModel.id_num
-        StudentModel.stu_manage._StudentManagerController__add_student(self)
+        StudentModel.stu_manage.add_student(self)
 
     @property
     def name(self):

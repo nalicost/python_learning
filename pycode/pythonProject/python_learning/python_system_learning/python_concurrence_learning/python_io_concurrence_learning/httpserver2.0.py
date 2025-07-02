@@ -11,7 +11,7 @@ class HttpServer:
         self.PATH = path
         self.SOCK = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.EPOLL = select.epoll()
-        self.IODICT = {self.SOCK.fileno(): self.SOCK}
+        self.IODICT = {self.SOCK.fileno(): [self.SOCK, ]}
         self.content = []
 
     def server_forever(self):
@@ -28,24 +28,26 @@ class HttpServer:
         while True:
             epoll_list = self.EPOLL.poll()
             for fd_num, event in epoll_list:
-                fd = self.IODICT[fd_num]
+                fd = self.IODICT[fd_num][0]
                 if fd is self.SOCK:
                     self.__io_accept()
                 elif event & select.EPOLLIN:
-                    self.__handle_request(fd)
+                    self.__handle_request(fd, fd_num)
                 elif event & select.EPOLLOUT:
-                    self.__send_respond(fd)
+                    self.__send_respond(fd, fd_num)
 
     def __io_accept(self):
         conn, addr = self.SOCK.accept()
         print('connect from', addr)
         self.EPOLL.register(conn, select.EPOLLIN)
-        self.IODICT[conn.fileno()] = conn
+        self.IODICT[conn.fileno()] = [conn, ]
 
-    def __handle_request(self, io_):
+    def __handle_request(self, io_, io_num):
         try:
             rq_list = self.__receive_request(io_)
             self.__request_identify(rq_list)
+            content = eval(f'{self.content}')
+            self.IODICT[io_num].append(content)
             self.EPOLL.unregister(io_)
             self.EPOLL.register(io_, select.EPOLLIN | select.EPOLLOUT)
         except ValueError:
@@ -60,7 +62,7 @@ class HttpServer:
     def __get_file(self, rq_list):
         if rq_list[1] == '/':
             self.__open_file()
-        elif rq_list[1][-1:-4] != 'html':
+        elif rq_list[1][-4:] != 'html':
             self.__open_file('/home/nalicost/桌面/html格式/respond.html')
         else:
             try:
@@ -86,8 +88,8 @@ class HttpServer:
             io_.close()
             raise ValueError
 
-    def __send_respond(self, io_):
-        data = 'HTTP/1.1 200 OK\n\rContent-Type:text/html\n\r\n\r' + ''.join(self.content)
+    def __send_respond(self, io_, io_num):
+        data = 'HTTP/1.1 200 OK\n\rContent-Type:text/html\n\r\n\r' + ''.join(self.IODICT[io_num][1])
         print(data)
         io_.send(data.encode('gbk'))
         self.EPOLL.unregister(io_)

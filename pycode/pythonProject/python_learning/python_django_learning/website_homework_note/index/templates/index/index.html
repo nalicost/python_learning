@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>主页</title>
+    {% endblock title %}
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: beige;
+        }
+        .moderate>span:nth-child({{ html_code }})>a{
+            text-decoration: underline;
+        }
+        a{
+            text-decoration: none;
+            color: #b1d5e3;
+        }
+        #nav{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 40px;
+            font-size: 16px;
+            width: 100%;
+            background-color: #666;
+            color: #ddd;
+            margin: 0;
+            padding: 0;
+        }
+        .left, .moderate{
+            float: left;
+        }
+        .left{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .moderate{
+            margin-left: 80px ;
+            line-height: 30px;
+        }
+        .right{
+            float: right;
+            line-height: 30px;
+            margin-right: 20px;
+            font-size: 12px;
+        }
+        span{
+            margin-left: 4px;
+        }
+        div{
+            margin: 8px 2px 8px 2px;
+        }
+        {% block cssStyle %}
+        {% endblock cssStyle%}
+    </style>
+</head>
+<body>
+<div id="nav">
+    <div class="left">
+        <span>个人云笔记</span>
+    </div>
+    <div class="moderate">
+        <span><a href="/">主页</a></span>
+        <span><a href="/note/">我的笔记</a></span>
+    </div>
+    <div class="right">
+    {% if is_not_login %}
+    	<span><a href="/user/login">登录</a></span>
+        <span><a href="/user/register">注册</a></span>
+    {% else %}
+        <span>欢迎,{{ name }}用户!</span>
+        <span><a href="/user/logout">退出登录</a></span>
+    {% endif %}
+    </div>
+</div>
+{% block body %}
+{% endblock body%}
+</body>
+</html>

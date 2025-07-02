@@ -1,6 +1,7 @@
 """
                     二叉树练习
 """
+from 队列模型 import SQueue
 
 
 class BinaryTreeNode:
@@ -87,18 +88,18 @@ class BinaryTree:
             return
         BinaryTree.level_order(*re_list, re_list=[])
 
-    """队列非递归实现
-        def level_order(root_):
-            re_queue = SQueue()
-            re_queue.enqueue(root_)
-            while not re_queue.is_empty():
-                node_root_ = re_queue.dequeue() 
-                print(node_root_.value)
-            if root_.left_node:
-                re_queue.enqueue(item.left_node)
-            if item.right_node:
-                 re_queue.enqueue(item.right_node)
-    """
+    # 队列非递归实现
+    @staticmethod
+    def level_order_(root_):
+        re_queue = SQueue()
+        re_queue.enqueue(root_)
+        while not re_queue.is_empty():
+            node_root_ = re_queue.dequeue()
+            print(node_root_.value, end=' ')
+            if node_root_.left_node:
+                re_queue.enqueue(node_root_.left_node)
+            if node_root_.right_node:
+                re_queue.enqueue(node_root_.right_node)
 
 
 if __name__ == '__main__':
@@ -112,3 +113,5 @@ if __name__ == '__main__':
     item.postorder(item.root_)
     print()
     item.level_order(item.root_, re_list=[])
+    print()
+    item.level_order_(item.root_)

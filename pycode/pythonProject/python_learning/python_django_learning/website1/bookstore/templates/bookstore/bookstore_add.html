@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增加新图书</title>
+    <style>
+        body{
+            background-color: ghostwhite;
+        }
+        h3{
+            text-align: center;
+        }
+        #main{
+            padding-top: 8px;
+            width: 300px;
+            height: 180px;
+            margin: 0 auto;
+            background-color: beige;
+            border: 1px #666 solid;
+        }
+        div{
+            margin-top: 12px;
+            text-align: center;
+        }
+        div>label{
+            display: inline-block;
+            width: 60px;
+            font-size: 12px;
+            text-align: right;
+        }
+        #button>input{
+            margin-left: 160px;
+        }
+    </style>
+</head>
+<body>
+    <h3>增加新图书</h3>
+    <div id="main">
+        <form action="" method="post">
+            <div>
+                <label for="title">书名：</label>
+                <input type="text" id="title" name="title">
+            </div>
+            <div>
+                <label for="pub">出版社：</label>
+                <input type="text" id="pub" name="pub">
+            </div>
+            <div>
+                <label for="price">价格：</label>
+                <input type="text" id="price" name="price">
+            </div>
+            <div>
+                <label for="market_price">市场价格：</label>
+                <input type="text" id="market_price" name="market_price">
+            </div>
+            <div id="button">
+                <input type="submit" value="新增图书">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>难度等级选择</title>
+    <style>
+        ul{
+            list-style-type: none;
+        }
+        span{
+            margin: 0 8px;
+            padding: 2px 2px;
+        }
+        .grey{
+            color: rgba(128,128,128,0.5);
+        }
+        #select0:hover,#select1:hover,#select2:hover,#select3:hover{
+            color: #fff;
+            background-color: red;
+        }
+        #select0:active,#select1:active,#select2:active,#select3:active{
+            color: #fff;
+            background-color: red;
+        }
+        #center1{
+            overflow: hidden;
+        }
+        #center1>div{
+            color: rgba(128,128,128,0.5);
+            margin: 8px 4px;
+            float: left;
+        }
+        #center1>ul{
+            list-style-type: none;
+            float: left;
+            margin: 8px 0;
+            padding: 0;
+        }
+        #center1>ul>li{
+            float: left;
+            margin: 0 12px;
+        }
+        #center1>ul>li:hover{
+             color: #fff;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="center">
+        <span class="grey">难度：</span>
+        <span id="select0">全部</span>
+        <span id="select1">初级</span>
+        <span id="select2">中级</span>
+        <span id="select3">高级</span>
+    </div>
+    <!-- 使用列表来完成多个重复的内容而不是多个span -->
+    <div id="center1">
+        <div>难度：</div>
+        <ul>
+            <li>全部</li>
+            <li>初级</li>
+            <li>中级</li>
+            <li>高级</li>
+        </ul>
+    </div>
+</body>
+</html>

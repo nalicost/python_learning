@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浮动元素演示</title>
+    <style>
+        .top div{
+            /*必须明确父子关系，父元素才会因为子元素的内容而撑开*/
+            border: red 1px solid;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .top{
+            width: 407px;
+            margin: 100px 50px;
+            border: black 3px solid;
+        }
+        .fl{
+            /*设置左浮动*/
+            float: left;
+        }
+        .fr{
+            /*设置右浮动*/
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <div>a</div>
+        <div>b</div>
+        <div>c</div>
+        <div>d</div>
+    </div>
+    <div class="top">
+        <!-- 由于不占为，父元素高度变为0 -->
+        <div class="fl">a</div>
+        <div class="fr">b</div>
+        <div class="fl">c</div>
+        <div class="fr">d</div>
+    </div>
+</body>
+</html>

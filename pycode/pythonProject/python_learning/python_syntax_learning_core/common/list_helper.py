@@ -71,10 +71,10 @@ class ListHelper:
     @staticmethod
     def select_elements(target_list, func):
         """
-                    筛选对应的元素
+                    获取处理后对应的元素
         :param target_list: 目标列表
-        :param func: 函数，对象作为一个参数，返回筛选要求对象的元素，对象中元素筛选要求逻辑
-        :return: 生成器，筛选得到的对象
+        :param func: 函数，对象作为一个参数，返回经过处理的元素，对象中元素处理要求逻辑
+        :return: 生成器，处理得到的对象
         """
         for item in target_list:
             yield func(item)
@@ -82,9 +82,9 @@ class ListHelper:
     @staticmethod
     def index_max(target_list, func):
         """
-                    查找对应最大元素的对象
+                    查找处理后对应最大元素的对象
         :param target_list: 目标列表
-        :param func: 函数，将需要比较的对象作为一个参数传入，返回需要比较对象中的元素，对象中元素筛选逻辑
+        :param func: 函数，将需要比较的对象作为一个参数传入，返回需要比较对象中的元素，对象中元素处理逻辑
         :return: 对应最大元素的对象
         """
         max_value = target_list[0]
@@ -96,9 +96,9 @@ class ListHelper:
     @staticmethod
     def queue_list(target_list, func):
         """
-                    依据指定对象中的元素升序排列列表中元素
+                    依据指定对象中的元素处理后升序排列列表中元素
         :param target_list: 目标列表
-        :param func: 函数，需要排列对象作为一个参数，返回筛选对象的元素，元素筛选逻辑
+        :param func: 函数，需要排列对象作为一个参数，返回处理对象的元素，元素处理逻辑
         """
         for item01 in range(0, len(target_list) - 1):
             for item02 in range(0, len(target_list) - item01):
@@ -110,7 +110,7 @@ class ListHelper:
         """
                     查找对应最小元素的对象
         :param target_list: 目标列表
-        :param func: 函数，将需要比较的对象作为一个参数传入，返回需要比较对象中的元素，对象中元素筛选逻辑
+        :param func: 函数，将需要比较的对象作为一个参数传入，返回需要比较对象中的元素，对象中元素处理逻辑
         :return: 对应最小元素的对象
         """
         min_value = target_list[0]
@@ -122,9 +122,9 @@ class ListHelper:
     @staticmethod
     def queue_list_reverse(target_list, func):
         """
-                    依据指定对象中的元素降序排列列表中元素
+                    依据指定对象中的元素处理后降序排列列表中元素
         :param target_list: 目标列表
-        :param func: 函数，需要排列对象作为一个参数，返回筛选对象的元素，元素筛选逻辑
+        :param func: 函数，需要排列对象作为一个参数，返回筛选对象的元素，元素处理逻辑
         """
         for item01 in range(0, len(target_list) - 1):
             for item02 in range(0, len(target_list) - item01):

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹幕发送原理演示</title>
+    <style>
+        .txt{
+            display: flex;
+            width: 600px;
+            height: 50px;
+            justify-content: flex-start;
+            transition: 0.5s all ease;
+        }
+        .txt>.input-con{
+            margin-right: 20px;
+            width: 484px;
+            flex-grow: 8;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .content{
+            border-radius: 4px;
+            border: 1px solid black;
+            width: 100%;
+            outline: none;
+            padding: 8px;
+            font-size: 12px;
+        }
+        .inactive{
+            color: rgba(128, 128, 128, 0.8);
+        }
+        .but{
+            width: 80px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            text-shadow: 0 0 1px black;
+            background-color: hotpink;
+            flex-grow: 2;
+            transition: 0.5s all ease;
+        }
+        .cal-font{
+            width: 100px;
+            height: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            opacity: 0;
+        }
+        .user-img{
+            width: 42px;
+            height: 36px;
+            margin-right: 8px;
+        }
+        .user-img>img{
+            width: 100%;
+            height: 100%;
+        }
+        .comments{
+            margin-top: 24px;
+        }
+        .comment{
+            display: flex;
+        }
+        .comment>div{
+            margin-right: 24px;
+            font-size: 12px;
+            color: white;
+            background-color: #b1d5e3;
+        }
+        .comment>div:nth-child(2){
+            width: 484px;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="txt">
+            <div class="user-img">
+                <img src="img.png" alt="图片不存在">
+            </div>
+            <div class="input-con">
+                <div class="content inactive" contenteditable="true">
+                    发几条弹幕和大家一起讨论吧!
+                </div>
+                <div class="cal-font">0/200字</div>
+            </div>
+            <div class="but">
+                发送弹幕
+            </div>
+        </div>
+        <div class="comments">
+            
+        </div>
+    </div>
+    <script>
+        const txt = document.querySelector('.txt')
+        const con = document.querySelector('.content')
+        const but = document.querySelector('.but')
+        const cal_fon = document.querySelector('.cal-font')
+        const comment = document.querySelector('.comments')
+        con.addEventListener('focus',function (){
+            txt.style.height = '80px'
+            txt.style.width = '660px'
+            but.style.lineHeight = '80px'
+            cal_fon.style.opacity = 1
+            this.innerText = this.innerText === '发几条弹幕和大家一起讨论吧!' ?'': this.innerText
+            this.classList.remove('inactive')
+        })
+        con.addEventListener('blur',function (){
+            txt.style.height = '50px'
+            txt.style.width = '600px'
+            but.style.lineHeight = '50px'
+            cal_fon.style.opacity = 0
+            this.innerText = this.innerText === '' ?'发几条弹幕和大家一起讨论吧!': this.innerText
+            this.classList.add('inactive')
+        })
+        con.addEventListener('keyup',function (e){
+            let len = con.innerText.split("'").join('').split('\n').join('').length
+            if (len > 200){
+                con.innerText = con.innerText.substring(0, 200)
+                len = 200
+            }
+            if (e.key === 'Enter'){
+                if (con.innerText !== ''){
+                    const com = con.innerText
+                    con.innerText = ''
+                    comment.innerHTML = `<div class="comment"><div class="user-img"><img src="img.png" alt="图片不存在"></div><div>${com}</div></div>`
+                    con.blur()
+                }
+            }
+            cal_fon.innerText = `${len}/200字`
+        })
+    </script>
+</body>
+</html>

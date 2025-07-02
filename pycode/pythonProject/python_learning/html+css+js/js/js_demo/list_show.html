@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表显示</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #chart{
+            list-style-type: none;
+            border: #666 1px solid;
+            width: 120px;
+        }
+        #chart>li:nth-child(1){
+            background-color: #eee;
+        }
+        #chart>li>span{
+            display: inline-block;
+            width: 30px;
+            font-size: 12px;
+            margin: 8px 8px;
+        }
+        #per-info{
+            margin: 8px 0;
+        }
+        .input-info{
+            margin: 4px 0;
+            font-size: 8px;
+        }
+        .input-info>input{
+            display: inline-block;
+            width: 80px;
+        }
+        #per-info>div:nth-child(3)>button{
+            font-size: 8px;
+            margin: 0 8px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul id="chart"></ul>
+    <div id="per-info">
+        <div class="input-info">
+            <label for="info-per-name">姓名：</label>
+            <input type="text" id="info-per-name">
+        </div>
+        <div class="input-info">
+            <label for="info-per-age">年龄：</label>
+            <input type="text" id="info-per-age">
+        </div>
+        <div>
+            <button id="add-info">增加</button>
+        </div>
+    </div>
+    <script>
+        var initialInfo = [{name: "姓名", age: "年龄"}, {name: "张三", age: 18}, {name: "李四", age: 20}]
+        var addBtn = document.getElementById("add-info")
+        var chartDeal = document.getElementById("chart")
+        var inputFir = document.getElementById("info-per-name")
+        var inputSec = document.getElementById("info-per-age")
+        var load = function (){
+            var strHTML = "";
+            for(var i=0;i < initialInfo.length;i++){
+                strHTML += "<li><span>" + initialInfo[i].name + "</span><span>" + initialInfo[i].age + "</span></li>"
+            }
+            chartDeal.innerHTML = strHTML;
+        };
+        load();
+        addBtn.onclick = function (){
+            if (inputFir.value && inputSec.value){
+                var perObj = {name:inputFir.value, age:inputSec.value};
+                initialInfo.push(perObj);
+                load();
+            }
+        };
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书检索界面</title>
+    <style>
+        *{
+            font-size: 12px;
+        }
+        body{
+            background-color: ghostwhite;
+        }
+        h3{
+            text-align: center;
+        }
+        #main{
+            margin: 8px auto;
+            width: 300px;
+            height: 240px;
+            padding: 8px;
+            border: 1px #666 solid;
+            background-color: beige;
+        }
+        input{
+            display: inline-block;
+            width: 80px;
+        }
+        form>div{
+            margin-top: 8px;
+        }
+        .tip{
+            font-size: 8px;
+            color: red;
+        }
+        .curtain{
+            position: absolute;
+            width: 88px;
+            height: 18px;
+            left: 60px;
+            top: 0;
+            background-color: rgba(128, 128, 128, 0.1);
+        }
+        #but{
+            text-align: right;
+            padding-right: 8px;
+        }
+        form>div>div{
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<h3>图书检索</h3>
+<div id="main">
+    <form action="/bookstore/" method="post">
+        <div>
+            <label for="m_price">市场价格查询</label>
+            <div>
+                <select name="m_price" id="m_price" class="onOffBut">
+                    <option value="0" selected>不启用</option>
+                    <option value="1">启用</option>
+                </select>
+                <div class="curtain"></div>
+                <input type="text" name="m_price">
+            </div>
+            <div class="tip">注：输入数字，数字前写'+'表示大于等于，写'-'号表示小于等于</div>
+        </div>
+        <div>
+            <label for="tit">书名查询</label>
+            <div>
+                <select name="tit" id="tit" class="onOffBut">
+                    <option value="0" selected>不启用</option>
+                    <option value="1">启用</option>
+                </select>
+                <div class="curtain"></div>
+                <input type="text" name="tit">
+            </div>
+            <div class="tip">注：输入书名中包含的连续的文字</div>
+        </div>
+        <div>
+            <label for="publisher">出版社查询</label>
+            <div>
+                <select name="publisher" id="publisher" class="onOffBut">
+                    <option value="0" selected>不启用</option>
+                    <option value="1">启用</option>
+                </select>
+                <div class="curtain"></div>
+                <input type="text" name="publisher">
+            </div>
+            <div class="tip">注：输入出版社名中的连续的文字</div>
+        </div>
+        <div>
+            <label for="rise_fall">图书市场价降涨价查询</label>
+            <div>
+                <select name="rise_fall" id="rise_fall" class="onOffBut">
+                    <option value="0" selected>不启用</option>
+                    <option value="1">启用</option>
+                </select>
+                <div class="curtain"></div>
+                <input type="text" name="rise_fall">
+            </div>
+            <div class="tip">注：输入'+'表示查找涨价，输入'-'表示降价的</div>
+        </div>
+        <div id="but">
+            <input type="submit" value="开始检索">
+        </div>
+    </form>
+</div>
+<script>
+    onOffBtns = document.getElementsByClassName("onOffBut")
+    curtains = document.getElementsByClassName("curtain")
+    for (var i=0;i<onOffBtns.length;i++){
+        onOffBtns[i].onchange =  function () {
+            for (var i=0;i<onOffBtns.length;i++){
+                if(onOffBtns[i] === this){
+                    curtain_tar = curtains[i]
+                }
+            }
+            if (this.value === '1') {
+                curtain_tar.style.display = 'none'
+            } else {
+                curtain_tar.style.display = 'block'
+            }
+        }
+    }
+</script>
+</body>
+</html>

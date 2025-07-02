@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全选按钮实现</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style-type: none;
+        }
+        li{
+            border: #666 1px solid;
+        }
+        input{
+            margin: 4px;
+        }
+        ul>li>label{
+            display: inline-block;
+            border-left: #666 1px solid;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <input type="checkbox" id="all"><label for="all">编程语言</label>
+    </li>
+    <li>
+        <input type="checkbox" id="C"><label for="C">C</label>
+    </li>
+    <li>
+        <input type="checkbox" id="Java"><label for="Java">Java</label>
+    </li>
+    <li>
+        <input type="checkbox" id="PHP"><label for="PHP">PHP</label>
+    </li>
+    <li>
+        <input type="checkbox" id="JS"><label for="JS">javascript</label>
+    </li>
+    <li>
+        <input type="checkbox" id="C++"><label for="C++">C++</label>
+    </li>
+    <li>
+        <input type="checkbox" id="Py"><label for="Py">Python</label>
+    </li>
+</ul>
+<script>
+    var allControl = document.getElementById("all");
+    var CControl = document.getElementById("C");
+    var JVControl = document.getElementById("Java");
+    var PHPControl = document.getElementById("PHP");
+    var JSControl = document.getElementById("JS");
+    var CAddControl = document.getElementById("C++");
+    var PyControl = document.getElementById("Py");
+    var selectControl = [CControl, JVControl, PHPControl, JSControl, CAddControl, PyControl]
+    allControl.onchange = function (){
+        // 通过复选框的checked属性来获取或者修改复选框的选中情况
+        if (allControl.checked){
+            for (var i=0;i < selectControl.length;i++){
+                selectControl[i].checked = true
+            }
+        }else{
+            for (var a=0;a < selectControl.length;a++){
+                selectControl[a].checked = false
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻导航栏</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #nav-main{
+            margin: 8px auto;
+            border: #666 1px solid;
+            width: 402px;
+            height: 250px;
+        }
+        #nav-choice{
+            width: 402px;
+            height: 300px;
+        }
+        .title{
+            overflow: hidden;
+            width: 402px;
+            height: 40px;
+            background-color: #ccc;
+            color: #666;
+            line-height: 40px;
+        }
+        .title>div{
+            float: left;
+            text-align: center;
+            width: 25%;
+            height: 100%;
+        }
+        #choice4{
+            background-color: #005aa0;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="nav-main">
+    <div class="title">
+            <div id="choice1">热点新闻</div>
+            <div id="choice2">合作播报</div>
+            <div id="choice3">行业咨询</div>
+            <div id="choice4">运营攻略</div>
+    </div>
+    <!-- 除了可以使用iframe，也可通过将四个div放在同一位置，设置display属性，使得其一显现，同样可以实现切换效果 -->
+    <iframe id="nav-choice" src="news_navigate_choice_4.html" frameborder="none" scrolling="no"></iframe>
+</div>
+<script src="news_navigate_controller.js"></script>
+</body>
+</html>

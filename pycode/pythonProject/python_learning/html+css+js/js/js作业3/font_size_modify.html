@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>按键更改字体大小</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: #666 0 solid;
+        }
+        #text-con{
+            margin: 8px 8px;
+            padding: 2px 2px;
+            width: 300px;
+            height: 200px;
+        }
+        .button{
+            width: 100px;
+            height: 20px;
+            margin-bottom: 20px;
+        }
+        .button>span{
+            margin: 2px 8px;
+            font-size: 12px;
+            text-decoration: underline #666;
+        }
+        .text-formal{
+            font-size: 12px;
+        }
+        .button>.activeBtn{
+            color: #005aa0;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div id="text-con">
+    <div class="button">
+        <span id="incr-size">大</span><span id="default-size">中</span><span id="decr-size">小</span>
+    </div>
+    <div class="text-formal">
+        锦瑟无端五十弦，一弦一柱思华年。<br>
+        庄生晓梦迷蝴蝶，望帝春心托杜鹃。<br>
+        沧海月明珠有泪，蓝田日暖玉生烟。<br>
+        此情可待成追忆，只是当时已惘然。<br>
+    </div>
+    <script>
+        // 存储字体的大小
+        var fonSi = 12
+        var increaseBtn = document.getElementById("incr-size");
+        var defaultBtn = document.getElementById("default-size");
+        var decreaseBtn = document.getElementById("decr-size");
+        var txtDeal = document.getElementsByClassName("text-formal")[0];
+        function btnActive(btn){
+            increaseBtn.className = ""
+            defaultBtn.className = ""
+            decreaseBtn.className = ""
+            btn.className = "activeBtn"
+        }
+        increaseBtn.onclick = function (){
+            btnActive(increaseBtn);
+            fonSi ++
+            // fontSize属性要加上px
+            txtDeal.style.fontSize = fonSi + "px"
+        };
+        defaultBtn.onclick = function (){
+            btnActive(defaultBtn);
+            fonSi = 12
+            txtDeal.style.fontSize = "12px"
+        };
+        decreaseBtn.onclick = function (){
+            btnActive(decreaseBtn);
+            fonSi --
+            txtDeal.style.fontSize = fonSi + "px"
+        };
+
+    </script>
+</div>
+</body>
+</html>

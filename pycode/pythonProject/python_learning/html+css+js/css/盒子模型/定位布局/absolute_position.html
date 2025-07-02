@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绝对定位演示</title>
+    <style>
+        div{
+            margin: 0;
+            padding: 0;
+            border: solid 1px red;
+        }
+        .a{
+            width: 200px;
+            height: 200px;
+            /*父元素先相对定位定位好*/
+            position: relative;
+            margin: 50px 0;
+        }
+        .b{
+            width: 40px;
+            height: 40px;
+            /*子元素使用绝对定位，属性为position，值为absolute*/
+            position: absolute;
+            /*距离最近已定位的祖先元素顶部向下10px*/
+            top: 10px;
+            /*距离最近已定位的祖先元素左部向右20px*/
+            left: 20px;
+        }
+        .c{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            /*距离最近已定位的祖先元素底部向上10px*/
+            bottom: 10px;
+            /*距离最近已定位的祖先元素右部向左20px*/
+            right: 20px;
+        }
+        .d{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            /*距离最近已定位的祖先元素底部向下10px*/
+            bottom: -10px;
+            /*距离最近已定位的祖先元素左部向右20px*/
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="a">
+        <div class="b"></div>
+        <div class="c"></div>
+    </div>
+    <div class="a">
+        <div class="d"></div>
+    </div>
+    <!-- 如果没有已定位的元素包裹，则为处于顶部的页面区域 -->
+    <div class="d"></div>
+    <div style="height: 2000px"></div>
+    <!-- 即使已经到了下一个页面，依旧相对于顶部的页面区域定位 -->
+    <div class="c"></div>
+</body>
+</html>

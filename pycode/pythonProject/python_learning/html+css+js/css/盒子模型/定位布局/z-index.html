@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>堆叠次序演示</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        #a{
+            top: 100px;
+            left: 30px;
+        }
+        /*设置第一张图片鼠标划过时处于第二张图片上方*/
+        #a:hover{
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div id="a">
+        <img src="resource1.jpg" alt="图片未找到">
+    </div>
+    <!-- 两个都为定位元素，第二张后写而居于第一张图片之上 -->
+    <div>
+        <img src="resource2.jpg" alt="图片未找到">
+    </div>
+</body>
+</html>

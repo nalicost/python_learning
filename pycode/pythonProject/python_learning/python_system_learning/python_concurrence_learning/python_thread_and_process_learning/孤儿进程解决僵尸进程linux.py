@@ -23,4 +23,5 @@ if pid == 0:
     elif pid == 0:
         b()
 elif pid > 0:
+    pid, status = os.wait()
     a()

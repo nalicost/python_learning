@@ -9,7 +9,7 @@ conn, addr = s.accept()
 print(conn.recv(4096).decode())
 response = """HTTP/1.1 200 OK
 Content-Type: text/html
-200
+
 <h1>Hello World</h1>
 """
 conn.send(response.encode())

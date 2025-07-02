@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册界面</title>
+    <style>
+        #main{
+            margin: 0 auto;
+            width: 300px;
+            height: 216px;
+            border: 1px solid #666;
+            box-shadow: #666 1px 1px 1px;
+        }
+        h3{
+            text-align: center;
+        }
+        form>div{
+            margin-left: 16px;
+            margin-top: 8px;
+            font-size: 12px;
+        }
+        div>label{
+            display: inline-block;
+            width: 60px;
+        }
+        input{
+            outline: none;
+        }
+        .btn{
+            margin-top: 8px;
+            margin-left: 30px;
+        }
+        .errTip{
+            color: red;
+            font-size: 8px;
+            margin-left: 62px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <h3>用户注册</h3>
+    <form action="" method="post">
+        <div>
+            <label for="user">用户名:</label>
+            <input type="text" id="user" name="user">
+            <div class="errTip" {% if is_show_a %}style="display: block"{% endif %}>请输入正确且不存在的用户名!</div>
+        </div>
+        <div>
+             <label for="password">密码:</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div>
+             <label for="pwd_confirm">确认密码:</label>
+            <input type="password" id="pwd_confirm" name="pwd_confirm">
+            <div class="errTip" {% if is_show_b %}style="display: block"{% endif %}>请输入密码的长度不小于6位并两次输入密码相同!</div>
+        </div>
+        <div>
+            <input type="submit" value="注册" class="btn">
+        </div>
+    </form>
+</div>
+</body>
+</html>

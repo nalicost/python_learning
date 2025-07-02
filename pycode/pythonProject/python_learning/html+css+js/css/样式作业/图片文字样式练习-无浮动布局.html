@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片文字样式练习-无浮动布局</title>
+    <style>
+        #goods{
+            border: rgba(128,128,128,0.5) solid 1px;
+            width: 300px;
+            height: 660px;
+            padding: 0 24px;
+            margin: 0 auto;
+        }
+        img{
+            height: 150px;
+        }
+        div{
+            margin: 25px 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:link{
+            color: black;
+        }
+        a:visited{
+            color: black;
+        }
+        #comic{
+            color: orange;
+        }
+        .grey{
+            color: rgba(128,128,128,0.5);
+        }
+        span{
+            display: inline-block;
+            text-align: center;
+            margin: 3px 0;
+        }
+        .width130{
+            width: 130px;
+        }
+        .width300{
+            width: 300px;
+        }
+        .width300-grey{
+            width: 300px;
+            color: rgba(128,128,128,0.5);
+        }
+        .center{
+            text-align: center;
+        }
+        .grey-background{
+            background-color: rgba(128,128,128,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="goods">
+        <div>
+            <h3>众筹</h3>
+        </div>
+        <div class="center">
+            <img  class="width300" src="resource1.jpg" alt="图片未找到">
+        </div>
+        <div class="grey-background">
+            <span class="width300">苹果I-Watch手表上市</span>
+            <span class="width300-grey">一场手表的科技进化</span>
+        </div>
+        <div class="center">
+            <img src="resource3.jpg" alt="图片未找到" class="width130">
+            <img src="resource2.jpg" alt="图片未找到" class="width130">
+        </div>
+        <div class="center">
+            <span class="width130">大圣玩偶</span><span class="width130">智能运动鞋</span>
+        </div>
+        <div>
+            &nbsp;<a href="#">智能手表</a><span class="grey">&nbsp;|&nbsp;</span>
+            <a href="#">创意新品</a><span class="grey">&nbsp;|&nbsp;</span>
+            <a href="#">时尚家居</a>
+        </div>
+        <div>
+            <span class="grey">&nbsp;|&nbsp;</span><a href="#" id="comic">动漫周边</a>
+            <span class="grey">&nbsp;|&nbsp;</span><a href="#">指纹手机</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>普通边框演示</title>
+    <style>
+        div{
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+        }
+        #a{
+            /*设置边框，第一个值为颜色;第二个值为边框宽度，单位px;第三个值为线的样式设置*/
+            /*第三个值的部分选择：1.solid:实线;2.dotted:点线;3.虚线:dashed;4.double:双线边框*/
+            border: red 1px solid;
+        }
+        #b{
+            border: red 1px dotted;
+        }
+        #c{
+            border: red 1px dashed;
+        }
+        #d{
+            border: red 1px double;
+        }
+    </style>
+</head>
+<body>
+    <div id="a"><h1>a</h1></div>
+    <div id="b"><h1>b</h1></div>
+    <div id="c"><h1>c</h1></div>
+    <div id="d"><h1>d</h1></div>
+</body>
+</html>

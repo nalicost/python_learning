@@ -33,7 +33,7 @@ def out(layer, a='', b=''):
         return -1, username, password
 
 
-def rigister(username, password, choice, id_all, layer):  # 登录函数模块
+def register(username, password, choice, id_all, layer):  # 登录函数模块
     """
                            登录程序的函数
     :param username: 用户名
@@ -179,7 +179,7 @@ def progress(username, password, choice, id_all, layer):  # 进入下一层
     return 2, username, password
 
 
-function_layer = {0: {0: {'注册新用户': rigister}, 1: {'登录账户': enter}},
+function_layer = {0: {0: {'注册新用户': register}, 1: {'登录账户': enter}},
                   1: {0: {'查询你的个人信息': id_print}, 1: {'修改你的个人信息': progress},
                       2: {'修改你的密码': password_revise}},
                   2: {0: {'修改你的用户名': id_revise}, 1: {'修改你的年龄': id_revise}, 2: {'修改你的工作': id_revise},

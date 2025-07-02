@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>盒阴影演示</title>
+    <style>
+        div{
+          margin: 100px auto;
+          width: 100px;
+          height: 100px;
+        }
+        /*阴影的偏移是建立在以元素左上角为坐标原点，向右向下为x、y的坐标轴正方向*/
+        #a{
+          /*设置阴影，第一个值为水平偏移；第二个值为垂直偏移；第三个为模糊程度，越大越模糊；第四个值选填为阴影尺寸；第五个为阴影尺寸*/
+          box-shadow: 10px 10px 10px 10px #666;
+        }
+        #b{
+          box-shadow: -10px -10px 10px #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="a"></div>
+    <div id="b"></div>
+</body>
+</html>

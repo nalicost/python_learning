@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮廓线演示</title>
+    <style>
+        div{
+          /*设置轮廓线，第一个值为颜色;第二个值为边框宽度，单位px;第三个值为线的样式设置*/
+          /*第三个值的部分选择：1.solid:实线;2.dotted:点线;3.虚线:dashed;4.double:双线边框*/
+          outline: red 1px solid;
+          width: 100px;
+          height: 100px;
+        }
+        #button{
+          /*取消轮廓线*/
+          outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <!--选中时没有框-->
+    <label for="button"></label>
+    <input type="text" id="button">
+    <!--选中时有框-->
+    <label for="a"></label>
+    <input type="text" id="a">
+</body>
+</html>

@@ -61,8 +61,8 @@ def my_zip(*args):
     :return: tuple
     """
     num = 0
+    result = []
     while True:
-        result = []
         try:
             for item01 in args:
                 result.append(item01[num])
@@ -78,5 +78,6 @@ def my_zip(*args):
         num += 1
 
 
+print("===================")
 for item in my_zip(list_01, list_03, [1, 2, 5, 10]):
     print(item)

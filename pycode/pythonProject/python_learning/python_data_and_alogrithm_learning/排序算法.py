@@ -68,6 +68,9 @@ def quick_sort(head, tail, arr):
 
 
 if __name__ == '__main__':
-    list_ = [54, 26, 93, 17, 77, 88, 10, 100, 25]
-    quick_sort(0, len(list_) -1, list_)
+    list_ = [1, 2, 4, 3, 9, 10]
+    # bubble_sort(list_)
+    # selection_sort(list_)
+    # insertion_sort(list_)
+    quick_sort(0, len(list_) - 1, list_)
     print(list_)

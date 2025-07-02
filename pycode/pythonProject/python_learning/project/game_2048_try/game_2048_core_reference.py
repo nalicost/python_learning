@@ -41,7 +41,7 @@ def move_right():
     for line in map:
         global list_merge
         list_merge = line[::-1]
-        # 注意由于切边取出是生成新的列表，故list_merge的修改不影响line，没人接受，map也不会修改
+        # 注意由于切片取出是生成新的列表（浅copy），故list_merge的修改不影响line，没人接受，map也不会修改
         merge()
         line[::-1] = list_merge
         # 所以这里使line倒着赋予新的值，使其能够接受，达成效果

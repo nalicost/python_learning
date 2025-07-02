@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圆角边框演示</title>
+    <style>
+        div{
+          margin: 10px auto;
+          background-color: blue;
+          width: 100px;
+          height: 100px;
+          text-align: center;
+          border: red 1px solid;
+        }
+        #a{
+          /*统一设置四个角的半径*/
+          border-radius: 10px;
+        }
+        #b{
+          /*分别设置左上、右上、右下、左下角的半径*/
+          border-radius: 10px 20px 30px 40px;
+        }
+        #c{
+          /*分别设置左上、右上左下、右下的半径*/
+          border-radius: 10px 20px 30px;
+        }
+        #d{
+          /*分别设置左上右下、右上左下的半径*/
+          border-radius: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="a"><h1>a</h1></div>
+    <div id="b"><h1>b</h1></div>
+    <div id="c"><h1>c</h1></div>
+    <div id="d"><h1>d</h1></div>
+</body>
+</html>
