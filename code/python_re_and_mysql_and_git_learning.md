@@ -866,9 +866,9 @@
 * 查看Mysql数据库运行状态
   * ```sudo /etc/init.d/mysql status```
 * 客户端连接
-  * ```mysql -h主机地址 -u用户名 -p密码```
+  * ```mysql -h主机地址 -P端口 -u用户名 -p密码```
   
-  注：本地连接可省略```-h```；主机地址包含IP与端口
+  注：本地连接可省略```-h```；默认3306端口
 * 启动连接
   * ```sudo /etc/init.d/mysql start```
   * ```sudo /etc/init.d/mysql restart```

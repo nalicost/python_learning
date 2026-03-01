@@ -125,3 +125,5 @@ def cal_tax_view(request):
             return render(request, "tax_cal.html", locals())
 
 
+def test_view(request):
+    return render(request, '')

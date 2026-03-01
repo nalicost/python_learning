@@ -2051,6 +2051,24 @@ def xxx_view(request):
    raise Http404
 ```
 
+#### Django对CORS的支持
+
+##### 安装（django-cors-headers）
+
+* 离线安装，通过官网```https://pypi.org/project/django-cors-headers/```下载离线安装包
+
+##### 配置（settings.py中）
+
+1. INSTALLED_APPS中添加corsheaders
+2. MIDDLEWARE中添加corsheaders.middleware.CorsMiddleware（位置尽量靠前，官方建议在django.middleware.common.CommonMiddleware上方）
+3. CORS_ORIGIN_ALLOW_ALL：值为布尔值，如果为Ture则白名单不启用
+4. CORS_ORIGIN_WHITELIST = ["https://example.com", ...]
+5. CORS_ALLOW_METHODS = ("DELETE", "GET", "OPTIONS", "PATCH", "POST", "PUT")
+6. CORS_ALLOW_HEADERS = ("accept-encoding", "authorization", "content-type", "dnt", "origin", "user-agent", "x-csrftoken", "x-requested-with")
+7. CORS_PREFLIGHT_MAX_AGE：int类型，一次预检的有效时间，默认86400s
+8. CORS_EXPOSE_HEADER：list类型，向外暴露的头（非官方响应头想要从响应中取得，需要在列表里添加）
+9. CORS_ALLOW_CREDENTIALS：布尔值，是否允许cookie，默认为false
+
 ### 部署
 
 #### 定义
@@ -2091,7 +2109,7 @@ def xxx_view(request):
 ##### 网关接口配置与django中```settings.py```相关变动（ubuntu 18.04配置）
 
 1. 安装uwsgi
-   * 在线安装：```shellsudo pip3 install uwsgi```
+   * 在线安装：```sudo pip3 install uwsgi```
    * 离线安装：
 
      ```shell

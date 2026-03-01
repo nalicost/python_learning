@@ -182,3 +182,193 @@
 #### 结果格式
 
 ```header.payload.signature # 为bytes类型```
+
+#### pyjwt库
+
+##### 安装
+
+```cmd/shell
+pip3 install pyjwt
+```
+
+##### 方法
+
+1. ```encode(payload, key, algorithm)```
+   
+   * payload：同上jwt
+   * key：加密需要的盐
+   * algorithm：加密算法
+   * 返回值：token串，数据类型为bytes
+
+2. ```decode(token, key, algorithm)```
+
+   * token：token串，bytes类型
+   * key：解密需要的盐
+   * algorithm：解密的算法
+   * 返回值：payload
+
+##### 异常
+
+* ```jwt.exceptions.ExpiredSignatureError```：解密时token过期抛出
+
+## CORS(Cross origin resource sharing) —— 跨域资源共享
+
+### 什么是CORS
+
+允许浏览器向跨源（协议 + 域名 + 端口）服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制
+
+### 特点
+
+* 浏览器自动完成（在请求头中加入特殊头或发送特殊请求）
+* 服务器需要支持（响应头中需要有特殊头）
+
+### 简单请求（Simple requests）和预检请求（Preflilghted requests）
+
+#### 简单请求
+
+##### 满足条件
+
+* 请求方法如下：GET or HEAD or POST
+* 请求头仅包含如下：Accept Accept-Lanauage Content-Lanauage Content-Type
+* Content-Type仅能为一下之中的一个：application/x-www-form-urlencoded multipart/form-data text/plain
+
+##### 简单请求发送流程
+
+1. 请求：请求头中携带Origin，该字段表明自己来自哪个域
+2. 响应：如果请求头中的Origin在服务器接受范围内，则返回如下头
+   |响应头|作用|备注|
+   |:----:|:----:|:----:|
+   |Access-Control-Allow-Origin|服务器接受的域|必选|
+   |Access-Control-Allow-Credentials|是否接受Cookie|可选|
+   |Access-Control-Expose-Headers|默认情况下，xhr只能拿到如下响应头：Cache-Control，Content-Lanauage，Content-Type，Expires，Last-Modified；如有需要获取其他自定义头，需在此处指定|可选|
+   
+   注：如果服务器不接受此域，则响应头中不包含Access-Control-Allow-Origin
+
+#### 预检请求
+
+##### 满足条件
+
+所有非简单请求都是预检请求
+
+##### 预检请求发送流程
+
+1. 请求：OPTIOIN请求发起，携带如下请求头
+   |请求头|作用|备注|
+   |:----:|:----:|:----:|
+   |Origin|表明此请求来自哪个域|必选|
+   |Access-Control-Request-Method|此次请求使用的方法|必选|
+   |Access-Control-Request-Headers|此次请求使用的头|必选|
+
+2. OPTION接受响应阶段，携带如下响应头
+
+   |响应头|作用|备注|
+   |:----:|:----:|:----:|
+   |Access-Control-Allow-Origin|服务器接受的域|必选|
+   |Access-Control-Allow-Methods|告诉浏览器，服务器接受的跨域请求方法|必选|
+   |Access-Control-Allow-Headers|返回所有支持的头部，当request有Access-Control-Request-Headers时，响应头必然回复|必选|
+   |Access-Control-Allow-Credentials|是否接受Cookie|可选|
+   |Access-Control-Max-Age|OPTION请求缓存时间，单位s|可选|
+
+3. 主请求阶段
+
+   |请求头|作用|备注|
+   |:----:|:----:|:----:|
+   |Origin|表明此请求来自哪个域|必选|
+
+4. 主请求响应阶段
+
+   |响应头|作用|备注|
+   |:----:|:----:|:----:|
+   |Access-Control-Allow-Origin|服务器接受的域|必选|
+
+## RESTFful —— Representational State Transfer
+
+### RESTful介绍
+
+#### 资源（Resources）
+
+网络上的一个实体，或者说时网络上的一个具体信息，并且每个资源都有一个独一无二的URL与之对应，获取资源只需直接访问URL即可
+
+#### 表现层（Represtation）
+
+如何去表现资源，即资源的表现形式，如：HTML，xml，JPG，json
+
+#### 状态转化（State Transfer）
+
+访问一个URL即发生了一次客户端和服务端的交互，此次交互将会设计数据和状态的变化。客户端需要通过默写方式出发具体的变化，如：GET，POST，PUT，PATCH，DELETE等
+
+### RESTful特征
+
+1. 每一个URL代表一种资源
+2. 客户端和服务端之间传递着资源的某种表现
+3. 客户端同路过HTTP的几个动作对资源进行操作即发生状态转化
+
+### RESTful特征的URL设计原则
+
+1. 协议：http/https
+2. 域名：https://api.example.com/ or htts://example.com/api/
+3. 版本：https://api.example.com/v1/
+4. 路径：要避免涉及动词，资源用名词表示，案例如下：
+   ```text
+   https://api.example/v1/users
+   https://api.xeample.com/v1/animals
+   ``` 
+5. HTTP动词语义
+   * GET（SELECT）：从服务器中取出资源（一项或多项）
+   * POST（CREATE）：在服务器新建一个资源
+   * PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）
+   * PATCH（UPDATE）：子服务器更新资源（客户端提供改变的属性）
+   * DELETE（DELETE）：从服务器删除资源
+
+   具体案例如下：
+   ```text
+   GET /zoos：列出所有动物园
+   POST /zoos：新建一个动物园
+   GET /zoos/id：获取某个指定动物园的信息
+   PUT /zoos/id：更新某个指定动物园的信息（提供该动物园的全部信息）
+   PATCH /zoos/id：更新某个指定动物园的信息（提供该动物园的部分信息）
+   DELETE /zoos/id：删除某个动物园
+   GET /zoos/id/animals：列出某个指定动物园的作用动物
+   DELETE /zoos/id/animals/id：删除某个指定动物园的指定动物
+   ```
+
+6. 巧用查询字符串
+
+   ```text
+   ?limit=10：指定返回记录的数量
+   ?offset=10：指定返回记录的开始位置
+   ?page=2&per_page=100：指定第几页，以及每页的记录数
+   ?sortby=name&order=asc：指定返回结果按照某个属性排列，以及排序顺序
+   ?type_id=1：指定筛选条件
+   ```
+
+7. 状态码
+   
+   1. 用HTTP响应码表示此次请求结果，例如
+      ```text
+      200 ok：服务器成功返回用户请求的数据
+      201 CREATED：用户新建或修改数据成功
+      202 Accepted：表示一个请求已进入后台排队（异步任务）
+      204 NO CONTENT：用户删除数据成功
+      400 INVALID REQUEST：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的
+      401 Unauthorized：表示用户没有授权
+      403 Forbidden：表示用户得到了授权，但是访问是被禁止的
+      404 NOT FOUND：用户发出的请求针对的时不存在的记录，服务器没有进行操作，该操作时幂等的
+      406 Not Acceptable：用户请求的格式不可得
+      410 Gone：用户请求的资源被永久删除，且不会再得到
+      422 Unprocesable entity：当创建一个对象时，发生一个验证错误
+      500 INTERNAL SERVER ERROR：服务器发生错误
+      ```
+   
+   2. 自定义内部code进行响应，返回结构如下：```{"code": 100001, "data": {}, "error": "xxx"}```
+
+8. 返回结果（根据HTTP动作的不同，返回结果的结构也有所不同）
+   
+   ```text
+   GET /users：返回资源对象的列表
+   GET /users/item：返回单个资源对象
+   POST /users：返回新生成的资源对象
+   PUT /users/item：返回完整的资源对象
+   PATCH /users/item：返回完整的资源对象
+   DELETE /users/item：返回一个空文档
+   ```

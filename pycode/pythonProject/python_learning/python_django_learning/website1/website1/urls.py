@@ -32,4 +32,5 @@ urlpatterns = [
     path("tax", views.cal_tax_view),
     path("bookstore/", include("bookstore.urls")),
     path("user/", include("user.urls")),
+    path('test/', views.test_view),
 ]

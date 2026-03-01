@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta id="viewport" name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0 minimal-ui">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>人人为我论坛提示信息</title>
+<meta name="generator" content="PHPWind 7.5 SP3" />
+<meta name="description" content="人人为我论坛" />
+<meta name="keywords" content="人人为我论坛" />
+<base id="headbase" href="https://pop5.4i5x.com/" />
+<link rel="stylesheet" type="text/css" href="images/wind-reset.css" />
+<style type="text/css">
+body{ font-size:12px;background-color: #F8FFFF;height:660px;}
+a{ text-decoration:none;color:#1b72af;}
+a:hover{ text-decoration:underline;}
+ol{list-style-type:decimal;margin-left:24px;color:#888;}
+.mt10{margin-top:10px;}
+.lh2{line-height:2;}
+.tip-page{width:600px;margin:150px auto 105px;}
+.tip-table{margin:0 1px;width:598px;}
+.tip-top{background:url(images/tip-top.png);height:50px;}
+
+.tip-bgA,.tip-bgB{height:1px;overflow:hidden;}
+.tip-bgA{margin:0 2px;}
+.tip-bgB{margin:0 1px;}
+.tip-bgC{padding-top:1px;border: 1px solid #c6d9ed;background: #fff;border-radius:10px;}
+.tip-content{padding:20px 0 0 67px;}
+.tip-content tr td{padding:5px 10px 5px 0;line-height:25px;}
+
+.show-back{ text-decoration:underline;display:block;padding-right:25px;line-height:22px;overflow:hidden;background:url(images/tips-back.gif) right 0 no-repeat;height:20px;}
+.show-back:hover{ background-position:right -20px;}
+
+.btn{border-color:#1b72af;margin-right:1em;color:#fff;background:#1b72af;border-radius:5px;}
+.btn,.bt{border-width:1px;cursor:pointer;padding:.1em 1em;*padding:0 1em;font-size:9pt;  overflow:visible;}
+.btn:hover {
+    background-color: #4A96CF;
+}
+.bt{cursor:pointer;background:#f7f7f7 url(images/wind/btn.png) 0 -52px repeat-x;vertical-align:middle;border-color: #e4e4e4 #cccccc #cccccc #e4e4e4;}
+
+/*form*/
+input{font:12px Arial;padding:1px 3px 0 3px;vertical-align:middle;margin-bottom:1px;}
+.input{border: 1px solid; border-color: #c0c0c0 #ededed #ededed #c0c0c0;padding:2px 0px 2px 1px;font-size:1.0em;vertical-align:middle;color:#000;background: url(/images/wind/small_bg.png);}
+
+/*new_nav*/
+#nav-global,.nav-left,.nav-right{background:url(images/wind/nav-bg.png);}
+.nav-left,.nav-right{width:5px;height:35px;}
+.nav-left{ background-position:0 0;_margin-right:-3px;}
+.nav-right{ background-position:0 -70px;_margin-left:-3px;}
+#nav-global{ background-position:0 -35px;height:35px;overflow:hidden;}
+	#nav-global ul{font-size:14px;padding-left:10px;}
+		#nav-global li,#nav-global li a{background:url(images/wind/nav-cur.png) 999em 999em no-repeat;}
+		#nav-global li{margin:5px 0 0 0;float:left;}
+		#nav-global li a{float:left;color:#ffffff;padding:0 10px;height:27px;line-height:23px;outline:none;font-weight:700;}
+		#nav-global li a:hover{color:#ffea00; text-decoration:none;}
+		#nav-global .current{background-position:left top;line-height:33px;height:33px;margin:2px 5px 0;}
+		#nav-global .current a,#nav-global .current a:hover{background-position:right top;color:#1c4b79;display:inline;line-height:33px;height:33px;padding:0 19px; text-decoration:none;}
+
+select{background: url(/images/wind/small_bg.png);}
+
+.bottom-ad-parent {
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.bottom-ad-child {
+	width:568px;
+	text-align: left;
+	padding-left: 0.8em;
+	border: 1px dashed #008CFF;border-radius: 8px;
+}
+.bottom-ad-child a {
+	margin-right: 0.5em;
+    display: block;
+    float: left;
+    /*width: 4.5em;*/
+    width: 72px;
+}
+@media screen and (max-width: 460px) {
+    .tip-page{width:100%;margin:100px auto 61.8px;}
+    .tip-table{margin:0 1px;width:99.5%;}
+    .tip-top{height:50px;width: 99.8%;}
+    .tip-content{padding:20px 0 0 50px;}
+    
+    .mobile_footer_1{
+        padding: 0.8em 0em 0.8em 0.8em;
+    }
+}
+@media screen and (max-width: 414px) {
+    .mobile_footer_1{
+        padding: 0.8em 0 0.8em 0.26em;
+    }
+    .tip-content{padding:20px 0 0 40px;}
+}
+@media screen and (max-width: 412px) {
+    .mobile_footer_1{
+        padding: 0.8em 0em 0.8em 0.13em;
+    }
+    .tip-content{padding:20px 0 0 40px;}
+}
+@media screen and (max-width: 390px) {
+    .mobile_footer_1{
+        padding: 0.8em 0em 0.8em 2em;
+    }
+    .tip-content{padding:20px 0 0 30px;}
+}
+@media screen and (max-width: 375px) {
+    .mobile_footer_1{
+        padding: 0.8em 0em 0.8em 1.6em;
+    }
+    .tip-content{padding:20px 0 0 20px;}
+}
+@media screen and (max-width: 360px) {
+    .mobile_footer_1{
+        padding: 0.8em 0em 0.8em 1.2em;
+    }
+    .tip-content{padding:20px 0 0 15px;}
+}
+</style>
+<script type="text/javascript" language="JavaScript" src="js/core/core.js"></script>
+</head>
+<body>
+
+<div id="header" style="min-width: 375px;">
+    <div id="head" style="width: 100%;max-width: 1615px;margin: 0 auto;">
+        <table cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="https://bbs.m6yi.com/" class="fl"></a>
+                    <a href="/"><img src="/logo.png" width="288" height="78"></a>
+                </td>
+                <td id="banner" align="right"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="nav-wrap">
+        <div id="nav" style="max-width: 1615px;margin: auto;">
+            <span class="nav-left fl"></span>    
+            <div id="nav-global" style="background-position: 0 -35px;height: 35px;overflow: hidden;">
+                <ul class="cc" style="font-size: 14px;padding-left: 10px;">
+                    <li style="margin: 5px 0 0 0;float: left;"><a href="index.php" id="td_KEYbbs">首页</a></li>
+                    <li><a href="yy.php" id="td_ID113" target="_blank" onclick="hideNavMobile()">本站影院</a></li>
+                    <li><a href="https://lf.hsjmvb.cn/" id="td_ID115" target="_blank">本站性息</a></li>
+                    <li><a href="https://360.wvmue.com/" id="td_ID86" target="_blank">酒店家庭监控</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.modern-login {
+    width: 100%;
+    max-width: 580px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.login-header {
+    margin-bottom: 25px;
+}
+
+.login-header h2 {
+    font-size: 18px;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.login-header p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-control {
+    width: 100%;
+    height: 44px;
+    padding: 0 15px;
+    font-size: 15px;
+    border: 1px solid #e0e3e9;
+    border-radius: 8px;
+    background: #f8f9fc;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    background: #fff;
+    border-color: #4b77be;
+    box-shadow: 0 0 0 3px rgba(75,119,190,0.1);
+    outline: none;
+}
+
+.form-select {
+    width: 100%;
+    height: 44px;
+    padding: 0 15px;
+    font-size: 15px;
+    border: 1px solid #e0e3e9;
+    border-radius: 8px;
+    background: #f8f9fc;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.btn {
+    height: 44px;
+    padding: 0 24px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #4b77be;
+    color: #fff;
+}
+
+.btn:hover {
+    background: #3a66ad;
+    transform: translateY(-1px);
+}
+
+.login-links {
+    display: inline-block;
+    margin-left: 15px;
+    color: #4b77be;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login-links:hover {
+    color: #3a66ad;
+}
+
+.login-footer {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.code-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.code-input {
+    width: 140px !important;
+}
+
+#ckcode {
+    height: 44px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* 移动端自适应 */
+@media screen and (max-width: 768px) {
+    .modern-login {
+        width: auto;
+        margin: 15px;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .form-control, 
+    .form-select,
+    .btn {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .login-header h2 {
+        font-size: 16px;
+    }
+
+    .login-header p {
+        font-size: 13px;
+    }
+
+    .code-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .code-input {
+        width: 100% !important;
+    }
+
+    #ckcode {
+        width: 100%;
+        height: 40px;
+        object-fit: cover;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .login-links {
+        display: block;
+        margin: 8px 0;
+        text-align: center;
+    }
+
+    .login-footer {
+        text-align: center;
+    }
+
+    .login-footer .login-links {
+        display: inline-block;
+        margin: 0 10px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .modern-login {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .form-label {
+        font-size: 13px;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .modern-login {
+        margin: 8px;
+        padding: 12px;
+    }
+}
+</style>
+
+<div class="modern-login">    <div class="login-header">
+        <p>对不起180秒内只能进行一次搜索</p>
+    </div>
+    <div class="login-footer">
+        <a href="javascript:history.back()" class="login-links">返回继续操作</a>
+        <a href="https://pop5.4i5x.com" class="login-links">返回首页</a>
+    </div></div>
+<script>
+function showcustomquest(qid){
+    document.getElementById("customquest").style.display = qid == -1 ? 'block' : 'none';
+}
+document.querySelector('input[name="pwuser"]').focus();
+</script>
+
+</body>
+</html>

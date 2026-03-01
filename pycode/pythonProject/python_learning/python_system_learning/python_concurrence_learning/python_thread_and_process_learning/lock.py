@@ -17,6 +17,7 @@ def worker_a():
 
 t1 = threading.Thread(target=worker_a)
 t1.start()
+
 sleep(3)
 lock.acquire()
 print('main thread started')
